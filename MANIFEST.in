@@ -1,0 +1,3 @@
+recursive-include pretalx_lower_thirds/static *
+recursive-include pretalx_lower_thirds/templates *
+recursive-include pretalx_lower_thirds/locale *
