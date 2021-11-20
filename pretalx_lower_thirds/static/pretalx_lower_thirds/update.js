@@ -49,10 +49,14 @@ function update_lower_third() {
     if (current_talk) {
         $('#title').text(current_talk['title']);
         $('#speaker').text(current_talk['persons'].join(', '));
-        $('#box').css('border-bottom', '10px solid ' + current_talk['track']['color']);
     } else {
         $('#title').text('Currently no talk');
         $('#speaker').text('');
+    }
+
+    if (current_talk && current_talk['track']) {
+        $('#box').css('border-bottom', '10px solid ' + current_talk['track']['color']);
+    } else {
         $('#box').css('border-bottom', 'none');
     }
 }
