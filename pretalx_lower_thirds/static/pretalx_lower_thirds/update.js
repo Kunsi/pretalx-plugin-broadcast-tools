@@ -49,9 +49,11 @@ function update_lower_third() {
     if (current_talk) {
         $('#title').text(current_talk['title']);
         $('#speaker').text(current_talk['persons'].join(', '));
+        $('#info_line').text(current_talk['infoline']);
     } else {
-        $('#title').text('Currently no talk');
+        $('#title').text(schedule['conference']['no_talk']);
         $('#speaker').text('');
+        $('#info_line').text('');
     }
 
     if (current_talk && current_talk['track']) {

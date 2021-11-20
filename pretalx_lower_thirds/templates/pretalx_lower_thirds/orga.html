@@ -1,0 +1,37 @@
+{% extends "orga/base.html" %}
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block content %}
+    <h2>{% trans "Set up lower thirds" %}</h2>
+    <form method="post">
+        {% csrf_token %}
+        {% bootstrap_form form layout='event' %}
+        <p>
+            The info line will be shown on the bottom right side of your
+            lower third. If you set it to an empty string, it will automatically
+            hide itself.
+        </p>
+        <p>
+            pretalx will automatically replace some placeholders in your info
+            string.
+            Use <code>{CODE}</code> to embed the talk code (<code>MUX9U3</code>
+            for example). You could use this to directly link to the talk
+            feedback page.
+            Use <code>{EVENT_SLUG}</code> to get the event slug.
+            Use <code>{TALK_SLUG}</code> to get the talk slug.
+        </p>
+        <div class="submit-group panel">
+            <span></span>
+            <span class="d-flex flex-row-reverse">
+                <button
+                    type="submit" class="btn btn-success btn-lg"
+                    name="action" value="save"
+                >
+                    <i class="fa fa-check"></i>
+                    {% trans "Save" %}
+                </button>
+            </span>
+        </div>
+    </form>
+{% endblock %}

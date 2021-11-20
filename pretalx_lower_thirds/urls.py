@@ -15,4 +15,10 @@ urlpatterns = [
         views.ScheduleView.as_view(),
         name="schedule",
     ),
+
+    re_path(
+        f"^orga/event/(?P<event>[{SLUG_CHARS}]+)/p/lower-thirds/$",
+        views.LowerThirdsOrgaView.as_view(),
+        name="orga",
+    ),
 ]

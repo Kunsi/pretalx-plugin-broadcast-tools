@@ -11,17 +11,40 @@ from django.urls import reverse
 from django.utils.functional import cached_property
 from django.utils.timezone import now
 from django.utils.translation import gettext_lazy as _
+from django.views.generic import FormView
 from django.views.generic.base import TemplateView
 from django_context_decorator import context
 
 from pretalx.agenda.views.schedule import ScheduleMixin
-from pretalx.common.mixins.views import EventPermissionRequired
+from pretalx.common.mixins.views import EventPermissionRequired, PermissionRequired
 from pretalx.common.signals import register_data_exporters
 from pretalx.schedule.exporters import ScheduleData
+
+from .forms import LowerThirdsSettingsForm
 
 
 class LowerThirdsView(TemplateView):
     template_name = "pretalx_lower_thirds/lower_thirds.html"
+
+
+class LowerThirdsOrgaView(PermissionRequired, FormView):
+    form_class = LowerThirdsSettingsForm
+    permission_required = 'orga.change_settings'
+    template_name = "pretalx_lower_thirds/orga.html"
+
+    def get_success_url(self):
+        return self.request.path
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
+
+    def get_object(self):
+        return self.request.event
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        return {'obj': self.request.event, 'attribute_name': 'settings', **kwargs}
 
 
 class ScheduleView(EventPermissionRequired, ScheduleMixin, TemplateView):
@@ -38,6 +61,7 @@ class ScheduleView(EventPermissionRequired, ScheduleMixin, TemplateView):
                 "conference": {
                     "slug": schedule.event.slug,
                     "name": str(schedule.event.name),
+                    "no_talk": str(schedule.event.settings.lower_thirds_no_talk_info),
                 },
                 "rooms": sorted({
                     str(room["name"])
@@ -59,6 +83,11 @@ class ScheduleView(EventPermissionRequired, ScheduleMixin, TemplateView):
                             "name": str(talk.submission.track.name),
                         } if talk.submission.track else None,
                         "room": str(room["name"]),
+                        "infoline": str(schedule.event.settings.lower_thirds_info_string).format(
+                            EVENT_SLUG=str(schedule.event.slug),
+                            TALK_SLUG=talk.frab_slug,
+                            CODE=talk.submission.code,
+                        ),
                     }
                     for day in schedule.data
                     for room in day["rooms"]

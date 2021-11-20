@@ -28,3 +28,8 @@
 #speaker {
     font-size: 20px;
 }
+
+#info_line {
+    font-size: 16px;
+    text-align: right;
+}
