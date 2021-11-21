@@ -1,4 +1,5 @@
 include Makefile
+recursive-include img *.png
 recursive-include pretalx_lower_thirds *.py
 recursive-include pretalx_lower_thirds/locale *
 recursive-include pretalx_lower_thirds/static *
