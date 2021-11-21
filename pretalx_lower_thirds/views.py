@@ -37,6 +37,7 @@ class LowerThirdsOrgaView(PermissionRequired, FormView):
         return {
             "obj": self.request.event,
             "attribute_name": "settings",
+            "locales": self.request.event.locales,
             **kwargs,
         }
 
