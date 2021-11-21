@@ -24,7 +24,7 @@ cmdclass = {"build": CustomBuild}
 
 setup(
     name="pretalx-plugin-lower-thirds",
-    version="0.1.0",
+    version="0.1.1",
     description=(
         "Creates lower thirds from your current schedule. Will show "
         "speaker names and talk title using the configured track and "
