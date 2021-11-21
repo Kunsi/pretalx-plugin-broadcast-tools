@@ -26,7 +26,7 @@
             <h3>{% trans "room list" %}</h3>
             <ul>
                 {% for room in request.event.rooms.all %}
-                    <li><a href="{% url 'plugins:pretalx_lower_thirds:lowerthirds' request.event %}#{{ room.name }}">{{ room.name }}</a></li>
+                    <li><a href="{% url 'plugins:pretalx_lower_thirds:lowerthirds' request.event.slug %}#{{ room.name }}">{{ room.name }}</a></li>
                 {% endfor %}
             </ul>
         {% endif %}
