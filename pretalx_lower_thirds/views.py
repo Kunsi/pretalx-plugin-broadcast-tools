@@ -50,6 +50,7 @@ class ScheduleView(EventPermissionRequired, ScheduleMixin, TemplateView):
             schedule=self.schedule,
         )
         tz = pytz.timezone(schedule.event.timezone)
+        infoline = str(schedule.event.settings.infoline or "")
         return JsonResponse(
             {
                 "conference": {
@@ -88,9 +89,7 @@ class ScheduleView(EventPermissionRequired, ScheduleMixin, TemplateView):
                         if talk.submission.track
                         else None,
                         "room": str(room["name"]),
-                        "infoline": str(
-                            schedule.event.settings.lower_thirds_info_string
-                        ).format(
+                        "infoline": infoline.format(
                             EVENT_SLUG=str(schedule.event.slug),
                             TALK_SLUG=talk.frab_slug,
                             CODE=talk.submission.code,
