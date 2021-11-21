@@ -6,8 +6,7 @@ from django.views.generic import FormView
 from django.views.generic.base import TemplateView
 from pretalx.agenda.views.schedule import ScheduleMixin
 from pretalx.common.mixins.views import (
-    EventPermissionRequired,
-    PermissionRequired,
+    EventPermissionRequired, PermissionRequired,
 )
 from pretalx.schedule.exporters import ScheduleData
 
@@ -56,7 +55,8 @@ class ScheduleView(EventPermissionRequired, ScheduleMixin, TemplateView):
                 "conference": {
                     "slug": schedule.event.slug,
                     "name": str(schedule.event.name),
-                    "no_talk": str(schedule.event.settings.lower_thirds_no_talk_info),
+                    "no_talk": str(
+                        schedule.event.settings.lower_thirds_no_talk_info),
                 },
                 "rooms": sorted(
                     {
@@ -69,9 +69,10 @@ class ScheduleView(EventPermissionRequired, ScheduleMixin, TemplateView):
                     {
                         "id": talk.submission.id,
                         "start": talk.start.astimezone(tz).isoformat(),
-                        "end": (talk.start + dt.timedelta(minutes=talk.duration))
-                        .astimezone(tz)
-                        .isoformat(),
+                        "end": (
+                            talk.start +
+                            dt.timedelta(minutes=talk.duration)
+                        ).astimezone(tz).isoformat(),
                         "slug": talk.frab_slug,
                         "title": talk.submission.title,
                         "persons": sorted(
