@@ -1,23 +1,14 @@
 import datetime as dt
-import json
-import pytz
-import random
 
-from django.contrib import messages
-from django.db.models import Case, OuterRef, Subquery, When
-from django.http import Http404, JsonResponse
-from django.shortcuts import redirect
-from django.urls import reverse
-from django.utils.functional import cached_property
-from django.utils.timezone import now
-from django.utils.translation import gettext_lazy as _
+import pytz
+from django.http import JsonResponse
 from django.views.generic import FormView
 from django.views.generic.base import TemplateView
-from django_context_decorator import context
-
 from pretalx.agenda.views.schedule import ScheduleMixin
-from pretalx.common.mixins.views import EventPermissionRequired, PermissionRequired
-from pretalx.common.signals import register_data_exporters
+from pretalx.common.mixins.views import (
+    EventPermissionRequired,
+    PermissionRequired,
+)
 from pretalx.schedule.exporters import ScheduleData
 
 from .forms import LowerThirdsSettingsForm
@@ -29,7 +20,7 @@ class LowerThirdsView(TemplateView):
 
 class LowerThirdsOrgaView(PermissionRequired, FormView):
     form_class = LowerThirdsSettingsForm
-    permission_required = 'orga.change_settings'
+    permission_required = "orga.change_settings"
     template_name = "pretalx_lower_thirds/orga.html"
 
     def get_success_url(self):
@@ -44,7 +35,11 @@ class LowerThirdsOrgaView(PermissionRequired, FormView):
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
-        return {'obj': self.request.event, 'attribute_name': 'settings', **kwargs}
+        return {
+            "obj": self.request.event,
+            "attribute_name": "settings",
+            **kwargs,
+        }
 
 
 class ScheduleView(EventPermissionRequired, ScheduleMixin, TemplateView):
@@ -63,27 +58,38 @@ class ScheduleView(EventPermissionRequired, ScheduleMixin, TemplateView):
                     "name": str(schedule.event.name),
                     "no_talk": str(schedule.event.settings.lower_thirds_no_talk_info),
                 },
-                "rooms": sorted({
-                    str(room["name"])
-                    for day in schedule.data
-                    for room in day["rooms"]
-                }),
+                "rooms": sorted(
+                    {
+                        str(room["name"])
+                        for day in schedule.data
+                        for room in day["rooms"]
+                    }
+                ),
                 "talks": [
                     {
                         "id": talk.submission.id,
                         "start": talk.start.astimezone(tz).isoformat(),
-                        "end": (talk.start + dt.timedelta(minutes=talk.duration)).astimezone(tz).isoformat(),
+                        "end": (talk.start + dt.timedelta(minutes=talk.duration))
+                        .astimezone(tz)
+                        .isoformat(),
                         "slug": talk.frab_slug,
                         "title": talk.submission.title,
-                        "persons": sorted({
-                            person.get_display_name() for person in talk.submission.speakers.all()
-                        }),
+                        "persons": sorted(
+                            {
+                                person.get_display_name()
+                                for person in talk.submission.speakers.all()
+                            }
+                        ),
                         "track": {
                             "color": talk.submission.track.color,
                             "name": str(talk.submission.track.name),
-                        } if talk.submission.track else None,
+                        }
+                        if talk.submission.track
+                        else None,
                         "room": str(room["name"]),
-                        "infoline": str(schedule.event.settings.lower_thirds_info_string).format(
+                        "infoline": str(
+                            schedule.event.settings.lower_thirds_info_string
+                        ).format(
                             EVENT_SLUG=str(schedule.event.slug),
                             TALK_SLUG=talk.frab_slug,
                             CODE=talk.submission.code,

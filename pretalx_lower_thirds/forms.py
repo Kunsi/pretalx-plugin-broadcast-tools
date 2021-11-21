@@ -5,13 +5,16 @@ from hierarkey.forms import HierarkeyForm
 
 class LowerThirdsSettingsForm(HierarkeyForm):
     lower_thirds_no_talk_info = forms.CharField(
-        help_text='Will be shown as talk title if there\'s currently no talk running.',
-        initial = 'Sorry, there\'s currently no talk running',
-        label='"no talk running" information',
+        help_text=_(
+            "Will be shown as talk title if there's currently no talk "
+            "running."
+        ),
+        initial="Sorry, there's currently no talk running",
+        label=_('"no talk running" information'),
         required=True,
     )
     lower_thirds_info_string = forms.CharField(
-        initial='',
-        label='info line',
+        initial="",
+        label=_("info line"),
         required=False,
     )

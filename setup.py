@@ -25,7 +25,11 @@ cmdclass = {"build": CustomBuild}
 setup(
     name="pretalx-plugin-lower-thirds",
     version="0.0.0",
-    description="Creates lower thirds from your current schedule. Will show speaker names and talk title using the configured track and event colours.",
+    description=(
+        "Creates lower thirds from your current schedule. Will show "
+        "speaker names and talk title using the configured track and "
+        "event colours."
+    ),
     long_description=long_description,
     url="https://git.franzi.business/kunsi/pretalx-plugin-lower-thirds",
     author="kunsi",
