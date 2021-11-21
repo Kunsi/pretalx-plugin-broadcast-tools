@@ -61,30 +61,6 @@ jobs:
       - name: Run flake8
         run: flake8 .
         working-directory: .
-  black:
-    name: black
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: install gettext
-        run: sudo apt install gettext
-      - name: Set up Python 3.8
-        uses: actions/setup-python@v1
-        with:
-          python-version: 3.8
-      - uses: actions/cache@v1
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/setup.py') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-      - name: Install pretalx
-        run: pip3 install pretalx
-      - name: Install Dependencies
-        run: pip3 install black -Ue .
-      - name: Run black
-        run: black --check .
-        working-directory: .
   docformatter:
     name: docformatter
     runs-on: ubuntu-latest
