@@ -101,7 +101,6 @@ jobs:
       - name: Run docformatter
         run: docformatter --check -r .
         working-directory: .
-      - name: Run docformatter
   djhtml:
     name: djhtml
     runs-on: ubuntu-latest
