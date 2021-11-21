@@ -14,6 +14,9 @@ class LowerThirdsSettingsForm(HierarkeyForm):
         required=True,
     )
     lower_thirds_info_string = forms.CharField(
+        help_text=_(
+            "Will only be shown if there's a talk running."
+        ),
         initial="",
         label=_("info line"),
         required=False,
