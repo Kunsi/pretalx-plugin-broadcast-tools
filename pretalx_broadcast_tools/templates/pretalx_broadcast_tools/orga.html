@@ -12,41 +12,43 @@
             </legend>
             {% bootstrap_field form.lower_thirds_no_talk_info layout='event' %}
             {% bootstrap_field form.lower_thirds_info_string layout='event' %}
-        <p>
-            The info line will be shown on the bottom right side of your
-            lower third. If you set it to an empty string, it will automatically
-            hide itself.
-        </p>
-        <p>
-            pretalx will automatically replace some placeholders in your info
-            string.
-            Use <code>{CODE}</code> to embed the talk code (<code>MUX9U3</code>
-            for example). You could use this to directly link to the talk
-            feedback page.
-            Use <code>{EVENT_SLUG}</code> to get the event slug.
-            Use <code>{TALK_SLUG}</code> to get the talk slug.
-        </p>
+            <p>
+                The info line will be shown on the bottom right side of your
+                lower third. If you set it to an empty string, it will automatically
+                hide itself.
+            </p>
+            <p>
+                pretalx will automatically replace some placeholders in your info
+                string.
+                Use <code>{CODE}</code> to embed the talk code (<code>MUX9U3</code>
+                for example). You could use this to directly link to the talk
+                feedback page.
+                Use <code>{EVENT_SLUG}</code> to get the event slug.
+                Use <code>{TALK_SLUG}</code> to get the talk slug.
+            </p>
 
-        {% if request.event.rooms %}
-            <h3>{% trans "room list" %}</h3>
-            <ul>
-                {% for room in request.event.rooms.all %}
-                    <li><a href="{% url 'plugins:pretalx_broadcast_tools:lowerthirds' request.event.slug %}#{{ room.name }}">{{ room.name }}</a></li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-
-        <div class="submit-group panel">
-            <span></span>
-            <span class="d-flex flex-row-reverse">
-                <button
-                    type="submit" class="btn btn-success btn-lg"
-                    name="action" value="save"
-                >
-                    <i class="fa fa-check"></i>
-                    {% trans "Save" %}
-                </button>
-            </span>
-        </div>
+            {% if request.event.rooms %}
+                <h3>{% trans "room list" %}</h3>
+                <ul>
+                    {% for room in request.event.rooms.all %}
+                        <li><a href="{% url 'plugins:pretalx_broadcast_tools:lowerthirds' request.event.slug %}#{{ room.name }}">{{ room.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </fieldset>
+        <fieldset>
+            <div class="submit-group panel">
+                <span></span>
+                <span class="d-flex flex-row-reverse">
+                    <button
+                        type="submit" class="btn btn-success btn-lg"
+                        name="action" value="save"
+                    >
+                        <i class="fa fa-check"></i>
+                        {% trans "Save" %}
+                    </button>
+                </span>
+            </div>
+        </fieldset>
     </form>
 {% endblock %}
