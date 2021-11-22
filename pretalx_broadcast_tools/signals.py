@@ -23,7 +23,7 @@ def navbar_info(sender, request, **kwargs):
         return []
     return [
         {
-            "label": _("lower thirds"),
+            "label": _("broadcast tools"),
             "url": reverse(
                 "plugins:pretalx_broadcast_tools:orga",
                 kwargs={
