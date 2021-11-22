@@ -42,7 +42,7 @@ class LowerThirdsOrgaView(PermissionRequired, FormView):
 
 class EventInfoView(TemplateView):
     def get(self, request, *args, **kwargs):
-        color = (self.request.event.primary_color or "#3aa57c")
+        color = self.request.event.primary_color or "#3aa57c"
         return JsonResponse(
             {
                 "slug": self.request.event.slug,
