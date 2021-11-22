@@ -66,12 +66,12 @@ function update_lower_third() {
 window.setInterval(update_lower_third, 1000);
 
 function update_schedule() {
-    $.getJSON('event.json', function(data) {
+    $.getJSON('../event.json', function(data) {
         event_info = data;
 
         $('#box').css('background-color', data['color']);
     });
-    $.getJSON('schedule.json', function(data) {
+    $.getJSON('../schedule.json', function(data) {
         console.info('schedule updated with ' + data['talks'].length + ' talks in ' + data['rooms'].length + ' rooms');
 
         schedule = data;

@@ -3,7 +3,7 @@ from hierarkey.forms import HierarkeyForm
 from i18nfield.forms import I18nFormField, I18nFormMixin, I18nTextInput
 
 
-class LowerThirdsSettingsForm(I18nFormMixin, HierarkeyForm):
+class BroadcastToolsSettingsForm(I18nFormMixin, HierarkeyForm):
     lower_thirds_no_talk_info = I18nFormField(
         help_text=_(
             "Will be shown as talk title if there's currently no talk running."

@@ -8,17 +8,17 @@ from pretalx.agenda.views.schedule import ScheduleMixin
 from pretalx.common.mixins.views import EventPermissionRequired, PermissionRequired
 from pretalx.schedule.exporters import ScheduleData
 
-from .forms import LowerThirdsSettingsForm
+from .forms import BroadcastToolsSettingsForm
 
 
-class LowerThirdsView(TemplateView):
-    template_name = "pretalx_lower_thirds/lower_thirds.html"
+class BroadcastToolsLowerThirdsView(TemplateView):
+    template_name = "pretalx_broadcast_tools/lower_thirds.html"
 
 
-class LowerThirdsOrgaView(PermissionRequired, FormView):
-    form_class = LowerThirdsSettingsForm
+class BroadcastToolsOrgaView(PermissionRequired, FormView):
+    form_class = BroadcastToolsSettingsForm
     permission_required = "orga.change_settings"
-    template_name = "pretalx_lower_thirds/orga.html"
+    template_name = "pretalx_broadcast_tools/orga.html"
 
     def get_success_url(self):
         return self.request.path
@@ -40,7 +40,7 @@ class LowerThirdsOrgaView(PermissionRequired, FormView):
         }
 
 
-class EventInfoView(TemplateView):
+class BroadcastToolsEventInfoView(TemplateView):
     def get(self, request, *args, **kwargs):
         color = self.request.event.primary_color or "#3aa57c"
         return JsonResponse(
@@ -50,13 +50,10 @@ class EventInfoView(TemplateView):
                 "no_talk": str(self.request.event.settings.lower_thirds_no_talk_info),
                 "color": color,
             },
-            json_dumps_params={
-                "indent": 4,
-            },
         )
 
 
-class ScheduleView(EventPermissionRequired, ScheduleMixin, TemplateView):
+class BroadcastToolsScheduleView(EventPermissionRequired, ScheduleMixin, TemplateView):
     permission_required = "agenda.view_schedule"
 
     def get(self, request, *args, **kwargs):
@@ -107,8 +104,5 @@ class ScheduleView(EventPermissionRequired, ScheduleMixin, TemplateView):
                     for room in day["rooms"]
                     for talk in room["talks"]
                 ],
-            },
-            json_dumps_params={
-                "indent": 4,
             },
         )

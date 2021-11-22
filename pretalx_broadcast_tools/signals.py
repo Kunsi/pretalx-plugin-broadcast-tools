@@ -25,12 +25,12 @@ def navbar_info(sender, request, **kwargs):
         {
             "label": _("lower thirds"),
             "url": reverse(
-                "plugins:pretalx_lower_thirds:orga",
+                "plugins:pretalx_broadcast_tools:orga",
                 kwargs={
                     "event": request.event.slug,
                 },
             ),
-            "active": url.namespace == "plugins:pretalx_lower_thirds"
+            "active": url.namespace == "plugins:pretalx_broadcast_tools"
             and url.url_name == "orga",
         }
     ]

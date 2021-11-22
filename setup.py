@@ -23,15 +23,15 @@ cmdclass = {"build": CustomBuild}
 
 
 setup(
-    name="pretalx-plugin-lower-thirds",
+    name="pretalx-plugin-broadcast-tools",
     version="0.1.2",
     description=(
-        "Creates lower thirds from your current schedule. Will show "
-        "speaker names and talk title using the configured track and "
-        "event colours."
+        "Some tools which can be used for supporting a broadcasting "
+        "software, for example a 'lower third' page which can be "
+        "embedded into your broadcasting software"
     ),
     long_description=long_description,
-    url="https://git.franzi.business/kunsi/pretalx-plugin-lower-thirds",
+    url="https://github.com/Kunsi/pretalx-plugin-broadcast-tools",
     author="kunsi",
     author_email="git@kunsmann.eu",
     license="Apache Software License",
@@ -41,6 +41,6 @@ setup(
     cmdclass=cmdclass,
     entry_points="""
 [pretalx.plugin]
-pretalx_lower_thirds=pretalx_lower_thirds:PretalxPluginMeta
+pretalx_broadcast_tools=pretalx_broadcast_tools:PretalxPluginMeta
 """,
 )
