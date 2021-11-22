@@ -10,6 +10,11 @@ urlpatterns = [
         name="lowerthirds",
     ),
     re_path(
+        f"^(?P<event>[{SLUG_CHARS}]+)/p/lower-thirds/event.json$",
+        views.EventInfoView.as_view(),
+        name="event_info",
+    ),
+    re_path(
         f"^(?P<event>[{SLUG_CHARS}]+)/p/lower-thirds/schedule.json$",
         views.ScheduleView.as_view(),
         name="schedule",

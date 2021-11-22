@@ -1,5 +1,6 @@
 schedule = null;
 room_name = null;
+event_info = null;
 
 $(function() {
     $('#speaker').text('Content will appear soon.');
@@ -16,8 +17,8 @@ function update_lower_third() {
         return
     }
 
-    if (!schedule) {
-        console.warn("There's no schedule yet, exiting ...");
+    if (!schedule || !event_info)  {
+        console.warn("There's no schedule or no event info yet, exiting ...");
         return
     }
 
@@ -51,7 +52,7 @@ function update_lower_third() {
         $('#speaker').text(current_talk['persons'].join(', '));
         $('#info_line').text(current_talk['infoline']);
     } else {
-        $('#title').text(schedule['conference']['no_talk']);
+        $('#title').text(event_info['no_talk']);
         $('#speaker').text('');
         $('#info_line').text('');
     }
@@ -65,6 +66,11 @@ function update_lower_third() {
 window.setInterval(update_lower_third, 1000);
 
 function update_schedule() {
+    $.getJSON('event.json', function(data) {
+        event_info = data;
+
+        $('#box').css('background-color', data['color']);
+    });
     $.getJSON('schedule.json', function(data) {
         console.info('schedule updated with ' + data['talks'].length + ' talks in ' + data['rooms'].length + ' rooms');
 

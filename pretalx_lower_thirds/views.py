@@ -40,6 +40,22 @@ class LowerThirdsOrgaView(PermissionRequired, FormView):
         }
 
 
+class EventInfoView(TemplateView):
+    def get(self, request, *args, **kwargs):
+        color = (self.request.event.primary_color or "#3aa57c")
+        return JsonResponse(
+            {
+                "slug": self.request.event.slug,
+                "name": str(self.request.event.name),
+                "no_talk": str(self.request.event.settings.lower_thirds_no_talk_info),
+                "color": color,
+            },
+            json_dumps_params={
+                "indent": 4,
+            },
+        )
+
+
 class ScheduleView(EventPermissionRequired, ScheduleMixin, TemplateView):
     permission_required = "agenda.view_schedule"
 
@@ -52,11 +68,6 @@ class ScheduleView(EventPermissionRequired, ScheduleMixin, TemplateView):
         infoline = str(schedule.event.settings.infoline or "")
         return JsonResponse(
             {
-                "conference": {
-                    "slug": schedule.event.slug,
-                    "name": str(schedule.event.name),
-                    "no_talk": str(schedule.event.settings.lower_thirds_no_talk_info),
-                },
                 "rooms": sorted(
                     {
                         str(room["name"])
