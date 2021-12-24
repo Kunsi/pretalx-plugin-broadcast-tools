@@ -17,8 +17,13 @@ function update_lower_third() {
         return
     }
 
-    if (!schedule || !event_info)  {
-        console.warn("There's no schedule or no event info yet, exiting ...");
+    if (!event_info)  {
+        console.warn("There's no event info yet, exiting");
+        return
+    }
+
+    if (!schedule)  {
+        $('#l3title').text('Waiting for schedule ...')
         return
     }
 
