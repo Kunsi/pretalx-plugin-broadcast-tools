@@ -4,7 +4,7 @@
     line-height: 1.2em;
 }
 
-#box {
+#l3box {
     width: 1020px;
 
     position: absolute;
@@ -20,17 +20,17 @@
     background-color: #3aa57c;
 }
 
-#title {
+#l3title {
     font-size: 30px;
     font-weight: 500;
     margin-bottom: 15px;
 }
 
-#speaker {
+#l3speaker {
     font-size: 20px;
 }
 
-#info_line {
+#l3info_line {
     font-size: 16px;
     text-align: right;
 }

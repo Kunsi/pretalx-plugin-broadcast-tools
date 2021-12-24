@@ -10,12 +10,15 @@
         {% endcompress %}
         <script src="{% static "pretalx_broadcast_tools/update.js" %}"></script>
         <link rel="stylesheet" href="{% static "pretalx_broadcast_tools/frontend.css" %}" />
+        {% if request.event and request.event.custom_css %}
+            <link rel="stylesheet" type="text/css" href="{{ request.event.custom_css.url }}"/>
+        {% endif %}
     </head>
-    <body>
-        <div id="box">
-            <p id="title">Loading ...</p>
-            <p id="speaker">Content should appear soon. If not, please verify you have Javascript enabled.</p>
-            <p id="info_line"></p>
+    <body class="lower3rd">
+        <div id="l3box">
+            <p id="l3title">Loading ...</p>
+            <p id="l3speaker">Content should appear soon. If not, please verify you have Javascript enabled.</p>
+            <p id="l3info_line"></p>
         </div>
     </body>
 </html>
