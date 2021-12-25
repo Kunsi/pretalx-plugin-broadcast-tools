@@ -14,6 +14,7 @@ hierarkey.add_default(
     LazyI18nString,
 )
 hierarkey.add_default("lower_thirds_info_string", "", LazyI18nString)
+hierarkey.add_default("lower_thirds_theme", "default")
 
 
 @receiver(nav_event_settings)
