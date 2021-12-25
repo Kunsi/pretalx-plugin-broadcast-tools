@@ -1,0 +1,71 @@
+@font-face {
+  font-family: 'Changa';
+  src: url('Changa-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Space Mono';
+  src: url('SpaceMono-Regular.ttf') format('truetype');
+}
+
+body {
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  margin: 0;
+}
+
+#l3box {
+  width: 1020px;
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  margin-left: -2010px;
+  color: white;
+  background-color: transparent !important;
+  border:1px solid #ccc !important;
+  border-bottom: none !important;
+  animation: slide 0.7s forwards;
+  animation-delay: 2s;
+}
+
+#l3title {
+  font-family: 'Changa';
+  text-transform:  lowercase;
+  line-height:  45px;
+  font-size: 30px;
+  letter-spacing:  110%;
+  color: #4c4c4c;
+  text-align:  center;
+  background-color: white;
+  padding:  10px 5px;
+}
+
+#l3speaker, #l3info_line {
+  font-family: 'Space Mono', monospace;
+  font-size: 27px;
+  margin: 0;
+  color: white;
+  background-color: rgba(0,0,0,0.75);
+}
+
+#l3speaker {
+  padding:  10px 20px;  
+}
+
+#l3info_line {
+  border-top:  1px solid #ccc;
+  font-size:  14px;
+  line-height:  36px;
+  padding: 0 20px;
+  text-align: right;
+}
+
+@keyframes slide {
+  100% {
+    margin-left: -510px;
+  }
+}

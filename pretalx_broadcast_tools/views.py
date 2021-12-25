@@ -2,6 +2,7 @@ import datetime as dt
 
 import pytz
 from django.http import JsonResponse
+from django.templatetags.static import static
 from django.views.generic import FormView
 from django.views.generic.base import TemplateView
 from pretalx.agenda.views.schedule import ScheduleMixin
@@ -10,9 +11,15 @@ from pretalx.schedule.exporters import ScheduleData
 
 from .forms import BroadcastToolsSettingsForm
 
+THEME_CSS = {"default": "frontend.css", "rc3-2021": "frontend_rc3.css"}
+
 
 class BroadcastToolsLowerThirdsView(TemplateView):
     template_name = "pretalx_broadcast_tools/lower_thirds.html"
+
+    def css_url(self):
+        css = THEME_CSS.get(self.request.event.settings.lower_thirds_theme)
+        return static(f"pretalx_broadcast_tools/{css}")
 
 
 class BroadcastToolsOrgaView(PermissionRequired, FormView):
@@ -62,7 +69,7 @@ class BroadcastToolsScheduleView(EventPermissionRequired, ScheduleMixin, Templat
             schedule=self.schedule,
         )
         tz = pytz.timezone(schedule.event.timezone)
-        infoline = str(schedule.event.settings.infoline or "")
+        infoline = str(schedule.event.settings.lower_thirds_info_string or "")
         return JsonResponse(
             {
                 "rooms": sorted(
