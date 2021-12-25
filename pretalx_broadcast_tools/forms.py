@@ -6,8 +6,8 @@ from i18nfield.forms import I18nFormField, I18nFormMixin, I18nTextInput
 
 class BroadcastToolsSettingsForm(I18nFormMixin, HierarkeyForm):
     lower_thirds_theme = ChoiceField(
-        choices=(('default', 'default'), ('rc3-2021', 'rc3-2021')),
-        label=_('Theme'),
+        choices=(("default", "default"), ("rc3-2021", "rc3-2021")),
+        label=_("Theme"),
         widget=RadioSelect,
     )
     lower_thirds_no_talk_info = I18nFormField(
