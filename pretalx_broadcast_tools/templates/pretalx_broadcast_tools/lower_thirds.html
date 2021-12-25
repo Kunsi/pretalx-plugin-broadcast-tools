@@ -9,7 +9,7 @@
             <script src="{% static "vendored/jquery-3.1.1.js" %}"></script>
         {% endcompress %}
         <script src="{% static "pretalx_broadcast_tools/update.js" %}"></script>
-        <link rel="stylesheet" href="{% static "pretalx_broadcast_tools/frontend.css" %}" />
+        <link rel="stylesheet" href="{{ view.css_url }}" />
         {% if request.event and request.event.custom_css %}
             <link rel="stylesheet" type="text/css" href="{{ request.event.custom_css.url }}"/>
         {% endif %}
