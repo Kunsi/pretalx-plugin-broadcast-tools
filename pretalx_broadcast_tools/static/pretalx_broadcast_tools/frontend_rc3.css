@@ -23,13 +23,11 @@ p {
   position: absolute;
   bottom: 80px;
   left: 50%;
-  margin-left: -2010px;
+  margin-left: -510px;
   color: white;
   background-color: transparent !important;
   border:1px solid #ccc !important;
   border-bottom: none !important;
-  animation: slide 0.7s forwards;
-  animation-delay: 2s;
 }
 
 #l3title {
@@ -62,10 +60,4 @@ p {
   line-height:  36px;
   padding: 0 20px;
   text-align: right;
-}
-
-@keyframes slide {
-  100% {
-    margin-left: -510px;
-  }
 }
