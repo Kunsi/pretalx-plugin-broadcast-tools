@@ -18,7 +18,8 @@ class BroadcastToolsLowerThirdsView(TemplateView):
     template_name = "pretalx_broadcast_tools/lower_thirds.html"
 
     def css_url(self):
-        css = THEME_CSS.get(self.request.event.settings.lower_thirds_theme, "default")
+        theme = self.request.event.settings.lower_thirds_theme or "default"
+        css = THEME_CSS.get(theme)
         return static(f"pretalx_broadcast_tools/{css}")
 
 
