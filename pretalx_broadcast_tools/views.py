@@ -11,7 +11,6 @@ from pretalx.schedule.exporters import ScheduleData
 
 from .forms import BroadcastToolsSettingsForm
 
-
 THEME_CSS = {"default": "frontend.css", "rc3-2021": "frontend_rc3.css"}
 
 
