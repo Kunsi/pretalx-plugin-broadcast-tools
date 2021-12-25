@@ -62,7 +62,7 @@ class BroadcastToolsScheduleView(EventPermissionRequired, ScheduleMixin, Templat
             schedule=self.schedule,
         )
         tz = pytz.timezone(schedule.event.timezone)
-        infoline = str(schedule.event.settings.infoline or "")
+        infoline = str(schedule.event.settings.lower_thirds_info_string or "")
         return JsonResponse(
             {
                 "rooms": sorted(
