@@ -155,7 +155,10 @@ class PDFInfoPage(Flowable):
                     )
                 )
 
-        if self.talk.submission.internal_notes:
+        if (
+            self.talk.submission.internal_notes
+            and self.event.settings.broadcast_tools_pdf_show_internal_notes
+        ):
             self._space()
             for line in self.talk.submission.internal_notes.splitlines():
                 line = line.strip()
@@ -182,6 +185,11 @@ class PDFExporter(ScheduleData):
         for fahrplan_day in self.data:
             for room_details in fahrplan_day["rooms"]:
                 for talk in room_details["talks"]:
+                    if (
+                        talk.submission.do_not_record
+                        and self.event.settings.broadcast_tools_pdf_ignore_do_not_record
+                    ):
+                        continue
                     pages.append(
                         PDFInfoPage(
                             self.event,

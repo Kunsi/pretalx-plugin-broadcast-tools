@@ -1,3 +1,4 @@
+from django.forms import BooleanField
 from django.utils.translation import gettext_lazy as _
 from hierarkey.forms import HierarkeyForm
 from i18nfield.forms import I18nFormField, I18nFormMixin, I18nTextInput
@@ -17,4 +18,20 @@ class BroadcastToolsSettingsForm(I18nFormMixin, HierarkeyForm):
         label=_("info line"),
         required=False,
         widget=I18nTextInput,
+    )
+    broadcast_tools_pdf_show_internal_notes = BooleanField(
+        help_text=_(
+            "If checked, the value of the 'internal notes' field in a "
+            "submission will get added to the pdf export."
+        ),
+        label=_("Show internal notes in pdf export"),
+        required=False,
+    )
+    broadcast_tools_pdf_ignore_do_not_record = BooleanField(
+        help_text=_(
+            "If checked, 'do not record' talks will not generate a page "
+            "in the pdf export."
+        ),
+        label=_("Ignore 'do not record' talks when generating pdf"),
+        required=False,
     )

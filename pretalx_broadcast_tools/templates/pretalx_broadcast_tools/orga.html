@@ -37,6 +37,13 @@
             {% endif %}
         </fieldset>
         <fieldset>
+            <legend>
+                {% translate "PDF export" %}
+            </legend>
+            {% bootstrap_field form.broadcast_tools_pdf_show_internal_notes layout='event' %}
+            {% bootstrap_field form.broadcast_tools_pdf_ignore_do_not_record layout='event' %}
+        </fieldset>
+        <fieldset>
             <div class="submit-group panel">
                 <span></span>
                 <span class="d-flex flex-row-reverse">
