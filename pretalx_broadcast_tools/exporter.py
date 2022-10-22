@@ -1,10 +1,7 @@
 from tempfile import NamedTemporaryFile
 
-from django.http import HttpResponse
 from django.utils.timezone import now
 from pretalx.schedule.exporters import ScheduleData
-from pretalx.submission.models import SubmissionStates
-from reportlab.graphics import renderPDF
 from reportlab.lib import colors
 from reportlab.lib.enums import TA_CENTER
 from reportlab.lib.pagesizes import A4
@@ -13,7 +10,6 @@ from reportlab.lib.units import mm
 from reportlab.platypus import (
     Flowable,
     PageBreak,
-    PageTemplate,
     Paragraph,
     SimpleDocTemplate,
     Spacer,
@@ -63,7 +59,16 @@ class PDFInfoPage(Flowable):
         self.canv.drawString(
             -(A4_HEIGHT - (PAGE_PADDING / 3)),
             -(PAGE_PADDING / 3),
-            f"{self.talk.submission.code} | {self.talk.submission.submission_type.name} | {self.event.name} | {self.talk.local_start.isoformat()} | Day {self.day['index']} | {self.room['name']}",
+            " | ".join(
+                [
+                    self.talk.submission.code,
+                    str(self.talk.submission.submission_type.name),
+                    str(self.event.name),
+                    self.talk.local_start.isoformat(),
+                    f"Day {self.day['index']}",
+                    str(self.room["name"]),
+                ],
+            ),
         )
         self.canv.restoreState()
 
@@ -76,7 +81,13 @@ class PDFInfoPage(Flowable):
 
         self._add(
             Paragraph(
-                f"{self.event.name} | {self.room['name']} | {self.talk.local_start.strftime('%F %T')} {self.event.timezone}",
+                " | ".join(
+                    [
+                        str(self.event.name),
+                        str(self.room["name"]),
+                        f"{self.talk.local_start.strftime('%F %T')} {self.event.timezone}",
+                    ],
+                ),
                 style=self.style["Meta"],
             )
         )
