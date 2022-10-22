@@ -22,12 +22,13 @@ PAGE_PADDING = 10 * mm
 
 
 class PDFInfoPage(Flowable):
-    def __init__(self, event, fahrplan_day, room_details, talk, style):
+    def __init__(self, event, schedule, fahrplan_day, room_details, talk, style):
         super().__init__()
         self.event = event
-        self.talk = talk
+        self.schedule = schedule
         self.day = fahrplan_day
         self.room = room_details
+        self.talk = talk
         self.style = style
         self.y_position = PAGE_PADDING
 
@@ -67,6 +68,7 @@ class PDFInfoPage(Flowable):
                     self.talk.local_start.isoformat(),
                     f"Day {self.day['index']}",
                     str(self.room["name"]),
+                    self.schedule.version,
                 ],
             ),
         )
@@ -74,7 +76,7 @@ class PDFInfoPage(Flowable):
 
         if self.talk.submission.do_not_record:
             self._add(
-                Paragraph("DO NOT RECORD. DO NOT STREAM", style=self.style["Warning"]),
+                Paragraph("DO NOT RECORD - DO NOT STREAM", style=self.style["Warning"]),
                 gap=0,
             )
             self._space()
@@ -85,7 +87,7 @@ class PDFInfoPage(Flowable):
                     [
                         str(self.event.name),
                         str(self.room["name"]),
-                        f"{self.talk.local_start.strftime('%F %T')} {self.event.timezone}",
+                        self.talk.local_start.strftime("%F %T"),
                     ],
                 ),
                 style=self.style["Meta"],
@@ -181,7 +183,14 @@ class PDFExporter(ScheduleData):
             for room_details in fahrplan_day["rooms"]:
                 for talk in room_details["talks"]:
                     pages.append(
-                        PDFInfoPage(self.event, fahrplan_day, room_details, talk, style)
+                        PDFInfoPage(
+                            self.event,
+                            self.schedule,
+                            fahrplan_day,
+                            room_details,
+                            talk,
+                            style,
+                        )
                     )
                     pages.append(PageBreak())
         return pages
@@ -202,17 +211,15 @@ class PDFExporter(ScheduleData):
             )
         )
         stylesheet.add(
-            ParagraphStyle(name="Meta", fontName="Helvetica", fontSize=10, leading=12)
+            ParagraphStyle(name="Meta", fontName="Helvetica", fontSize=14, leading=16)
         )
         stylesheet.add(
             ParagraphStyle(
-                name="Abstract", fontName="Helvetica", fontSize=14, leading=16
+                name="Abstract", fontName="Helvetica-Oblique", fontSize=10, leading=12
             )
         )
         stylesheet.add(
-            ParagraphStyle(
-                name="Notes", fontName="Helvetica-Oblique", fontSize=12, leading=14
-            )
+            ParagraphStyle(name="Notes", fontName="Helvetica", fontSize=12, leading=14)
         )
         stylesheet.add(
             ParagraphStyle(
