@@ -48,6 +48,21 @@ class PDFInfoPage(Flowable):
         item.drawOn(self.canv, PAGE_PADDING + 1.3 * height, -self.y_position)
         self.canv.rect(PAGE_PADDING, -self.y_position, height * 0.8, height * 0.8)
 
+    def _question_text(self, question, answer, **kwargs):
+        item = Paragraph(question, **kwargs)
+        _, height = item.wrapOn(
+            self.canv, A4_WIDTH - 2 * PAGE_PADDING, A4_HEIGHT - 2 * PAGE_PADDING
+        )
+        self.y_position += height + 2 * mm
+        item.drawOn(self.canv, PAGE_PADDING, -self.y_position)
+
+        item = Paragraph(answer, **kwargs)
+        _, height = item.wrapOn(
+            self.canv, A4_WIDTH - 3 * PAGE_PADDING, A4_HEIGHT - 2 * PAGE_PADDING
+        )
+        self.y_position += height + 2 * mm
+        item.drawOn(self.canv, 2*PAGE_PADDING, -self.y_position)
+
     def _space(self):
         self._add(Spacer(1, PAGE_PADDING / 2))
 
@@ -142,6 +157,15 @@ class PDFInfoPage(Flowable):
                 )
             )
 
+        if self.talk.submission.answers:
+            self._space()
+            for answer in sorted(self.talk.submission.answers.all()):
+                self._question_text(
+                    str(answer.question.question),
+                    answer.answer,
+                    style=self.style["Question"],
+                )
+
         if self.talk.submission.notes:
             self._space()
             for line in self.talk.submission.notes.splitlines():
@@ -220,6 +244,9 @@ class PDFExporter(ScheduleData):
         )
         stylesheet.add(
             ParagraphStyle(name="Meta", fontName="Helvetica", fontSize=14, leading=16)
+        )
+        stylesheet.add(
+            ParagraphStyle(name="Question", fontName="Helvetica", fontSize=12, leading=14)
         )
         stylesheet.add(
             ParagraphStyle(
