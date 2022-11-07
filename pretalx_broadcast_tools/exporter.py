@@ -79,11 +79,8 @@ class PDFInfoPage(Flowable):
     def draw(self):
         if hasattr(self.talk, "local_start"):
             talk_start = self.talk.local_start
-            talk_end = self.talk.local_end
         else:
             talk_start = self.talk.start.astimezone(self.event.tz)
-            talk_end = self.talk.end.astimezone(self.event.tz)
-
         # add some information horizontally to the side of the page
         self.canv.saveState()
         self.canv.rotate(90)
