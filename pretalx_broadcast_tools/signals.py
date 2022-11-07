@@ -8,13 +8,13 @@ from pretalx.common.signals import register_data_exporters
 from pretalx.orga.signals import nav_event_settings
 
 hierarkey.add_default(
-    "lower_thirds_no_talk_info",
+    "broadcast_tools_lower_thirds_no_talk_info",
     LazyI18nString.from_gettext(
         gettext_noop("Sorry, there's currently no talk running")
     ),
     LazyI18nString,
 )
-hierarkey.add_default("lower_thirds_info_string", "", LazyI18nString)
+hierarkey.add_default("broadcast_tools_lower_thirds_info_string", "", LazyI18nString)
 
 
 @receiver(nav_event_settings)
