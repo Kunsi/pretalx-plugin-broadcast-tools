@@ -77,6 +77,13 @@ class PDFInfoPage(Flowable):
         self._add(Spacer(1, PAGE_PADDING / 2))
 
     def draw(self):
+        if hasattr(self.talk, 'local_start'):
+            talk_start = self.talk.local_start
+            talk_end = self.talk.local_end
+        else:
+            talk_start = self.talk.start.astimezone(self.event.tz)
+            talk_end = self.talk.end.astimezone(self.event.tz)
+
         # add some information horizontally to the side of the page
         self.canv.saveState()
         self.canv.rotate(90)
@@ -89,7 +96,7 @@ class PDFInfoPage(Flowable):
                     self.talk.submission.code,
                     str(self.talk.submission.submission_type.name),
                     str(self.event.name),
-                    self.talk.local_start.isoformat(),
+                    talk_start.isoformat(),
                     f"Day {self.day['index']}",
                     str(self.room["name"]),
                     f"Schedule {self.schedule.version}",
@@ -111,7 +118,7 @@ class PDFInfoPage(Flowable):
                     [
                         str(self.event.name),
                         str(self.room["name"]),
-                        self.talk.local_start.strftime("%F %T"),
+                        talk_start.strftime("%F %T"),
                     ],
                 ),
                 style=self.style["Meta"],
