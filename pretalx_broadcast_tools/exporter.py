@@ -77,7 +77,7 @@ class PDFInfoPage(Flowable):
         self._add(Spacer(1, PAGE_PADDING / 2))
 
     def draw(self):
-        if hasattr(self.talk, 'local_start'):
+        if hasattr(self.talk, "local_start"):
             talk_start = self.talk.local_start
             talk_end = self.talk.local_end
         else:
