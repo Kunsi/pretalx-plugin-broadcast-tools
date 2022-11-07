@@ -47,7 +47,9 @@ class BroadcastToolsEventInfoView(TemplateView):
             {
                 "slug": self.request.event.slug,
                 "name": str(self.request.event.name),
-                "no_talk": str(self.request.event.settings.broadcast_tools_lower_thirds_no_talk_info),
+                "no_talk": str(
+                    self.request.event.settings.broadcast_tools_lower_thirds_no_talk_info
+                ),
                 "color": color,
             },
         )
@@ -62,7 +64,9 @@ class BroadcastToolsScheduleView(EventPermissionRequired, ScheduleMixin, Templat
             schedule=self.schedule,
         )
         tz = pytz.timezone(schedule.event.timezone)
-        infoline = str(schedule.event.settings.broadcast_tools_lower_thirds_info_string or "")
+        infoline = str(
+            schedule.event.settings.broadcast_tools_lower_thirds_info_string or ""
+        )
         return JsonResponse(
             {
                 "rooms": sorted(
