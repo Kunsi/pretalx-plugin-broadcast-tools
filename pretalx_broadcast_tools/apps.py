@@ -15,7 +15,7 @@ class PluginApp(AppConfig):
             "embedded into your broadcasting software"
         )
         visible = True
-        version = "0.3.0"
+        version = "1.0.1"
 
     def ready(self):
         from . import signals  # NOQA
