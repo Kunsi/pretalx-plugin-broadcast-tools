@@ -1,3 +1,7 @@
+# upcoming
+
+* fix a bug where questions could not be sorted
+
 # 1.0.2
 
 * fix compatibility issue with pretalx 2.3.1

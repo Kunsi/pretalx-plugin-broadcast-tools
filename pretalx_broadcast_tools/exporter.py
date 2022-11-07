@@ -180,7 +180,7 @@ class PDFInfoPage(Flowable):
                     style=self.style["Heading"],
                 )
             )
-            for answer in sorted(self.talk.submission.answers.all()):
+            for answer in self.talk.submission.answers.order_by("question"):
                 if answer.question.id not in self._questions:
                     continue
                 self._question_text(
