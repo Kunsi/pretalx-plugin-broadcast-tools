@@ -24,7 +24,7 @@ cmdclass = {"build": CustomBuild}
 
 setup(
     name="pretalx-plugin-broadcast-tools",
-    version="1.0.1",
+    version="1.0.2",
     description=(
         "Some tools which can be used for supporting a broadcasting "
         "software, for example a 'lower third' page which can be "

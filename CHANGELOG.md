@@ -1,3 +1,7 @@
+# 1.0.2
+
+* fix compatibility issue with pretalx 2.3.1
+
 # 1.0.1
 
 * fix version identifier in setup.py
