@@ -1,4 +1,4 @@
-# upcoming
+# 1.0.3
 
 * fix a bug where questions could not be sorted
 
