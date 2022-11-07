@@ -4,6 +4,7 @@ from django.utils.translation import gettext_noop
 from django.utils.translation import ugettext_lazy as _
 from i18nfield.strings import LazyI18nString
 from pretalx.common.models.settings import hierarkey
+from pretalx.common.signals import register_data_exporters
 from pretalx.orga.signals import nav_event_settings
 
 hierarkey.add_default(
@@ -34,3 +35,10 @@ def navbar_info(sender, request, **kwargs):
             and url.url_name == "orga",
         }
     ]
+
+
+@receiver(register_data_exporters, dispatch_uid="exporter_broadcast_pdfexporter")
+def register_data_exporter(sender, **kwargs):
+    from .exporter import PDFExporter
+
+    return PDFExporter
