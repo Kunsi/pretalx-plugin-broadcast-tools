@@ -71,14 +71,13 @@ class PDFInfoPage(Flowable):
             self.canv, A4_WIDTH - 3 * PAGE_PADDING, A4_HEIGHT - 2 * PAGE_PADDING
         )
         self.y_position += height + 2 * mm
-        item.drawOn(self.canv, 2*PAGE_PADDING, -self.y_position)
+        item.drawOn(self.canv, 2 * PAGE_PADDING, -self.y_position)
 
     def _space(self):
         self._add(Spacer(1, PAGE_PADDING / 2))
 
     def draw(self):
-        # add Submission code, type, title and "do not record"
-        # horizontally to the side of the page.
+        # add some information horizontally to the side of the page
         self.canv.saveState()
         self.canv.rotate(90)
         self.canv.setFont("Helvetica", 12)
@@ -93,7 +92,7 @@ class PDFInfoPage(Flowable):
                     self.talk.local_start.isoformat(),
                     f"Day {self.day['index']}",
                     str(self.room["name"]),
-                    self.schedule.version,
+                    f"Schedule {self.schedule.version}",
                 ],
             ),
         )
@@ -210,7 +209,7 @@ class PDFInfoPage(Flowable):
 
 class PDFExporter(ScheduleData):
     identifier = "broadcast_pdf"
-    verbose_name = "Broadcast Tools PDF (with internal notes)"
+    verbose_name = "Broadcast Tools PDF"
     public = False
     show_qrcode = False
     icon = "fa-file-pdf"
