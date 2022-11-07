@@ -158,7 +158,6 @@ class PDFInfoPage(Flowable):
         )
 
         if self.talk.submission.abstract:
-            self._space()
             self._add(
                 Paragraph(
                     self.talk.submission.abstract,
@@ -168,6 +167,12 @@ class PDFInfoPage(Flowable):
 
         if self.talk.submission.answers and self._questions:
             self._space()
+            self._add(
+                Paragraph(
+                    "Questions",
+                    style=self.style["Heading"],
+                )
+            )
             for answer in sorted(self.talk.submission.answers.all()):
                 if answer.question.id not in self._questions:
                     continue
@@ -179,6 +184,12 @@ class PDFInfoPage(Flowable):
 
         if self.talk.submission.notes:
             self._space()
+            self._add(
+                Paragraph(
+                    "Notes",
+                    style=self.style["Heading"],
+                )
+            )
             for line in self.talk.submission.notes.splitlines():
                 line = line.strip()
                 if not line:
@@ -195,6 +206,12 @@ class PDFInfoPage(Flowable):
             and self.event.settings.broadcast_tools_pdf_show_internal_notes
         ):
             self._space()
+            self._add(
+                Paragraph(
+                    "Internal Notes",
+                    style=self.style["Heading"],
+                )
+            )
             for line in self.talk.submission.internal_notes.splitlines():
                 line = line.strip()
                 if not line:
@@ -255,6 +272,11 @@ class PDFExporter(ScheduleData):
         )
         stylesheet.add(
             ParagraphStyle(name="Meta", fontName="Helvetica", fontSize=14, leading=16)
+        )
+        stylesheet.add(
+            ParagraphStyle(
+                name="Heading", fontName="Helvetica-Bold", fontSize=14, leading=16
+            )
         )
         stylesheet.add(
             ParagraphStyle(
