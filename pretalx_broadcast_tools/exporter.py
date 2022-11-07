@@ -32,6 +32,16 @@ class PDFInfoPage(Flowable):
         self.style = style
         self.y_position = PAGE_PADDING
 
+    @property
+    def _questions(self):
+        return {
+            int(i.strip())
+            for i in self.event.settings.broadcast_tools_pdf_questions_to_include.split(
+                ","
+            )
+            if i
+        }
+
     def _add(self, item, gap=2):
         _, height = item.wrapOn(
             self.canv, A4_WIDTH - 2 * PAGE_PADDING, A4_HEIGHT - 2 * PAGE_PADDING
@@ -157,9 +167,11 @@ class PDFInfoPage(Flowable):
                 )
             )
 
-        if self.talk.submission.answers:
+        if self.talk.submission.answers and self._questions:
             self._space()
             for answer in sorted(self.talk.submission.answers.all()):
+                if answer.question.id not in self._questions:
+                    continue
                 self._question_text(
                     str(answer.question.question),
                     answer.answer,
@@ -246,7 +258,9 @@ class PDFExporter(ScheduleData):
             ParagraphStyle(name="Meta", fontName="Helvetica", fontSize=14, leading=16)
         )
         stylesheet.add(
-            ParagraphStyle(name="Question", fontName="Helvetica", fontSize=12, leading=14)
+            ParagraphStyle(
+                name="Question", fontName="Helvetica", fontSize=12, leading=14
+            )
         )
         stylesheet.add(
             ParagraphStyle(

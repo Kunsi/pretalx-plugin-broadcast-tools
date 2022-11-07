@@ -1,4 +1,4 @@
-from django.forms import BooleanField
+from django.forms import BooleanField, CharField
 from django.utils.translation import gettext_lazy as _
 from hierarkey.forms import HierarkeyForm
 from i18nfield.forms import I18nFormField, I18nFormMixin, I18nTextInput
@@ -33,5 +33,13 @@ class BroadcastToolsSettingsForm(I18nFormMixin, HierarkeyForm):
             "in the pdf export."
         ),
         label=_("Ignore 'do not record' talks when generating pdf"),
+        required=False,
+    )
+    broadcast_tools_pdf_questions_to_include = CharField(
+        help_text=_(
+            "Comma-Separated list of question ids to include in pdf export. "
+            "If empty, no questions will get added."
+        ),
+        label=_("Questions to include"),
         required=False,
     )
