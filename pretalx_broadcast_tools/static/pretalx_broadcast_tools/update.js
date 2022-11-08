@@ -7,8 +7,6 @@ $(function() {
 });
 
 function update_lower_third() {
-    current_time = new Date(Date.now()).getTime()
-
     try {
         hash = decodeURIComponent(window.location.hash.substring(1));
         room_name = hash;
@@ -43,19 +41,29 @@ function update_lower_third() {
 
     current_talk = null;
 
-    for (talk_i in schedule['talks']) {
-        talk = schedule['talks'][talk_i]
+    for (let offset = 0; offset <= 5; offset++) {
+        time_start = new Date(Date.now() + offset*60000).getTime();
+        time_end = new Date(Date.now() - offset*60000).getTime();
 
-        if (schedule['rooms'].length > 1 && talk['room'] != room_name) {
-            // not in this room
-            continue;
+        for (talk_i in schedule['talks']) {
+            talk = schedule['talks'][talk_i]
+
+            if (schedule['rooms'].length > 1 && talk['room'] != room_name) {
+                // not in this room
+                continue;
+            }
+
+            talk_start = new Date(talk['start']).getTime();
+            talk_end = new Date(talk['end']).getTime();
+
+            if (talk_start < time_start && talk_end > time_end) {
+                current_talk = talk;
+                break;
+            }
         }
 
-        talk_start = new Date(talk['start']).getTime();
-        talk_end = new Date(talk['end']).getTime();
-
-        if (talk_start < current_time && talk_end > current_time) {
-            current_talk = talk;
+        if (current_talk) {
+            break;
         }
     }
 
