@@ -48,7 +48,7 @@ Development setup
 License
 -------
 
-Copyright 2021 Franziska 'kuns' Kunsmann
+Copyright 2021 Franziska 'kunsi' Kunsmann
 
 Released under the terms of the Apache License 2.0
 
