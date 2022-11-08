@@ -67,46 +67,61 @@ class BroadcastToolsScheduleView(EventPermissionRequired, ScheduleMixin, Templat
         infoline = str(
             schedule.event.settings.broadcast_tools_lower_thirds_info_string or ""
         )
-        return JsonResponse(
-            {
-                "rooms": sorted(
-                    {
-                        str(room["name"])
+        try:
+            return JsonResponse(
+                {
+                    "rooms": sorted(
+                        {
+                            str(room["name"])
+                            for day in schedule.data
+                            for room in day["rooms"]
+                        }
+                    ),
+                    "talks": [
+                        {
+                            "id": talk.submission.id,
+                            "start": talk.start.astimezone(tz).isoformat(),
+                            "end": (talk.start + dt.timedelta(minutes=talk.duration))
+                            .astimezone(tz)
+                            .isoformat(),
+                            "slug": talk.frab_slug,
+                            "title": talk.submission.title,
+                            "persons": sorted(
+                                {
+                                    person.get_display_name()
+                                    for person in talk.submission.speakers.all()
+                                }
+                            ),
+                            "track": {
+                                "color": talk.submission.track.color,
+                                "name": str(talk.submission.track.name),
+                            }
+                            if talk.submission.track
+                            else None,
+                            "room": str(room["name"]),
+                            "infoline": infoline.format(
+                                EVENT_SLUG=str(schedule.event.slug),
+                                TALK_SLUG=talk.frab_slug,
+                                CODE=talk.submission.code,
+                            ),
+                        }
                         for day in schedule.data
                         for room in day["rooms"]
-                    }
-                ),
-                "talks": [
-                    {
-                        "id": talk.submission.id,
-                        "start": talk.start.astimezone(tz).isoformat(),
-                        "end": (talk.start + dt.timedelta(minutes=talk.duration))
-                        .astimezone(tz)
-                        .isoformat(),
-                        "slug": talk.frab_slug,
-                        "title": talk.submission.title,
-                        "persons": sorted(
-                            {
-                                person.get_display_name()
-                                for person in talk.submission.speakers.all()
-                            }
-                        ),
-                        "track": {
-                            "color": talk.submission.track.color,
-                            "name": str(talk.submission.track.name),
-                        }
-                        if talk.submission.track
-                        else None,
-                        "room": str(room["name"]),
-                        "infoline": infoline.format(
-                            EVENT_SLUG=str(schedule.event.slug),
-                            TALK_SLUG=talk.frab_slug,
-                            CODE=talk.submission.code,
-                        ),
-                    }
-                    for day in schedule.data
-                    for room in day["rooms"]
-                    for talk in room["talks"]
+                        for talk in room["talks"]
+                    ],
+                },
+            )
+        except KeyError as e:
+            key = str(e)[1:-1]
+            return JsonResponse({
+                'error': [
+                    f'Could not find value for placeholder {{{key}}} in info line.',
+                    f'If you want to use {{{key}}} without evaluating it, please use as follows: {{{{{key}}}}}',
                 ],
-            },
-        )
+            })
+        except Exception as e:
+            return JsonResponse({
+                'error': [
+                    repr(e),
+                ],
+            })

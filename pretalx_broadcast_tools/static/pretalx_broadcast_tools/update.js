@@ -18,7 +18,7 @@ function update_lower_third() {
     }
 
     if (!event_info)  {
-        console.warn("There's no event info yet, exiting");
+        console.warn("Waiting for event info ...");
         return
     }
 
@@ -27,10 +27,17 @@ function update_lower_third() {
         return
     }
 
+    if ('error' in schedule) {
+        $('#l3title').text('Error')
+        $('#l3speaker').html(schedule['error'].join('<br>'));
+        $('#l3info_line').text('');
+        return
+    }
+
     if (schedule['rooms'].length > 1 && !schedule['rooms'].includes(room_name)) {
         $('#l3title').text('Error')
         $('#l3speaker').text('Invalid room_name. Valid names: ' + schedule['rooms'].join(', '));
-
+        $('#l3info_line').text('');
         return
     }
 
@@ -77,7 +84,11 @@ function update_schedule() {
         $('#l3box').css('background-color', data['color']);
     });
     $.getJSON('../schedule.json', function(data) {
-        console.info('schedule updated with ' + data['talks'].length + ' talks in ' + data['rooms'].length + ' rooms');
+        if ('error' in data) {
+            console.error(data['error']);
+        } else {
+            console.info('schedule updated with ' + data['talks'].length + ' talks in ' + data['rooms'].length + ' rooms');
+        }
 
         schedule = data;
 
