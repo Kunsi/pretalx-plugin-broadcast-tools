@@ -113,15 +113,19 @@ class BroadcastToolsScheduleView(EventPermissionRequired, ScheduleMixin, Templat
             )
         except KeyError as e:
             key = str(e)[1:-1]
-            return JsonResponse({
-                'error': [
-                    f'Could not find value for placeholder {{{key}}} in info line.',
-                    f'If you want to use {{{key}}} without evaluating it, please use as follows: {{{{{key}}}}}',
-                ],
-            })
+            return JsonResponse(
+                {
+                    "error": [
+                        f"Could not find value for placeholder {{{key}}} in info line.",
+                        f"If you want to use {{{key}}} without evaluating it, please use as follows: {{{{{key}}}}}",
+                    ],
+                }
+            )
         except Exception as e:
-            return JsonResponse({
-                'error': [
-                    repr(e),
-                ],
-            })
+            return JsonResponse(
+                {
+                    "error": [
+                        repr(e),
+                    ],
+                }
+            )
