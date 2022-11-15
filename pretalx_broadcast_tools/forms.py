@@ -9,7 +9,7 @@ class BroadcastToolsSettingsForm(I18nFormMixin, HierarkeyForm):
         help_text=_(
             "Will be shown as talk title if there's currently no talk running."
         ),
-        label=_('"no talk running" information'),
+        label=_('"No talk running" information'),
         widget=I18nTextInput,
         required=True,
     )
@@ -18,7 +18,7 @@ class BroadcastToolsSettingsForm(I18nFormMixin, HierarkeyForm):
             "Will only be shown if there's a talk running. You may use "
             "the place holders mentioned below."
         ),
-        label=_("info line"),
+        label=_("Info line"),
         required=False,
         widget=I18nTextInput,
     )
@@ -52,7 +52,7 @@ class BroadcastToolsSettingsForm(I18nFormMixin, HierarkeyForm):
             "Will get printed as-is. You may use the place holders "
             "mentioned below."
         ),
-        label=_("Additional Text"),
+        label=_("Additional text"),
         required=False,
         widget=Textarea,
     )
