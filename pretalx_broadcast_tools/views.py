@@ -9,6 +9,7 @@ from pretalx.common.mixins.views import EventPermissionRequired, PermissionRequi
 from pretalx.schedule.exporters import ScheduleData
 
 from .forms import BroadcastToolsSettingsForm
+from .utils.placeholders import placeholders
 
 
 class BroadcastToolsLowerThirdsView(TemplateView):
@@ -99,11 +100,7 @@ class BroadcastToolsScheduleView(EventPermissionRequired, ScheduleMixin, Templat
                             if talk.submission.track
                             else None,
                             "room": str(room["name"]),
-                            "infoline": infoline.format(
-                                EVENT_SLUG=str(schedule.event.slug),
-                                TALK_SLUG=talk.frab_slug,
-                                CODE=talk.submission.code,
-                            ),
+                            "infoline": infoline.format(**placeholders(schedule, talk)),
                         }
                         for day in schedule.data
                         for room in day["rooms"]

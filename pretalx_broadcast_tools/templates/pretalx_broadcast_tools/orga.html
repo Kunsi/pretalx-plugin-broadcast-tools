@@ -17,15 +17,6 @@
                 lower third. If you set it to an empty string, it will automatically
                 hide itself.
             </p>
-            <p>
-                pretalx will automatically replace some placeholders in your info
-                string.
-                Use <code>{CODE}</code> to embed the talk code (<code>MUX9U3</code>
-                for example). You could use this to directly link to the talk
-                feedback page.
-                Use <code>{EVENT_SLUG}</code> to get the event slug.
-                Use <code>{TALK_SLUG}</code> to get the talk slug.
-            </p>
 
             {% if request.event.rooms %}
                 <h3>{% trans "room list" %}</h3>
@@ -43,8 +34,23 @@
             {% bootstrap_field form.broadcast_tools_pdf_show_internal_notes layout='event' %}
             {% bootstrap_field form.broadcast_tools_pdf_ignore_do_not_record layout='event' %}
             {% bootstrap_field form.broadcast_tools_pdf_questions_to_include layout='event' %}
+            {% bootstrap_field form.broadcast_tools_pdf_additional_content layout='event' %}
         </fieldset>
         <fieldset>
+    <p>
+        pretalx will automatically replace some placeholders in your custom
+        content:
+    </p>
+    <dl>
+        <dt><code>{CODE}</code></dt>
+        <dd>Use to embed the talk code (<code>MUX9U3</code> for example).</dd>
+
+        <dt><code>{EVENT_SLUG}</code></dt>
+        <dd>Use to embed the event slug.</dd>
+
+        <dt><code>{TALK_SLUG}</code></dt>
+        <dd>Use to embed the talk slug.</dd>
+    </dl>
             <div class="submit-group panel">
                 <span></span>
                 <span class="d-flex flex-row-reverse">

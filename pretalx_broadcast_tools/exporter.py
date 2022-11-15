@@ -17,6 +17,8 @@ from reportlab.platypus import (
     TableStyle,
 )
 
+from .utils.placeholders import placeholders
+
 A4_WIDTH, A4_HEIGHT = A4
 PAGE_PADDING = 10 * mm
 
@@ -166,6 +168,17 @@ class PDFInfoPage(Flowable):
                 Paragraph(
                     self.talk.submission.abstract,
                     style=self.style["Abstract"],
+                )
+            )
+
+        if self.event.settings.broadcast_tools_pdf_additional_content:
+            self._space()
+            self._add(
+                Paragraph(
+                    self.event.settings.broadcast_tools_pdf_additional_content.format(
+                        **placeholders(self.schedule, self.talk)
+                    ),
+                    style=self.style["Meta"],
                 )
             )
 

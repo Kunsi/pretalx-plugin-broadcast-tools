@@ -1,4 +1,4 @@
-from django.forms import BooleanField, CharField
+from django.forms import BooleanField, CharField, Textarea
 from django.utils.translation import gettext_lazy as _
 from hierarkey.forms import HierarkeyForm
 from i18nfield.forms import I18nFormField, I18nFormMixin, I18nTextInput
@@ -14,7 +14,10 @@ class BroadcastToolsSettingsForm(I18nFormMixin, HierarkeyForm):
         required=True,
     )
     broadcast_tools_lower_thirds_info_string = I18nFormField(
-        help_text=_("Will only be shown if there's a talk running."),
+        help_text=_(
+            "Will only be shown if there's a talk running. You may use "
+            "the place holders mentioned below."
+        ),
         label=_("info line"),
         required=False,
         widget=I18nTextInput,
@@ -42,4 +45,14 @@ class BroadcastToolsSettingsForm(I18nFormMixin, HierarkeyForm):
         ),
         label=_("Questions to include"),
         required=False,
+    )
+    broadcast_tools_pdf_additional_content = CharField(
+        help_text=_(
+            "Additional content to print onto the PDF export. "
+            "Will get printed as-is. You may use the place holders "
+            "mentioned below."
+        ),
+        label=_("Additional Text"),
+        required=False,
+        widget=Textarea,
     )
