@@ -2,6 +2,7 @@ import datetime as dt
 
 import pytz
 from django.http import JsonResponse
+from django.views import View
 from django.views.generic import FormView
 from django.views.generic.base import TemplateView
 from pretalx.agenda.views.schedule import ScheduleMixin
@@ -49,7 +50,7 @@ class BroadcastToolsOrgaView(PermissionRequired, FormView):
         }
 
 
-class BroadcastToolsEventInfoView(TemplateView):
+class BroadcastToolsEventInfoView(View):
     def get(self, request, *args, **kwargs):
         color = self.request.event.primary_color or "#3aa57c"
         return JsonResponse(
@@ -64,7 +65,7 @@ class BroadcastToolsEventInfoView(TemplateView):
         )
 
 
-class BroadcastToolsScheduleView(EventPermissionRequired, ScheduleMixin, TemplateView):
+class BroadcastToolsScheduleView(EventPermissionRequired, ScheduleMixin, View):
     permission_required = "agenda.view_schedule"
 
     def get(self, request, *args, **kwargs):
