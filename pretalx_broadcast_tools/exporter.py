@@ -93,7 +93,9 @@ class PDFInfoPage(Flowable):
             " | ".join(
                 [
                     self.talk.submission.code,
-                    self.talk.submission.submission_type.name.localize(self.event.locale),
+                    self.talk.submission.submission_type.name.localize(
+                        self.event.locale
+                    ),
                     self.event.name.localize(self.event.locale),
                     talk_start.isoformat(),
                     f"Day {self.day['index']}",

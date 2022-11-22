@@ -27,7 +27,7 @@ class BroadcastToolsOrgaView(PermissionRequired, FormView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['localized_rooms'] = [
+        context["localized_rooms"] = [
             room.name.localize(self.request.event.locale)
             for room in self.request.event.rooms.all()
         ]
