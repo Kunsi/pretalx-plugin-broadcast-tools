@@ -93,11 +93,11 @@ class PDFInfoPage(Flowable):
             " | ".join(
                 [
                     self.talk.submission.code,
-                    str(self.talk.submission.submission_type.name),
-                    str(self.event.name),
+                    self.talk.submission.submission_type.name.localize(self.event.locale),
+                    self.event.name.localize(self.event.locale),
                     talk_start.isoformat(),
                     f"Day {self.day['index']}",
-                    str(self.room["name"]),
+                    self.room["name"].localize(self.event.locale),
                     f"Schedule {self.schedule.version}",
                 ],
             ),
@@ -115,8 +115,8 @@ class PDFInfoPage(Flowable):
             Paragraph(
                 " | ".join(
                     [
-                        str(self.event.name),
-                        str(self.room["name"]),
+                        self.event.name.localize(self.event.locale),
+                        self.room["name"].localize(self.event.locale),
                         talk_start.strftime("%F %T"),
                     ],
                 ),
@@ -194,7 +194,7 @@ class PDFInfoPage(Flowable):
                 if answer.question.id not in self._questions:
                     continue
                 self._question_text(
-                    str(answer.question.question),
+                    answer.question.question.localize(self.event.locale),
                     answer.answer,
                     style=self.style["Question"],
                 )
