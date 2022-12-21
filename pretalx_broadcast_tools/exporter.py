@@ -83,6 +83,10 @@ class PDFInfoPage(Flowable):
             talk_start = self.talk.local_start
         else:
             talk_start = self.talk.start.astimezone(self.event.tz)
+        if hasattr(self.talk, "local_end"):
+            talk_end = self.talk.local_end
+        else:
+            talk_end = self.talk.end.astimezone(self.event.tz)
         # add some information horizontally to the side of the page
         self.canv.saveState()
         self.canv.rotate(90)
@@ -119,7 +123,8 @@ class PDFInfoPage(Flowable):
                     [
                         self.event.name.localize(self.event.locale),
                         self.room["name"].localize(self.event.locale),
-                        talk_start.strftime("%F %T"),
+                        talk_start.strftime("%F"),
+                        f'{talk_start.strftime("%T")} - {talk_end.strftime("%T")}',
                     ],
                 ),
                 style=self.style["Meta"],
