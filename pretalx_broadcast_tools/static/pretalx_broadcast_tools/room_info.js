@@ -45,8 +45,8 @@ function update_room_info() {
         $('#broadcast_tools_room_info_speaker').text(current_talk['persons'].join(', '));
         $('#broadcast_tools_room_info_qr').html('<img src="' + current_talk['urls']['feedback_qr'] + '" alt="Feedback QR Code"><p>Leave Feedback by scanning the code or visiting ' + current_talk['urls']['feedback'] + '</p>');
     } else {
-        $('#broadcast_tools_room_info_title').text(event_info['no_talk']);
-        $('#broadcast_tools_room_info_speaker').text('');
+        $('#broadcast_tools_room_info_title').text(event_info['name']);
+        $('#broadcast_tools_room_info_speaker').text(room_name);
         $('#broadcast_tools_room_info_qr').text('');
     }
 
