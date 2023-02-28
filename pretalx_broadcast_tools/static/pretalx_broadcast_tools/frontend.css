@@ -14,6 +14,7 @@ body {
     display: flex;
     flex-flow: column;
     height: 100vh;
+    overflow: hidden;
 }
 
 #broadcast_tools_room_info_header, #broadcast_tools_room_info_qr {
@@ -38,7 +39,11 @@ body {
 
 #broadcast_tools_room_info_qr img {
     background-color: white;
-    height: 100%;
+    height: calc(100% - 2em);
+}
+
+#broadcast_tools_room_info_qr p {
+    margin-top: 1em;
 }
 
 #l3box {

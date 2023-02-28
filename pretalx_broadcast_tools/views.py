@@ -133,13 +133,19 @@ class BroadcastToolsScheduleView(EventPermissionRequired, ScheduleMixin, View):
                             else None,
                             "room": room["name"].localize(schedule.event.locale),
                             "infoline": infoline.format(**placeholders(schedule, talk)),
-                            "feedback_qr_url": reverse(
-                                "plugins:pretalx_broadcast_tools:feedback_qr_id",
-                                kwargs={
-                                    "event": schedule.event,
-                                    "talk": talk.submission.id,
-                                },
-                            ),
+                            "urls": {
+                                "feedback": "{}{}".format(
+                                    schedule.event.custom_domain or settings.SITE_URL,
+                                    talk.submission.urls.feedback,
+                                ),
+                                "feedback_qr": reverse(
+                                    "plugins:pretalx_broadcast_tools:feedback_qr_id",
+                                    kwargs={
+                                        "event": schedule.event,
+                                        "talk": talk.submission.id,
+                                    },
+                                ),
+                            },
                         }
                         for day in schedule.data
                         for room in day["rooms"]

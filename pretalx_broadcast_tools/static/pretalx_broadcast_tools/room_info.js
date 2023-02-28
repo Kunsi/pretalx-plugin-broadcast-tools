@@ -43,7 +43,7 @@ function update_room_info() {
     if (current_talk) {
         $('#broadcast_tools_room_info_title').text(current_talk['title']);
         $('#broadcast_tools_room_info_speaker').text(current_talk['persons'].join(', '));
-        $('#broadcast_tools_room_info_qr').html('<img src="' + current_talk['feedback_qr_url'] + '" alt="Feedback QR Code">');
+        $('#broadcast_tools_room_info_qr').html('<img src="' + current_talk['urls']['feedback_qr'] + '" alt="Feedback QR Code"><p>Leave Feedback by scanning the code or visiting ' + current_talk['urls']['feedback'] + '</p>');
     } else {
         $('#broadcast_tools_room_info_title').text(event_info['no_talk']);
         $('#broadcast_tools_room_info_speaker').text('');
