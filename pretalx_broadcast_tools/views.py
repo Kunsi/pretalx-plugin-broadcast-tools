@@ -112,12 +112,10 @@ class BroadcastToolsScheduleView(EventPermissionRequired, ScheduleMixin, View):
                             .isoformat(),
                             "slug": talk.frab_slug,
                             "title": talk.submission.title,
-                            "persons": sorted(
-                                {
-                                    person.get_display_name()
-                                    for person in talk.submission.speakers.all()
-                                }
-                            ),
+                            "persons": [
+                                person.get_display_name()
+                                for person in talk.submission.speakers.all()
+                            ],
                             "track": {
                                 "color": talk.submission.track.color,
                                 "name": str(talk.submission.track.name),
