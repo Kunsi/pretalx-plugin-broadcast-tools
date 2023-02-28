@@ -1,7 +1,12 @@
 import datetime as dt
+from xml.etree import ElementTree as ET
 
 import pytz
-from django.http import JsonResponse
+import qrcode
+import qrcode.image.svg
+from django.conf import settings
+from django.http import HttpResponse, JsonResponse
+from django.utils.safestring import mark_safe
 from django.views import View
 from django.views.generic import FormView
 from django.views.generic.base import TemplateView
@@ -63,6 +68,17 @@ class BroadcastToolsEventInfoView(View):
                 "color": color,
             },
         )
+
+
+class BroadcastToolsFeedbackQrCode(View):
+    def get(self, request, *args, **kwargs):
+        talk = self.request.event.submissions.filter(id=kwargs["talk"]).first()
+        domain = request.event.custom_domain or settings.SITE_URL
+        image = qrcode.make(
+            f"{domain}{talk.urls.feedback}", image_factory=qrcode.image.svg.SvgImage
+        )
+        svg_data = mark_safe(ET.tostring(image.get_image()).decode())
+        return HttpResponse(svg_data, content_type="image/svg+xml")
 
 
 class BroadcastToolsScheduleView(EventPermissionRequired, ScheduleMixin, View):
