@@ -90,6 +90,17 @@ class BroadcastToolsFeedbackQrCodeSvg(View):
         return HttpResponse(svg_data, content_type="image/svg+xml")
 
 
+class BroadcastToolsPublicQrCodeSvg(View):
+    def get(self, request, *args, **kwargs):
+        talk = self.request.event.submissions.filter(id=kwargs["talk"]).first()
+        domain = request.event.custom_domain or settings.SITE_URL
+        image = qrcode.make(
+            f"{domain}{talk.urls.public}", image_factory=qrcode.image.svg.SvgImage
+        )
+        svg_data = mark_safe(ET.tostring(image.get_image()).decode())
+        return HttpResponse(svg_data, content_type="image/svg+xml")
+
+
 class BroadcastToolsScheduleView(EventPermissionRequired, ScheduleMixin, View):
     permission_required = "agenda.view_schedule"
 
