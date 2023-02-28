@@ -1,7 +1,7 @@
 schedule = null;
 event_info = null;
 
-function get_current_talk() {
+function get_current_talk(max_offset) {
     room_name = get_room_name();
 
     if (!room_name) {
@@ -10,7 +10,7 @@ function get_current_talk() {
 
     current_talk = null;
 
-    for (let offset = 0; offset <= 5; offset++) {
+    for (let offset = 0; offset <= max_offset; offset++) {
         time_start = new Date(Date.now() + offset*60000).getTime();
         time_end = new Date(Date.now() - offset*60000).getTime();
 

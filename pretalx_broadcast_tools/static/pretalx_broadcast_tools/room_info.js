@@ -39,7 +39,7 @@ function update_room_info() {
         return
     }
 
-    current_talk = get_current_talk();
+    current_talk = get_current_talk(15);
     if (current_talk) {
         $('#broadcast_tools_room_info_title').text(current_talk['title']);
         $('#broadcast_tools_room_info_speaker').text(current_talk['persons'].join(', '));

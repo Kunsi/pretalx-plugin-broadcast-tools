@@ -25,7 +25,7 @@ function update_lower_third() {
         return
     }
 
-    current_talk = get_current_talk();
+    current_talk = get_current_talk(5);
     if (current_talk) {
         $('#l3title').text(current_talk['title']);
         $('#l3speaker').text(current_talk['persons'].join(', '));
