@@ -1,5 +1,6 @@
 from django.conf import settings
 
+
 def placeholders(schedule, talk):
     return {
         "CODE": talk.submission.code,
