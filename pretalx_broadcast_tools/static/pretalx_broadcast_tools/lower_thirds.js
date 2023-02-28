@@ -6,6 +6,8 @@ function update_lower_third() {
         return
     }
 
+    $('#l3box').css('background-color', event_info['color']);
+
     if (!schedule)  {
         $('#l3title').text('Waiting for schedule ...')
         return
