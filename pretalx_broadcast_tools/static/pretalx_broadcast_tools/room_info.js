@@ -12,6 +12,14 @@ function update_room_info() {
         return
     }
 
+    if (!room_name) {
+        $('#broadcast_tools_room_info_title').text(event_info['name']);
+        $('#broadcast_tools_room_info_speaker').text('Backstage');
+        $('#broadcast_tools_room_info_qr').text('');
+        $('#broadcast_tools_room_info').css('background-color', event_info['color']);
+        return
+    }
+
     if (!schedule)  {
         $('#broadcast_tools_room_info_speaker').text('Waiting for schedule ...')
         return
