@@ -22,6 +22,14 @@ class BroadcastToolsSettingsForm(I18nFormMixin, HierarkeyForm):
         required=False,
         widget=I18nTextInput,
     )
+    broadcast_tools_room_info_feedback_instead_of_public = BooleanField(
+        help_text=_(
+            "If checked, the qr code shown on the 'room info' page will "
+            "link to the feedback page instead of the talk detail page."
+        ),
+        label=_("Show feedback QR code instead of talk detail QR code"),
+        required=False,
+    )
     broadcast_tools_pdf_show_internal_notes = BooleanField(
         help_text=_(
             "If checked, the value of the 'internal notes' field in a "

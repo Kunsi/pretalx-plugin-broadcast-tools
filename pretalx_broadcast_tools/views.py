@@ -69,12 +69,15 @@ class BroadcastToolsEventInfoView(View):
         color = self.request.event.primary_color or "#3aa57c"
         return JsonResponse(
             {
-                "slug": self.request.event.slug,
+                "color": color,
                 "name": str(self.request.event.name),
                 "no_talk": str(
                     self.request.event.settings.broadcast_tools_lower_thirds_no_talk_info
                 ),
-                "color": color,
+                "room-info": {
+                    "qr_type": "feedback" if self.request.event.settings.broadcast_tools_room_info_feedback_instead_of_public else "public",
+                },
+                "slug": self.request.event.slug,
             },
         )
 
@@ -151,6 +154,17 @@ class BroadcastToolsScheduleView(EventPermissionRequired, ScheduleMixin, View):
                                 ),
                                 "feedback_qr": reverse(
                                     "plugins:pretalx_broadcast_tools:feedback_qr_id",
+                                    kwargs={
+                                        "event": schedule.event.slug,
+                                        "talk": talk.submission.id,
+                                    },
+                                ),
+                                "public": "{}{}".format(
+                                    schedule.event.custom_domain or settings.SITE_URL,
+                                    talk.submission.urls.public,
+                                ),
+                                "public_qr": reverse(
+                                    "plugins:pretalx_broadcast_tools:public_qr_id",
                                     kwargs={
                                         "event": schedule.event.slug,
                                         "talk": talk.submission.id,

@@ -61,6 +61,12 @@
         </fieldset>
         <fieldset>
             <legend>
+                {% translate "Room info" %}
+            </legend>
+            {% bootstrap_field form.broadcast_tools_room_info_feedback_instead_of_public layout='event' %}
+        </fieldset>
+        <fieldset>
+            <legend>
                 {% translate "PDF export" %}
             </legend>
             {% bootstrap_field form.broadcast_tools_pdf_show_internal_notes layout='event' %}
