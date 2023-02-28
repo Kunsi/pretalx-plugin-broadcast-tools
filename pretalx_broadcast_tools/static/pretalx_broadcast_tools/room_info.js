@@ -20,6 +20,8 @@ function update_room_info() {
         return
     }
 
+    $('#broadcast_tools_room_info_roomname').text(room_name);
+
     if (!schedule)  {
         $('#broadcast_tools_room_info_speaker').text('Waiting for schedule ...')
         return
@@ -52,7 +54,7 @@ function update_room_info() {
         $('#broadcast_tools_room_info_qr').html(qr_info);
     } else {
         $('#broadcast_tools_room_info_title').text(event_info['name']);
-        $('#broadcast_tools_room_info_speaker').text(room_name);
+        $('#broadcast_tools_room_info_speaker').text('');
         $('#broadcast_tools_room_info_qr').text('');
     }
 

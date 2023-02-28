@@ -22,6 +22,12 @@ body {
     text-align: center;
 }
 
+#broadcast_tools_room_info_roomname {
+    font-size: 2em;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+}
+
 #broadcast_tools_room_info_title {
     font-size: 6em;
     margin-bottom: 0.2em;
