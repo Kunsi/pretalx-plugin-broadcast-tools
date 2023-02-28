@@ -6,6 +6,7 @@ import qrcode
 import qrcode.image.svg
 from django.conf import settings
 from django.http import HttpResponse, JsonResponse
+from django.urls import reverse
 from django.utils.safestring import mark_safe
 from django.views import View
 from django.views.generic import FormView
@@ -20,6 +21,14 @@ from .utils.placeholders import placeholders
 
 class BroadcastToolsLowerThirdsView(TemplateView):
     template_name = "pretalx_broadcast_tools/lower_thirds.html"
+
+
+class BroadcastToolsRoomInfoView(TemplateView):
+    template_name = "pretalx_broadcast_tools/room_info.html"
+
+
+class BroadcastToolsFeedbackQrCode(TemplateView):
+    template_name = "pretalx_broadcast_tools/feedback_qr.html"
 
 
 class BroadcastToolsOrgaView(PermissionRequired, FormView):
@@ -70,7 +79,7 @@ class BroadcastToolsEventInfoView(View):
         )
 
 
-class BroadcastToolsFeedbackQrCode(View):
+class BroadcastToolsFeedbackQrCodeSvg(View):
     def get(self, request, *args, **kwargs):
         talk = self.request.event.submissions.filter(id=kwargs["talk"]).first()
         domain = request.event.custom_domain or settings.SITE_URL
@@ -124,6 +133,13 @@ class BroadcastToolsScheduleView(EventPermissionRequired, ScheduleMixin, View):
                             else None,
                             "room": room["name"].localize(schedule.event.locale),
                             "infoline": infoline.format(**placeholders(schedule, talk)),
+                            "feedback_qr_url": reverse(
+                                "plugins:pretalx_broadcast_tools:feedback_qr_id",
+                                kwargs={
+                                    "event": schedule.event,
+                                    "talk": talk.submission.id,
+                                },
+                            ),
                         }
                         for day in schedule.data
                         for room in day["rooms"]

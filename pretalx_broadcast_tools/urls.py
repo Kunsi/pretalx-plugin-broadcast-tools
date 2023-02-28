@@ -15,6 +15,16 @@ urlpatterns = [
         name="event_info",
     ),
     re_path(
+        f"^(?P<event>[{SLUG_CHARS}]+)/p/broadcast-tools/feedback-qr/(?P<talk>[0-9]+).svg$",
+        views.BroadcastToolsFeedbackQrCodeSvg.as_view(),
+        name="feedback_qr_id",
+    ),
+    re_path(
+        f"^(?P<event>[{SLUG_CHARS}]+)/p/broadcast-tools/room-info/$",
+        views.BroadcastToolsRoomInfoView.as_view(),
+        name="room_info",
+    ),
+    re_path(
         f"^(?P<event>[{SLUG_CHARS}]+)/p/broadcast-tools/schedule.json$",
         views.BroadcastToolsScheduleView.as_view(),
         name="schedule",

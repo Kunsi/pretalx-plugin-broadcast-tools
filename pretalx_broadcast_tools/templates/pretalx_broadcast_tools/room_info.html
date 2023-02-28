@@ -9,17 +9,17 @@
             <script src="{% static "vendored/jquery-3.1.1.js" %}"></script>
         {% endcompress %}
         <script src="{% static "pretalx_broadcast_tools/generic.js" %}"></script>
-        <script src="{% static "pretalx_broadcast_tools/lower_thirds.js" %}"></script>
+        <script src="{% static "pretalx_broadcast_tools/room_info.js" %}"></script>
         <link rel="stylesheet" href="{% static "pretalx_broadcast_tools/frontend.css" %}" />
         {% if request.event and request.event.custom_css %}
             <link rel="stylesheet" type="text/css" href="{{ request.event.custom_css.url }}"/>
         {% endif %}
     </head>
-    <body class="lower3rd">
-        <div id="l3box">
-            <p id="l3title">Loading ...</p>
-            <p id="l3speaker">Content should appear soon. If not, please verify you have Javascript enabled.</p>
-            <p id="l3info_line"></p>
+    <body id="broadcast_tools_room_info">
+        <div id="broadcast_tools_room_info_header">
+            <h1 id="broadcast_tools_room_info_title">Loading ...</p>
+            <h2 id="broadcast_tools_room_info_speaker">Content should appear soon. If not, please verify you have Javascript enabled.</h2>
         </div>
+        <div id="broadcast_tools_room_info_qr"></div>
     </body>
 </html>

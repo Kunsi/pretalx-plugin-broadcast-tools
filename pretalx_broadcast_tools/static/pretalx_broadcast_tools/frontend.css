@@ -2,6 +2,43 @@
     margin: 0;
     padding: 0;
     line-height: 1.2em;
+    color: white;
+    font-family: "Muli","Open Sans","OpenSans","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+body {
+    background-color: black;
+}
+
+#broadcast_tools_room_info {
+    display: flex;
+    flex-flow: column;
+    height: 100vh;
+}
+
+#broadcast_tools_room_info_header, #broadcast_tools_room_info_qr {
+    padding: 2em;
+    text-align: center;
+}
+
+#broadcast_tools_room_info_title {
+    font-size: 6em;
+    margin-bottom: 0.2em;
+    font-weight: bold;
+}
+
+#broadcast_tools_room_info_speaker {
+    font-size: 3em;
+    font-weight: normal;
+}
+
+#broadcast_tools_room_info_qr {
+    flex: 1;
+}
+
+#broadcast_tools_room_info_qr img {
+    background-color: white;
+    height: 100%;
 }
 
 #l3box {
@@ -11,9 +48,6 @@
     bottom: 80px;
     left: 50%;
     margin-left: -510px;
-
-    color: white;
-    font-family: "Muli","Open Sans","OpenSans","Helvetica Neue",Helvetica,Arial,sans-serif;
     padding: 15px;
 
     box-shadow: 5px 5px 10px 0px rgba(50, 50, 50, 0.75);
