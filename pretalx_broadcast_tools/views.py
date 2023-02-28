@@ -141,7 +141,7 @@ class BroadcastToolsScheduleView(EventPermissionRequired, ScheduleMixin, View):
                                 "feedback_qr": reverse(
                                     "plugins:pretalx_broadcast_tools:feedback_qr_id",
                                     kwargs={
-                                        "event": schedule.event,
+                                        "event": schedule.event.slug,
                                         "talk": talk.submission.id,
                                     },
                                 ),
