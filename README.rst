@@ -1,30 +1,15 @@
-Lower Thirds
+Pretalx: Broadcast Tools (and more)
 ==========================
 
 This is a plugin for `pretalx`_.
 
-This plugin allows you to add configurable lower thirds ("Bauchbinden"
-in German) to your pretalx instance. Most likely this will be used in
-(for example) a Browser Source inside `OBS Studio`_.
+This adds the following features to your pretalx instance:
 
-.. image:: img/lower_thirds.png
-  :width: 400
-  :alt: Screenshot of the lower third output. There's currently a talk running.
-
-The colours will be automatically determined from the event and track
-colours set inside pretalx.
-
-You can also add a configurable third line to the lower thirds, for
-example to hint your audience to vote for the talks. To make this easier,
-the plugin will automatically replace some placeholders inside the text,
-so you can have individual text for all talks.
-
-.. image:: img/orga_view.png
-  :width: 400
-  :alt: Screenshot of the orga view
-
-Inside the orga view, you can also configure the text snippet that's
-shown if there's no talk running currently.
+* Lower Thirds ("Bauchbinden") for using with something like OBS
+* a "room info" screen, if you want to show information about the
+  currently running talk outside the room
+* a pdf export containing information about a talk, so video helpers
+  can have easy access to the needed information
 
 Development setup
 -----------------
