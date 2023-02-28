@@ -75,7 +75,9 @@ class BroadcastToolsEventInfoView(View):
                     self.request.event.settings.broadcast_tools_lower_thirds_no_talk_info
                 ),
                 "room-info": {
-                    "qr_type": "feedback" if self.request.event.settings.broadcast_tools_room_info_feedback_instead_of_public else "public",
+                    "qr_type": "feedback"
+                    if self.request.event.settings.broadcast_tools_room_info_feedback_instead_of_public
+                    else "public",
                 },
                 "slug": self.request.event.slug,
             },
