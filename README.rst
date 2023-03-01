@@ -1,5 +1,5 @@
 Pretalx: Broadcast Tools (and more)
-==========================
+===================================
 
 This is a plugin for `pretalx`_.
 

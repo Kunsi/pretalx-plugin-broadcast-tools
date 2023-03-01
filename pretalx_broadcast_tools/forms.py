@@ -1,4 +1,4 @@
-from django.forms import BooleanField, CharField, Textarea, ChoiceField
+from django.forms import BooleanField, CharField, ChoiceField, Textarea
 from django.utils.translation import gettext_lazy as _
 from hierarkey.forms import HierarkeyForm
 from i18nfield.forms import I18nFormField, I18nFormMixin, I18nTextInput
