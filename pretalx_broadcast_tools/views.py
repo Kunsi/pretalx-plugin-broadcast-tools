@@ -75,9 +75,7 @@ class BroadcastToolsEventInfoView(View):
                     self.request.event.settings.broadcast_tools_lower_thirds_no_talk_info
                 ),
                 "room-info": {
-                    "qr_type": "feedback"
-                    if self.request.event.settings.broadcast_tools_room_info_feedback_instead_of_public
-                    else "public",
+                    "lower_info": self.request.event.settings.broadcast_tools_room_info_lower_content or '',
                 },
                 "slug": self.request.event.slug,
             },
@@ -149,6 +147,7 @@ class BroadcastToolsScheduleView(EventPermissionRequired, ScheduleMixin, View):
                             else None,
                             "room": room["name"].localize(schedule.event.locale),
                             "infoline": infoline.format(**placeholders(schedule, talk)),
+                            "image_url": talk.submission.image_url,
                             "urls": {
                                 "feedback": "{}{}".format(
                                     schedule.event.custom_domain or settings.SITE_URL,

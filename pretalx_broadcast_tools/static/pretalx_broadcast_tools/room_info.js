@@ -13,14 +13,13 @@ function update_room_info() {
     }
 
     if (!room_name) {
-        $('#broadcast_tools_room_info_title').text(event_info['name']);
-        $('#broadcast_tools_room_info_speaker').text('Backstage');
+        $('#broadcast_tools_room_info_roomname').text(event_info['name']);
+        $('#broadcast_tools_room_info_title').text('Backstage');
+        $('#broadcast_tools_room_info_speaker').text('');
         $('#broadcast_tools_room_info_qr').text('');
         $('#broadcast_tools_room_info').css('background-color', event_info['color']);
         return
     }
-
-    $('#broadcast_tools_room_info_roomname').text(room_name);
 
     if (!schedule)  {
         $('#broadcast_tools_room_info_speaker').text('Waiting for schedule ...')
@@ -43,17 +42,23 @@ function update_room_info() {
 
     current_talk = get_current_talk(15);
     if (current_talk) {
-        if (event_info['room-info']['qr_type'] == 'feedback') {
+        if (event_info['room-info']['lower_info'] == 'feedback_qr') {
             qr_info = '<img src="' + current_talk['urls']['feedback_qr'] + '" alt="Feedback QR Code"><p>Leave Feedback by scanning the code or visiting ' + current_talk['urls']['feedback'] + '</p>';
-        } else {
+        } else if (event_info['room-info']['lower_info'] == 'public_qr') {
             qr_info = '<img src="' + current_talk['urls']['public_qr'] + '" alt="QR Code linking to URL below"><p>' + current_talk['urls']['public'] + '</p>';
+        } else if (event_info['room-info']['lower_info'] == 'talk_image' && current_talk['image_url']) {
+            qr_info = '<img src="' + current_talk['image_url'] + '" alt="Talk image">';
+        } else {
+            qr_info = '';
         }
 
+        $('#broadcast_tools_room_info_roomname').text(room_name);
         $('#broadcast_tools_room_info_title').text(current_talk['title']);
         $('#broadcast_tools_room_info_speaker').text(current_talk['persons'].join(', '));
         $('#broadcast_tools_room_info_qr').html(qr_info);
     } else {
-        $('#broadcast_tools_room_info_title').text(event_info['name']);
+        $('#broadcast_tools_room_info_roomname').text(event_info['name']);
+        $('#broadcast_tools_room_info_title').text(room_name);
         $('#broadcast_tools_room_info_speaker').text('');
         $('#broadcast_tools_room_info_qr').text('');
     }

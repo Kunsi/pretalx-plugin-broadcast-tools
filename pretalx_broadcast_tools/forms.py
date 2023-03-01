@@ -1,4 +1,4 @@
-from django.forms import BooleanField, CharField, Textarea
+from django.forms import BooleanField, CharField, Textarea, ChoiceField
 from django.utils.translation import gettext_lazy as _
 from hierarkey.forms import HierarkeyForm
 from i18nfield.forms import I18nFormField, I18nFormMixin, I18nTextInput
@@ -22,14 +22,26 @@ class BroadcastToolsSettingsForm(I18nFormMixin, HierarkeyForm):
         required=False,
         widget=I18nTextInput,
     )
-    broadcast_tools_room_info_feedback_instead_of_public = BooleanField(
-        help_text=_(
-            "If checked, the qr code shown on the 'room info' page will "
-            "link to the feedback page instead of the talk detail page."
+
+    broadcast_tools_room_info_lower_content = ChoiceField(
+        choices=(
+            ("", "No lower content"),
+            ("public_qr", "QR code linking to the 'talk detail' page"),
+            (
+                "feedback_qr",
+                "QR code linking to the feedback page of the currently running talk",
+            ),
+            ("talk_image", "session image uploaded by the speaker(s)"),
         ),
-        label=_("Show feedback QR code instead of talk detail QR code"),
-        required=False,
+        help_text=_(
+            "If a talk is running, the room info page will always show "
+            "the talk title and the list of speakers. The content below "
+            "is configurable here."
+        ),
+        label=_("lower content"),
+        required=True,
     )
+
     broadcast_tools_pdf_show_internal_notes = BooleanField(
         help_text=_(
             "If checked, the value of the 'internal notes' field in a "
