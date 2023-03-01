@@ -41,6 +41,14 @@ class BroadcastToolsSettingsForm(I18nFormMixin, HierarkeyForm):
         label=_("lower content"),
         required=True,
     )
+    broadcast_tools_room_info_show_next_talk = BooleanField(
+        help_text=_(
+            "If no talk is running in the room, show the time and title "
+            "of the next talk in the room."
+        ),
+        label=_("Show next talk"),
+        required=False,
+    )
 
     broadcast_tools_pdf_show_internal_notes = BooleanField(
         help_text=_(

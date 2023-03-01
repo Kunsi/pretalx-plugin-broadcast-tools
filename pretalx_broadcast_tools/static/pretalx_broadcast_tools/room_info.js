@@ -41,6 +41,8 @@ function update_room_info() {
     }
 
     current_talk = get_current_talk(15);
+    next_talk = get_next_talk();
+
     if (current_talk) {
         if (event_info['room-info']['lower_info'] == 'feedback_qr') {
             qr_info = '<img src="' + current_talk['urls']['feedback_qr'] + '" alt="Feedback QR Code"><p>Leave Feedback by scanning the code or visiting ' + current_talk['urls']['feedback'] + '</p>';
@@ -59,8 +61,14 @@ function update_room_info() {
     } else {
         $('#broadcast_tools_room_info_roomname').text(event_info['name']);
         $('#broadcast_tools_room_info_title').text(room_name);
-        $('#broadcast_tools_room_info_speaker').text('');
         $('#broadcast_tools_room_info_qr').text('');
+
+        if (next_talk && event_info['room-info']['show_next_talk']) {
+            next_time = new Date(next_talk['start']);
+            $('#broadcast_tools_room_info_speaker').text(next_time.getHours() + ':' + next_time.getMinutes() + ' ' + next_talk['title']);
+        } else {
+            $('#broadcast_tools_room_info_speaker').text('');
+        }
     }
 
     if (current_talk && current_talk['track']) {

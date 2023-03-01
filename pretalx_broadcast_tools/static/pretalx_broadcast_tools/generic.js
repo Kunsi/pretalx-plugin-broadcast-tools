@@ -8,8 +8,6 @@ function get_current_talk(max_offset) {
         return null;
     }
 
-    current_talk = null;
-
     for (let offset = 0; offset <= max_offset; offset++) {
         time_start = new Date(Date.now() + offset*60000).getTime();
         time_end = new Date(Date.now() - offset*60000).getTime();
@@ -26,17 +24,39 @@ function get_current_talk(max_offset) {
             talk_end = new Date(talk['end']).getTime();
 
             if (talk_start < time_start && talk_end > time_end) {
-                current_talk = talk;
-                break;
+                return talk;
             }
-        }
-
-        if (current_talk) {
-            break;
         }
     }
 
-    return current_talk;
+    return null;
+}
+
+function get_next_talk() {
+    room_name = get_room_name();
+
+    if (!room_name) {
+        return null;
+    }
+
+    time_start = new Date(Date.now()).getTime();
+
+    for (talk_i in schedule['talks']) {
+        talk = schedule['talks'][talk_i]
+
+        if (schedule['rooms'].length > 1 && talk['room'] != room_name) {
+            // not in this room
+            continue;
+        }
+
+        talk_start = new Date(talk['start']).getTime();
+
+        if (talk_start > time_start) {
+            return talk;
+        }
+    }
+
+    return null;
 }
 
 function get_room_name() {
