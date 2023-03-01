@@ -39,7 +39,7 @@ class BroadcastToolsSettingsForm(I18nFormMixin, HierarkeyForm):
             "is configurable here."
         ),
         label=_("lower content"),
-        required=True,
+        required=False,
     )
     broadcast_tools_room_info_show_next_talk = BooleanField(
         help_text=_(
