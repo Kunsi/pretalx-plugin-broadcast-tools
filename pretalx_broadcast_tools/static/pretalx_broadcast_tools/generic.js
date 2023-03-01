@@ -70,6 +70,23 @@ function get_room_name() {
     return room_name;
 }
 
+function format_time_from_pretalx(from_pretalx) {
+    d = new Date(from_pretalx);
+
+    h = d.getHours();
+    m = d.getMinutes();
+
+    if (h < 10) {
+        h = '0' + h;
+    }
+
+    if (m < 10) {
+        m = '0' + m;
+    }
+
+    return h + ':' + m;
+}
+
 function update_schedule() {
     $.getJSON('../event.json', function(data) {
         event_info = data;

@@ -64,8 +64,7 @@ function update_room_info() {
         $('#broadcast_tools_room_info_qr').text('');
 
         if (next_talk && event_info['room-info']['show_next_talk']) {
-            next_time = new Date(next_talk['start']);
-            $('#broadcast_tools_room_info_speaker').text(next_time.getHours() + ':' + next_time.getMinutes() + ' ' + next_talk['title']);
+            $('#broadcast_tools_room_info_speaker').text(format_time_from_pretalx(next_talk['start']) + ' ' + next_talk['title']);
         } else {
             $('#broadcast_tools_room_info_speaker').text('');
         }
