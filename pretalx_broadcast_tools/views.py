@@ -27,10 +27,6 @@ class BroadcastToolsRoomInfoView(TemplateView):
     template_name = "pretalx_broadcast_tools/room_info.html"
 
 
-class BroadcastToolsFeedbackQrCode(TemplateView):
-    template_name = "pretalx_broadcast_tools/feedback_qr.html"
-
-
 class BroadcastToolsOrgaView(PermissionRequired, FormView):
     form_class = BroadcastToolsSettingsForm
     permission_required = "orga.change_settings"
