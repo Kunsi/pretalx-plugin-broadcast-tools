@@ -1,4 +1,4 @@
-# next
+# 2.0.0
 
 * room info page can now show more content on the lower half of the view
     * **BREAKING:** The option to select which content should be shown
