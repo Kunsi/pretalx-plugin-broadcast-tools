@@ -52,7 +52,7 @@ body {
     margin-top: 1em;
 }
 
-#l3box {
+#broadcast_tools_lower_thirds_box {
     width: 1020px;
 
     position: absolute;
@@ -65,17 +65,17 @@ body {
     background-color: #3aa57c;
 }
 
-#l3title {
+#broadcast_tools_lower_thirds_title {
     font-size: 30px;
     font-weight: 500;
     margin-bottom: 15px;
 }
 
-#l3speaker {
+#broadcast_tools_lower_thirds_speaker {
     font-size: 20px;
 }
 
-#l3info_line {
+#broadcast_tools_lower_thirds_infoline {
     font-size: 16px;
     text-align: right;
 }

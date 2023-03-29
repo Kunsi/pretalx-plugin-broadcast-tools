@@ -3,6 +3,13 @@
 * room info page can now show more content on the lower half of the view
     * **BREAKING:** The option to select which content should be shown
       is now a ChoiceField, the old setting will be ignored.
+* **BREAKING:** lower thirds now use css selectors using the same rules
+  as the other css selectors
+    * `#l3box` is now `#broadcast_tools_lower_thirds_box`
+    * `#l3info_line` is now `#broadcast_tools_lower_thirds_infoline`
+    * `#l3speaker` is now `#broadcast_tools_lower_thirds_speaker`
+    * `#l3title` is now `#broadcast_tools_lower_thirds_title`
+    * `.lower3rd` is now `broadcast_tools_lower_thirds`
 
 # 1.1.0
 

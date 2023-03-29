@@ -6,42 +6,42 @@ function update_lower_third() {
         return
     }
 
-    $('#l3box').css('background-color', event_info['color']);
+    $('#broadcast_tools_lower_thirds_box').css('background-color', event_info['color']);
 
     if (!schedule)  {
-        $('#l3title').text('Waiting for schedule ...')
+        $('#broadcast_tools_lower_thirds_title').text('Waiting for schedule ...')
         return
     }
 
     if ('error' in schedule) {
-        $('#l3title').text('Error')
-        $('#l3speaker').html(schedule['error'].join('<br>'));
-        $('#l3info_line').text('');
+        $('#broadcast_tools_lower_thirds_title').text('Error')
+        $('#broadcast_tools_lower_thirds_speaker').html(schedule['error'].join('<br>'));
+        $('#broadcast_tools_lower_thirds_infoline').text('');
         return
     }
 
     if (schedule['rooms'].length > 1 && !schedule['rooms'].includes(room_name)) {
-        $('#l3title').text('Error')
-        $('#l3speaker').text('Invalid room_name. Valid names: ' + schedule['rooms'].join(', '));
-        $('#l3info_line').text('');
+        $('#broadcast_tools_lower_thirds_title').text('Error')
+        $('#broadcast_tools_lower_thirds_speaker').text('Invalid room_name. Valid names: ' + schedule['rooms'].join(', '));
+        $('#broadcast_tools_lower_thirds_infoline').text('');
         return
     }
 
     current_talk = get_current_talk(5);
     if (current_talk) {
-        $('#l3title').text(current_talk['title']);
-        $('#l3speaker').text(current_talk['persons'].join(', '));
-        $('#l3info_line').text(current_talk['infoline']);
+        $('#broadcast_tools_lower_thirds_title').text(current_talk['title']);
+        $('#broadcast_tools_lower_thirds_speaker').text(current_talk['persons'].join(', '));
+        $('#broadcast_tools_lower_thirds_infoline').text(current_talk['infoline']);
     } else {
-        $('#l3title').text(event_info['no_talk']);
-        $('#l3speaker').text('');
-        $('#l3info_line').text('');
+        $('#broadcast_tools_lower_thirds_title').text(event_info['no_talk']);
+        $('#broadcast_tools_lower_thirds_speaker').text('');
+        $('#broadcast_tools_lower_thirds_infoline').text('');
     }
 
     if (current_talk && current_talk['track']) {
-        $('#l3box').css('border-bottom', '10px solid ' + current_talk['track']['color']);
+        $('#broadcast_tools_lower_thirds_box').css('border-bottom', '10px solid ' + current_talk['track']['color']);
     } else {
-        $('#l3box').css('border-bottom', 'none');
+        $('#broadcast_tools_lower_thirds_box').css('border-bottom', 'none');
     }
 }
 window.setInterval(update_lower_third, 1000);
