@@ -1,7 +1,6 @@
 import datetime as dt
 from xml.etree import ElementTree as ET
 
-import pytz
 import qrcode
 import qrcode.image.svg
 from django.conf import settings
@@ -112,7 +111,6 @@ class BroadcastToolsScheduleView(EventPermissionRequired, ScheduleMixin, View):
             event=self.request.event,
             schedule=self.schedule,
         )
-        tz = pytz.timezone(schedule.event.timezone)
         infoline = str(
             schedule.event.settings.broadcast_tools_lower_thirds_info_string or ""
         )
@@ -129,9 +127,9 @@ class BroadcastToolsScheduleView(EventPermissionRequired, ScheduleMixin, View):
                     "talks": [
                         {
                             "id": talk.submission.id,
-                            "start": talk.start.astimezone(tz).isoformat(),
+                            "start": talk.start.astimezone(schedule.event.tz).isoformat(),
                             "end": (talk.start + dt.timedelta(minutes=talk.duration))
-                            .astimezone(tz)
+                            .astimezone(schedule.event.tz)
                             .isoformat(),
                             "slug": talk.frab_slug,
                             "title": talk.submission.title,
