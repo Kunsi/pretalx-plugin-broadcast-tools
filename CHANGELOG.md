@@ -1,3 +1,10 @@
+# 2.0.1
+
+* fixes to support pretalx 2023.1.0
+    * use non-deprecated gettext call
+    * safe timezone handling
+    * usage of pyproject.toml
+
 # 2.0.0
 
 * room info page can now show more content on the lower half of the view
