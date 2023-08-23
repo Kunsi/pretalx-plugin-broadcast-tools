@@ -1,7 +1,7 @@
 from django.dispatch import receiver
 from django.urls import resolve, reverse
-from django.utils.translation import gettext_noop
 from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext_noop
 from i18nfield.strings import LazyI18nString
 from pretalx.common.models.settings import hierarkey
 from pretalx.common.signals import register_data_exporters

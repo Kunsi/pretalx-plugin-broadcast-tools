@@ -127,7 +127,9 @@ class BroadcastToolsScheduleView(EventPermissionRequired, ScheduleMixin, View):
                     "talks": [
                         {
                             "id": talk.submission.id,
-                            "start": talk.start.astimezone(schedule.event.tz).isoformat(),
+                            "start": talk.start.astimezone(
+                                schedule.event.tz
+                            ).isoformat(),
                             "end": (talk.start + dt.timedelta(minutes=talk.duration))
                             .astimezone(schedule.event.tz)
                             .isoformat(),
