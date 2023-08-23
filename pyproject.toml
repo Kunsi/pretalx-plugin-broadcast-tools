@@ -1,0 +1,44 @@
+[project]
+name = "pretalx-broadcast-tools"
+version = "2.0.0"
+description = """
+Some tools which can be used for supporting a broadcasting software.
+This currently includes a generator for PDF printouts, a 'lower thirds'
+endpoint, and a full-screen webpage showing information about the
+currently running talk.
+"""
+readme = "README.rst"
+license = {text = "Apache Software License"}
+keywords = ["pretalx"]
+authors = [
+    {name = "Franziska Kunsmann", email = "git@kunsmann.eu"},
+]
+maintainers = [
+    {name = "Franziska Kunsmann", email = "git@kunsmann.eu"},
+]
+
+dependencies = [
+]
+
+[project.entry-points."pretalx.plugin"]
+pretalx_broadcast_tools = "pretalx_broadcast_tools:PretalxPluginMeta"
+
+[project.entry-points."distutils.commands"]
+build = "pretalx_plugin_build.build:CustomBuild"
+
+[build-system]
+requires = [
+    "setuptools",
+    "pretalx-plugin-build",
+]
+
+[project.urls]
+homepage = "https://github.com/Kunsi/pretalx-plugin-broadcast-tools"
+repository = "https://github.com/Kunsi/pretalx-plugin-broadcast-tools.git"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+include = ["pretalx*"]
+namespaces = false
