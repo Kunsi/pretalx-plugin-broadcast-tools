@@ -65,7 +65,7 @@ class BroadcastToolsEventInfoView(View):
         return JsonResponse(
             {
                 "color": color,
-                "name": str(self.request.event.name),
+                "name": self.request.event.name.localize(self.request.event.locale),
                 "no_talk": str(
                     self.request.event.settings.broadcast_tools_lower_thirds_no_talk_info
                 ),
@@ -77,6 +77,10 @@ class BroadcastToolsEventInfoView(View):
                     else False,
                 },
                 "slug": self.request.event.slug,
+                "start": self.request.event.date_from.isoformat(),
+                "end": self.request.event.date_to.isoformat(),
+                "timezone": str(self.request.event.tz),
+                "locale": self.request.event.locale,
             },
         )
 
@@ -130,9 +134,15 @@ class BroadcastToolsScheduleView(EventPermissionRequired, ScheduleMixin, View):
                             "start": talk.start.astimezone(
                                 schedule.event.tz
                             ).isoformat(),
+                            "start_ts": int(talk.start.timestamp()),
                             "end": (talk.start + dt.timedelta(minutes=talk.duration))
                             .astimezone(schedule.event.tz)
                             .isoformat(),
+                            "end_ts": int(
+                                (
+                                    talk.start + dt.timedelta(minutes=talk.duration)
+                                ).timestamp()
+                            ),
                             "slug": talk.frab_slug,
                             "title": talk.submission.title,
                             "persons": [
@@ -148,6 +158,9 @@ class BroadcastToolsScheduleView(EventPermissionRequired, ScheduleMixin, View):
                             "room": room["name"].localize(schedule.event.locale),
                             "infoline": infoline.format(**placeholders(schedule, talk)),
                             "image_url": talk.submission.image_url,
+                            "locale": talk.submission.content_locale,
+                            "do_not_record": talk.submission.do_not_record,
+                            "abstract": talk.submission.abstract,
                             "urls": {
                                 "feedback": "{}{}".format(
                                     schedule.event.custom_domain or settings.SITE_URL,
