@@ -1,4 +1,11 @@
-# 2.0.1
+# 2.1.0
+
+* fixed installation procedure
+* add some more information to the json outputs to be able to be compatible
+  with [scheduled-plugin-pretalx-broadcast-tools](https://github.com/Kunsi/scheduled-plugin-pretalx-broadcast-tools)
+  (a plugin for [info-beamer hosted](https://info-beamer.com/))
+
+# 2.0.1 (no longer available due to bugs during installation)
 
 * fixes to support pretalx 2023.1.0
     * use non-deprecated gettext call
