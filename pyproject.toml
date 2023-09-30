@@ -23,13 +23,9 @@ dependencies = [
 [project.entry-points."pretalx.plugin"]
 pretalx_broadcast_tools = "pretalx_broadcast_tools:PretalxPluginMeta"
 
-[project.entry-points."distutils.commands"]
-build = "pretalx_plugin_build.build:CustomBuild"
-
 [build-system]
 requires = [
     "setuptools",
-    "pretalx-plugin-build",
 ]
 
 [project.urls]
@@ -41,4 +37,3 @@ include-package-data = true
 
 [tool.setuptools.packages.find]
 include = ["pretalx*"]
-namespaces = false
