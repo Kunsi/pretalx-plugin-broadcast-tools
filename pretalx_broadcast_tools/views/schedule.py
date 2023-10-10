@@ -60,7 +60,11 @@ class BroadcastToolsScheduleView(EventPermissionRequired, ScheduleMixin, View):
                             if talk.submission.track
                             else None,
                             "room": room["name"].localize(schedule.event.locale),
-                            "infoline": infoline.format(**placeholders(schedule, talk)),
+                            "infoline": infoline.format(
+                                **placeholders(
+                                    schedule, talk, supports_html_colour=True
+                                )
+                            ),
                             "image_url": talk.submission.image_url,
                             "locale": talk.submission.content_locale,
                             "do_not_record": talk.submission.do_not_record,
