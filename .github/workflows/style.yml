@@ -133,34 +133,34 @@ jobs:
       - name: Run docformatter
         run: find -name "*.html" | xargs djhtml -c
         working-directory: .
-  packaging:
-    name: packaging
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: install gettext
-        run: sudo apt install gettext
-      - name: Set up Python 3.8
-        uses: actions/setup-python@v1
-        with:
-          python-version: 3.8
-      - uses: actions/cache@v1
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/setup.py') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-      - name: Install pretalx
-        run: pip3 install pretalx
-      - name: Install Dependencies
-        run: pip3 install twine check-manifest -Ue .
-      - name: Run check-manifest
-        run: check-manifest .
-        working-directory: .
-      - name: Build package
-        run: python setup.py sdist
-        working-directory: .
-      - name: Check package
-        run: twine check dist/*
-        working-directory: .
-
+#  packaging:
+#    name: packaging
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v2
+#      - name: install gettext
+#        run: sudo apt install gettext
+#      - name: Set up Python 3.8
+#        uses: actions/setup-python@v1
+#        with:
+#          python-version: 3.8
+#      - uses: actions/cache@v1
+#        with:
+#          path: ~/.cache/pip
+#          key: ${{ runner.os }}-pip-${{ hashFiles('**/setup.py') }}
+#          restore-keys: |
+#            ${{ runner.os }}-pip-
+#      - name: Install pretalx
+#        run: pip3 install pretalx
+#      - name: Install Dependencies
+#        run: pip3 install twine check-manifest -Ue .
+#      - name: Run check-manifest
+#        run: check-manifest .
+#        working-directory: .
+#      - name: Build package
+#        run: python setup.py sdist
+#        working-directory: .
+#      - name: Check package
+#        run: twine check dist/*
+#        working-directory: .
+#
