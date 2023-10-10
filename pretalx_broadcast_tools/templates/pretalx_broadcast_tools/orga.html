@@ -32,16 +32,16 @@
         </p>
         <dl>
             <dt><code>{CODE}</code></dt>
-            <dd>Use to embed the talk code (<code>MUX9U3</code> for example).</dd>
+            <dd>talk code (<code>MUX9U3</code> for example) - most useful in combination with pretalx-proposal-redirects or something like that</dd>
 
             <dt><code>{EVENT_SLUG}</code></dt>
-            <dd>Use to embed the event slug.</dd>
+            <dd>The event slug (<code>{{ request.event.slug }}</code>)</dd>
 
             <dt><code>{FEEDBACK_URL}</code></dt>
             <dd>URL to the talk feedback page.</dd>
 
             <dt><code>{TALK_SLUG}</code></dt>
-            <dd>Use to embed the talk slug.</dd>
+            <dd>The talk slug (<code>{{ request.event.slug }}-1-my-super-great-talk</code>)</dd>
 
             <dt><code>{TALK_URL}</code></dt>
             <dd>URL to the talk detail page.</dd>
