@@ -1,3 +1,8 @@
+# 2.2.0
+
+* add plugin category (#16)
+* add placeholders `{TRACK_NAME}` and `{TRACK_NAME_COLOURED}`
+
 # 2.1.0
 
 * fixed installation procedure

@@ -1,6 +1,6 @@
 [project]
 name = "pretalx-broadcast-tools"
-version = "2.1.0"
+version = "2.2.0"
 description = """
 Some tools which can be used for supporting a broadcasting software.
 This currently includes a generator for PDF printouts, a 'lower thirds'

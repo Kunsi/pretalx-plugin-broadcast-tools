@@ -15,7 +15,7 @@ class PluginApp(AppConfig):
             "embedded into your broadcasting software"
         )
         visible = True
-        version = "2.1.0"
+        version = "2.2.0"
         category = "FEATURE"
 
     def ready(self):
