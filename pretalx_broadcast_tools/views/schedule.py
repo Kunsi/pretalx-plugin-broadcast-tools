@@ -53,12 +53,14 @@ class BroadcastToolsScheduleView(EventPermissionRequired, ScheduleMixin, View):
                                 person.get_display_name()
                                 for person in talk.submission.speakers.all()
                             ],
-                            "track": {
-                                "color": talk.submission.track.color,
-                                "name": str(talk.submission.track.name),
-                            }
-                            if talk.submission.track
-                            else None,
+                            "track": (
+                                {
+                                    "color": talk.submission.track.color,
+                                    "name": str(talk.submission.track.name),
+                                }
+                                if talk.submission.track
+                                else None
+                            ),
                             "room": room["name"].localize(schedule.event.locale),
                             "infoline": infoline.format(
                                 **placeholders(
