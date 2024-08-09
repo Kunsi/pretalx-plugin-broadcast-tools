@@ -59,7 +59,7 @@ Development setup
 
 3. Activate the virtual environment you use for pretalx development.
 
-4. Execute ``python setup.py develop`` within this directory to register
+4. Execute ``python -m pip install -e .`` within this directory to register
    this application with pretalx's plugin registry.
 
 5. Execute ``make`` within this directory to compile translations.
