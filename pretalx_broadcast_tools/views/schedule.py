@@ -5,7 +5,7 @@ from django.http import JsonResponse
 from django.urls import reverse
 from django.views import View
 from pretalx.agenda.views.schedule import ScheduleMixin
-from pretalx.common.mixins.views import EventPermissionRequired
+from pretalx.common.views.mixins import EventPermissionRequired
 from pretalx.schedule.exporters import ScheduleData
 
 from ..utils.placeholders import placeholders
