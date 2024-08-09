@@ -17,7 +17,7 @@ from reportlab.platypus import (
     TableStyle,
 )
 
-from .utils.placeholders import placeholders
+from pretalx_broadcast_tools.utils.placeholders import placeholders
 
 A4_WIDTH, A4_HEIGHT = A4
 PAGE_PADDING = 10 * mm

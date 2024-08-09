@@ -1,4 +1,4 @@
-from xml.etree import ElementTree as ET
+from xml.etree import ElementTree
 
 import qrcode
 import qrcode.image.svg
@@ -15,7 +15,7 @@ class BroadcastToolsFeedbackQrCodeSvg(View):
         image = qrcode.make(
             f"{domain}{talk.urls.feedback}", image_factory=qrcode.image.svg.SvgImage
         )
-        svg_data = mark_safe(ET.tostring(image.get_image()).decode())
+        svg_data = mark_safe(ElementTree.tostring(image.get_image()).decode())
         return HttpResponse(svg_data, content_type="image/svg+xml")
 
 
@@ -26,5 +26,5 @@ class BroadcastToolsPublicQrCodeSvg(View):
         image = qrcode.make(
             f"{domain}{talk.urls.public}", image_factory=qrcode.image.svg.SvgImage
         )
-        svg_data = mark_safe(ET.tostring(image.get_image()).decode())
+        svg_data = mark_safe(ElementTree.tostring(image.get_image()).decode())
         return HttpResponse(svg_data, content_type="image/svg+xml")
