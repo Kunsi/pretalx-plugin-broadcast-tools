@@ -1,6 +1,6 @@
 [project]
 name = "pretalx-broadcast-tools"
-version = "2.2.0"
+dynamic = ["version"]
 description = """
 Some tools which can be used for supporting a broadcasting software.
 This currently includes a generator for PDF printouts, a 'lower thirds'
@@ -34,6 +34,9 @@ repository = "https://github.com/Kunsi/pretalx-plugin-broadcast-tools.git"
 
 [tool.setuptools]
 include-package-data = true
+
+[tool.setuptools.dynamic]
+version = {attr = "pretalx_broadcast_tools.__version__"}
 
 [tool.setuptools.packages.find]
 include = ["pretalx*"]

@@ -1,5 +1,6 @@
 from django.apps import AppConfig
 from django.utils.translation import gettext_lazy
+from pretalx_broadcast_tools import __version__
 
 
 class PluginApp(AppConfig):
@@ -15,7 +16,7 @@ class PluginApp(AppConfig):
             "embedded into your broadcasting software"
         )
         visible = True
-        version = "2.2.0"
+        version = __version__
         category = "FEATURE"
 
     def ready(self):
