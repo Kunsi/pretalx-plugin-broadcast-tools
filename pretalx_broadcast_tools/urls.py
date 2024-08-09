@@ -1,5 +1,5 @@
 from django.urls import re_path
-from pretalx.event.models.event import SLUG_CHARS
+from pretalx.event.models.event import SLUG_REGEX
 
 from .views.event_info import BroadcastToolsEventInfoView
 from .views.orga import BroadcastToolsOrgaView
@@ -9,37 +9,37 @@ from .views.static_html import BroadcastToolsLowerThirdsView, BroadcastToolsRoom
 
 urlpatterns = [
     re_path(
-        f"^(?P<event>[{SLUG_CHARS}]+)/p/broadcast-tools/event.json$",
+        rf"^(?P<event>{SLUG_REGEX})/p/broadcast-tools/event.json$",
         BroadcastToolsEventInfoView.as_view(),
         name="event_info",
     ),
     re_path(
-        f"^(?P<event>[{SLUG_CHARS}]+)/p/broadcast-tools/schedule.json$",
+        f"^(?P<event>{SLUG_REGEX})/p/broadcast-tools/schedule.json$",
         BroadcastToolsScheduleView.as_view(),
         name="schedule",
     ),
     re_path(
-        f"^(?P<event>[{SLUG_CHARS}]+)/p/broadcast-tools/lower-thirds/$",
+        f"^(?P<event>{SLUG_REGEX})/p/broadcast-tools/lower-thirds/$",
         BroadcastToolsLowerThirdsView.as_view(),
         name="lowerthirds",
     ),
     re_path(
-        f"^(?P<event>[{SLUG_CHARS}]+)/p/broadcast-tools/feedback-qr/(?P<talk>[0-9]+).svg$",
+        f"^(?P<event>{SLUG_REGEX})/p/broadcast-tools/feedback-qr/(?P<talk>[0-9]+).svg$",
         BroadcastToolsFeedbackQrCodeSvg.as_view(),
         name="feedback_qr_id",
     ),
     re_path(
-        f"^(?P<event>[{SLUG_CHARS}]+)/p/broadcast-tools/public-qr/(?P<talk>[0-9]+).svg$",
+        f"^(?P<event>{SLUG_REGEX})/p/broadcast-tools/public-qr/(?P<talk>[0-9]+).svg$",
         BroadcastToolsPublicQrCodeSvg.as_view(),
         name="public_qr_id",
     ),
     re_path(
-        f"^(?P<event>[{SLUG_CHARS}]+)/p/broadcast-tools/room-info/$",
+        f"^(?P<event>{SLUG_REGEX})/p/broadcast-tools/room-info/$",
         BroadcastToolsRoomInfoView.as_view(),
         name="room_info",
     ),
     re_path(
-        f"^orga/event/(?P<event>[{SLUG_CHARS}]+)/settings/p/broadcast-tools/$",
+        f"^orga/event/(?P<event>{SLUG_REGEX})/settings/p/broadcast-tools/$",
         BroadcastToolsOrgaView.as_view(),
         name="orga",
     ),

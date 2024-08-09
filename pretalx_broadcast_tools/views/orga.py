@@ -1,5 +1,5 @@
 from django.views.generic import FormView
-from pretalx.common.mixins.views import PermissionRequired
+from pretalx.common.views.mixins import PermissionRequired
 
 from ..forms import BroadcastToolsSettingsForm
 
