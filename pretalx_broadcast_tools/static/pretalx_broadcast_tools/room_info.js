@@ -72,6 +72,8 @@ function update_room_info() {
 
     if (current_talk && current_talk['track']) {
         box.style.backgroundColor = current_talk['track']['color'];
+    } else if (next_talk && next_talk['track'] && event_info['room-info']['show_next_talk']) {
+        box.style.backgroundColor = next_talk['track']['color'];
     } else {
         box.style.backgroundColor = event_info['color'];
     }
