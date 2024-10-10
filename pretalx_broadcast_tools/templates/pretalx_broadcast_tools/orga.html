@@ -1,5 +1,4 @@
 {% extends "orga/base.html" %}
-{% load bootstrap4 %}
 {% load i18n %}
 
 {% block content %}
@@ -54,8 +53,8 @@
             <legend>
                 {% translate "Lower thirds" %}
             </legend>
-            {% bootstrap_field form.broadcast_tools_lower_thirds_no_talk_info layout='event' %}
-            {% bootstrap_field form.broadcast_tools_lower_thirds_info_string layout='event' %}
+            {{ form.broadcast_tools_lower_thirds_no_talk_info.as_field_group }}
+            {{ form.broadcast_tools_lower_thirds_info_string.as_field_group }}
             <p>
                 The info line will be shown on the bottom right side of your
                 lower third. If you set it to an empty string, it will automatically
@@ -66,17 +65,17 @@
             <legend>
                 {% translate "Room info" %}
             </legend>
-            {% bootstrap_field form.broadcast_tools_room_info_lower_content layout='event' %}
-            {% bootstrap_field form.broadcast_tools_room_info_show_next_talk layout='event' %}
+            {{ form.broadcast_tools_room_info_lower_content.as_field_group }}
+            {{ form.broadcast_tools_room_info_show_next_talk.as_field_group }}
         </fieldset>
         <fieldset>
             <legend>
                 {% translate "PDF export" %}
             </legend>
-            {% bootstrap_field form.broadcast_tools_pdf_show_internal_notes layout='event' %}
-            {% bootstrap_field form.broadcast_tools_pdf_ignore_do_not_record layout='event' %}
-            {% bootstrap_field form.broadcast_tools_pdf_questions_to_include layout='event' %}
-            {% bootstrap_field form.broadcast_tools_pdf_additional_content layout='event' %}
+            {{ form.broadcast_tools_pdf_show_internal_notes.as_field_group }}
+            {{ form.broadcast_tools_pdf_ignore_do_not_record.as_field_group }}
+            {{ form.broadcast_tools_pdf_questions_to_include.as_field_group }}
+            {{ form.broadcast_tools_pdf_additional_content.as_field_group }}
         </fieldset>
         <fieldset>
             <div class="submit-group panel">
