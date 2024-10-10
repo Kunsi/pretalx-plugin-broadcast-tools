@@ -87,11 +87,28 @@ function format_time_from_pretalx(from_pretalx) {
     return h + ':' + m;
 }
 
-function update_schedule() {
-    $.getJSON('../event.json', function(data) {
-        event_info = data;
+function xhr_get(url, callback_func) {
+    req = new XMLHttpRequest();
+    req.timeout = 10000;
+    req.open('GET', url);
+    req.setRequestHeader('Accept', 'application/json');
+    req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    req.addEventListener('load', function(event) {
+        if (req.status != 200) {
+            return;
+        }
+
+        callback_func(event);
     });
-    $.getJSON('../schedule.json', function(data) {
+    req.send();
+}
+
+function update_schedule() {
+    xhr_get('../event.json', function() {
+        event_info = JSON.parse(req.responseText);
+    });
+    xhr_get('../schedule.json', function() {
+        data = JSON.parse(req.responseText);
         if ('error' in data) {
             console.error(data['error']);
         } else {

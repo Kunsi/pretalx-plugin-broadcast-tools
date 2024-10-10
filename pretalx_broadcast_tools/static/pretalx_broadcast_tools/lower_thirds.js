@@ -6,42 +6,47 @@ function update_lower_third() {
         return
     }
 
-    $('#broadcast_tools_lower_thirds_box').css('background-color', event_info['color']);
+    box = document.getElementById('broadcast_tools_lower_thirds_box');
+    title = document.getElementById('broadcast_tools_lower_thirds_title').innerHTML;
+    speaker = document.getElementById('broadcast_tools_lower_thirds_speaker').innerHTML;
+    infoline = document.getElementById('broadcast_tools_lower_thirds_infoline').innerHTML;
+
+    box.style.backgroundColor = event_info['color']);
 
     if (!schedule)  {
-        $('#broadcast_tools_lower_thirds_title').text('Waiting for schedule ...')
+        title = 'Waiting for schedule ...';
         return
     }
 
     if ('error' in schedule) {
-        $('#broadcast_tools_lower_thirds_title').text('Error')
-        $('#broadcast_tools_lower_thirds_speaker').html(schedule['error'].join('<br>'));
-        $('#broadcast_tools_lower_thirds_infoline').text('');
+        title = 'Error';
+        speaker = schedule['error'].join('<br>');
+        infoline = '';
         return
     }
 
     if (schedule['rooms'].length > 1 && !schedule['rooms'].includes(room_name)) {
-        $('#broadcast_tools_lower_thirds_title').text('Error')
-        $('#broadcast_tools_lower_thirds_speaker').text('Invalid room_name. Valid names: ' + schedule['rooms'].join(', '));
-        $('#broadcast_tools_lower_thirds_infoline').text('');
+        title = 'Error';
+        speaker = 'Invalid room_name. Valid names: ' + schedule['rooms'].join(', ');
+        infoline = '';
         return
     }
 
     current_talk = get_current_talk(5);
     if (current_talk) {
-        $('#broadcast_tools_lower_thirds_title').text(current_talk['title']);
-        $('#broadcast_tools_lower_thirds_speaker').text(current_talk['persons'].join(', '));
-        $('#broadcast_tools_lower_thirds_infoline').text(current_talk['infoline']);
+        title = current_talk['title'];
+        speaker = current_talk['persons'].join(', ');
+        infoline = current_talk['infoline'];
     } else {
-        $('#broadcast_tools_lower_thirds_title').text(event_info['no_talk']);
-        $('#broadcast_tools_lower_thirds_speaker').text('');
-        $('#broadcast_tools_lower_thirds_infoline').text('');
+        title = event_info['no_talk'];
+        speaker = '';
+        infoline = '';
     }
 
     if (current_talk && current_talk['track']) {
-        $('#broadcast_tools_lower_thirds_box').css('border-bottom', '10px solid ' + current_talk['track']['color']);
+        box.style.borderBottom = '10px solid ' + current_talk['track']['color'];
     } else {
-        $('#broadcast_tools_lower_thirds_box').css('border-bottom', 'none');
+        box.style.borderBottom = 'none';
     }
 }
 window.setInterval(update_lower_third, 1000);

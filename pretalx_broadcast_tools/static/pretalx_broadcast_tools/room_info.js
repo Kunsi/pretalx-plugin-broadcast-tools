@@ -1,9 +1,3 @@
-$(function() {
-    $('#broadcast_tools_room_info_title').text('Content will appear soon.');
-    $('#broadcast_tools_room_info_speaker').text('');
-    $('#broadcast_tools_room_info_qr').text('');
-});
-
 function update_room_info() {
     room_name = get_room_name();
 
@@ -12,31 +6,37 @@ function update_room_info() {
         return
     }
 
+    box = document.getElementById('broadcast_tools_room_info');
+    roomname = document.getElementById('broadcast_tools_room_info_roomname').innerHTML;
+    title = document.getElementById('broadcast_tools_room_info_title').innerHTML;
+    speaker = document.getElementById('broadcast_tools_room_info_speaker').innerHTML;
+    qr = document.getElementById('broadcast_tools_room_info_qr').innerHTML;
+
     if (!room_name) {
-        $('#broadcast_tools_room_info_roomname').text(event_info['name']);
-        $('#broadcast_tools_room_info_title').text('Backstage');
-        $('#broadcast_tools_room_info_speaker').text('');
-        $('#broadcast_tools_room_info_qr').text('');
-        $('#broadcast_tools_room_info').css('background-color', event_info['color']);
+        roomname = event_info['name'];
+        title = 'Backstage';
+        speaker = '';
+        qr = '';
+        box.style.backgroundColor = event_info['color'];
         return
     }
 
     if (!schedule)  {
-        $('#broadcast_tools_room_info_speaker').text('Waiting for schedule ...')
+        speaker = 'Waiting for schedule ...';
         return
     }
 
     if ('error' in schedule) {
-        $('#broadcast_tools_room_info_title').text('Error')
-        $('#broadcast_tools_room_info_speaker').html(schedule['error'].join('<br>'));
-        $('#broadcast_tools_room_info_qr').text('');
+        title = 'Error';
+        speaker = schedule['error'].join('<br>');
+        qr = '';
         return
     }
 
     if (schedule['rooms'].length > 1 && !schedule['rooms'].includes(room_name)) {
-        $('#broadcast_tools_room_info_title').text('Error')
-        $('#broadcast_tools_room_info_speaker').text('Invalid room_name. Valid names: ' + schedule['rooms'].join(', '));
-        $('#broadcast_tools_room_info_qr').text('');
+        title = 'Error';
+        speaker = 'Invalid room_name. Valid names: ' + schedule['rooms'].join(', ');
+        qr = '';
         return
     }
 
@@ -54,26 +54,26 @@ function update_room_info() {
             qr_info = '';
         }
 
-        $('#broadcast_tools_room_info_roomname').text(room_name);
-        $('#broadcast_tools_room_info_title').text(current_talk['title']);
-        $('#broadcast_tools_room_info_speaker').text(current_talk['persons'].join(', '));
-        $('#broadcast_tools_room_info_qr').html(qr_info);
+        roomname = room_name;
+        title = current_talk['title'];
+        speaker = current_talk['persons'].join(', ');
+        qr = qr_info;
     } else {
-        $('#broadcast_tools_room_info_roomname').text(event_info['name']);
-        $('#broadcast_tools_room_info_title').text(room_name);
-        $('#broadcast_tools_room_info_qr').text('');
+        roomname = event_info['name'];
+        title = room_name;
+        qr = '';
 
         if (next_talk && event_info['room-info']['show_next_talk']) {
-            $('#broadcast_tools_room_info_speaker').text(format_time_from_pretalx(next_talk['start']) + ' ' + next_talk['title']);
+            speaker = format_time_from_pretalx(next_talk['start']) + ' ' + next_talk['title'];
         } else {
-            $('#broadcast_tools_room_info_speaker').text('');
+            speaker = '';
         }
     }
 
     if (current_talk && current_talk['track']) {
-        $('#broadcast_tools_room_info').css('background-color', current_talk['track']['color']);
+        box.style.backgroundColor = current_talk['track']['color'];
     } else {
-        $('#broadcast_tools_room_info').css('background-color', event_info['color']);
+        box.style.backgroundColor = event_info['color'];
     }
 }
 window.setInterval(update_room_info, 1000);
