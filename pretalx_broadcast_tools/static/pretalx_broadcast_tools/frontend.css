@@ -23,19 +23,19 @@ body {
 }
 
 #broadcast_tools_room_info_roomname {
-    font-size: 2em;
+    font-size: 5vh;
     margin-bottom: 0.5em;
     font-weight: bold;
 }
 
 #broadcast_tools_room_info_title {
-    font-size: 6em;
+    font-size: 8vh;
     margin-bottom: 0.2em;
     font-weight: bold;
 }
 
 #broadcast_tools_room_info_speaker {
-    font-size: 3em;
+    font-size: 6vh;
     font-weight: normal;
 }
 
@@ -45,7 +45,7 @@ body {
 
 #broadcast_tools_room_info_qr img {
     background-color: white;
-    height: calc(100% - 2em);
+    height: calc(100% - 2vh);
 }
 
 #broadcast_tools_room_info_qr p {
@@ -66,16 +66,16 @@ body {
 }
 
 #broadcast_tools_lower_thirds_title {
-    font-size: 30px;
+    font-size: 3vh;
     font-weight: 500;
     margin-bottom: 15px;
 }
 
 #broadcast_tools_lower_thirds_speaker {
-    font-size: 20px;
+    font-size: 2vh;
 }
 
 #broadcast_tools_lower_thirds_infoline {
-    font-size: 16px;
+    font-size: 1.8vh;
     text-align: right;
 }
