@@ -1,6 +1,7 @@
 from tempfile import NamedTemporaryFile
 
 from django.utils.timezone import now
+from django.utils.translation import gettext_lazy as _
 from pretalx.schedule.exporters import ScheduleData
 from reportlab.lib import colors
 from reportlab.lib.enums import TA_CENTER
@@ -78,6 +79,9 @@ class PDFInfoPage(Flowable):
     def _space(self):
         self._add(Spacer(1, PAGE_PADDING / 2))
 
+    def _localize(self, translation):
+        return translation.localize(self.event.locale)
+
     def draw(self):
         if hasattr(self.talk, "local_start"):
             talk_start = self.talk.local_start
@@ -112,7 +116,10 @@ class PDFInfoPage(Flowable):
 
         if self.talk.submission.do_not_record:
             self._add(
-                Paragraph("DO NOT RECORD - DO NOT STREAM", style=self.style["Warning"]),
+                Paragraph(
+                    self._localize(_("DO NOT RECORD - DO NOT STREAM")),
+                    style=self.style["Warning"],
+                ),
                 gap=0,
             )
             self._space()
@@ -121,8 +128,8 @@ class PDFInfoPage(Flowable):
             Paragraph(
                 " | ".join(
                     [
-                        self.event.name.localize(self.event.locale),
-                        self.room["name"].localize(self.event.locale),
+                        self._localize(self.event.name),
+                        self._localize(self.room["name"]),
                         talk_start.strftime("%F"),
                         f'{talk_start.strftime("%T")} - {talk_end.strftime("%T")}',
                     ],
@@ -193,7 +200,7 @@ class PDFInfoPage(Flowable):
             self._space()
             self._add(
                 Paragraph(
-                    "Questions",
+                    self._localize(_("Questions")),
                     style=self.style["Heading"],
                 )
             )
@@ -202,7 +209,7 @@ class PDFInfoPage(Flowable):
                 if answer.question.id not in self._questions:
                     continue
                 self._question_text(
-                    answer.question.question.localize(self.event.locale),
+                    self._localize(answer.question.question),
                     answer.answer,
                     style=self.style["Question"],
                 )
@@ -212,7 +219,7 @@ class PDFInfoPage(Flowable):
                     if answer.question.id not in self._questions:
                         continue
                     self._question_text(
-                        f"{answer.question.question.localize(self.event.locale)} ({spk.get_display_name()})",
+                        f"{self._localize(answer.question.question)} ({spk.get_display_name()})",
                         answer.answer,
                         style=self.style["Question"],
                     )
@@ -221,7 +228,7 @@ class PDFInfoPage(Flowable):
             self._space()
             self._add(
                 Paragraph(
-                    "Notes",
+                    self._localize(_("Notes")),
                     style=self.style["Heading"],
                 )
             )
@@ -243,7 +250,7 @@ class PDFInfoPage(Flowable):
             self._space()
             self._add(
                 Paragraph(
-                    "Internal Notes",
+                    self._localize(_("Internal Notes")),
                     style=self.style["Heading"],
                 )
             )
