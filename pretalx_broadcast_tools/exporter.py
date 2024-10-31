@@ -360,7 +360,7 @@ class PDFExporter(ScheduleData):
             timestamp = now().strftime("%Y-%m-%d-%H%M")
 
             return (
-                f"{self.event.slug}_broadcast_tools_{timestamp}.pdf",
+                f"{self.event.slug}_broadcast_tools_{self.schedule.version}.pdf",
                 "application/pdf",
                 f.read(),
             )
