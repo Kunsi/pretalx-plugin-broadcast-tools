@@ -7,40 +7,40 @@ function update_lower_third() {
     }
 
     box = document.getElementById('broadcast_tools_lower_thirds_box');
-    title = document.getElementById('broadcast_tools_lower_thirds_title').innerHTML;
-    speaker = document.getElementById('broadcast_tools_lower_thirds_speaker').innerHTML;
-    infoline = document.getElementById('broadcast_tools_lower_thirds_infoline').innerHTML;
+    title = document.getElementById('broadcast_tools_lower_thirds_title');
+    speaker = document.getElementById('broadcast_tools_lower_thirds_speaker');
+    infoline = document.getElementById('broadcast_tools_lower_thirds_infoline');
 
-    box.style.backgroundColor = event_info['color']);
+    box.style.backgroundColor = event_info['color'];
 
     if (!schedule)  {
-        title = 'Waiting for schedule ...';
+        title.innerHTML = 'Waiting for schedule ...';
         return
     }
 
     if ('error' in schedule) {
-        title = 'Error';
-        speaker = schedule['error'].join('<br>');
-        infoline = '';
+        title.innerHTML = 'Error';
+        speaker.innerHTML = schedule['error'].join('<br>');
+        infoline.innerHTML = '';
         return
     }
 
     if (schedule['rooms'].length > 1 && !schedule['rooms'].includes(room_name)) {
-        title = 'Error';
-        speaker = 'Invalid room_name. Valid names: ' + schedule['rooms'].join(', ');
-        infoline = '';
+        title.innerHTML = 'Error';
+        speaker.innerHTML = 'Invalid room_name. Valid names: ' + schedule['rooms'].join(', ');
+        infoline.innerHTML = '';
         return
     }
 
     current_talk = get_current_talk(5);
     if (current_talk) {
-        title = current_talk['title'];
-        speaker = current_talk['persons'].join(', ');
-        infoline = current_talk['infoline'];
+        title.innerHTML = current_talk['title'];
+        speaker.innerHTML = current_talk['persons'].join(', ');
+        infoline.innerHTML = current_talk['infoline'];
     } else {
-        title = event_info['no_talk'];
-        speaker = '';
-        infoline = '';
+        title.innerHTML = event_info['no_talk'];
+        speaker.innerHTML = '';
+        infoline.innerHTML = '';
     }
 
     if (current_talk && current_talk['track']) {

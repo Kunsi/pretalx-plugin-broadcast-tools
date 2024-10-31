@@ -1,5 +1,6 @@
 schedule = null;
 event_info = null;
+req = {};
 
 function get_current_talk(max_offset) {
     room_name = get_room_name();
@@ -88,27 +89,31 @@ function format_time_from_pretalx(from_pretalx) {
 }
 
 function xhr_get(url, callback_func) {
-    req = new XMLHttpRequest();
-    req.timeout = 10000;
-    req.open('GET', url);
-    req.setRequestHeader('Accept', 'application/json');
-    req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    req.addEventListener('load', function(event) {
-        if (req.status != 200) {
-            return;
-        }
+    req[url] = new XMLHttpRequest();
+    req[url].timeout = 10000;
+    req[url].onreadystatechange = () => {
+        if (req[url].readyState === 4) {
+            if (req[url].status != 200) {
+                return;
+            }
 
-        callback_func(event);
-    });
-    req.send();
+            callback_func(req[url].responseText);
+        }
+    };
+    req[url].open('GET', url);
+    req[url].setRequestHeader('Accept', 'application/json');
+    req[url].setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    req[url].send();
 }
 
 function update_schedule() {
-    xhr_get('../event.json', function() {
-        event_info = JSON.parse(req.responseText);
+    xhr_get('../event.json', function(text) {
+        console.log("events: " + text);
+        event_info = JSON.parse(text);
     });
-    xhr_get('../schedule.json', function() {
-        data = JSON.parse(req.responseText);
+    xhr_get('../schedule.json', function(text) {
+        console.log("schedule: " + text);
+        data = JSON.parse(text);
         if ('error' in data) {
             console.error(data['error']);
         } else {

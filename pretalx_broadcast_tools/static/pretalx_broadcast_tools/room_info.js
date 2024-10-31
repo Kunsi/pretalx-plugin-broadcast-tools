@@ -7,36 +7,36 @@ function update_room_info() {
     }
 
     box = document.getElementById('broadcast_tools_room_info');
-    roomname = document.getElementById('broadcast_tools_room_info_roomname').innerHTML;
-    title = document.getElementById('broadcast_tools_room_info_title').innerHTML;
-    speaker = document.getElementById('broadcast_tools_room_info_speaker').innerHTML;
-    qr = document.getElementById('broadcast_tools_room_info_qr').innerHTML;
+    roomname = document.getElementById('broadcast_tools_room_info_roomname');
+    title = document.getElementById('broadcast_tools_room_info_title');
+    speaker = document.getElementById('broadcast_tools_room_info_speaker');
+    qr = document.getElementById('broadcast_tools_room_info_qr');
 
     if (!room_name) {
-        roomname = event_info['name'];
-        title = 'Backstage';
-        speaker = '';
-        qr = '';
+        roomname.innerHTML = event_info['name'];
+        title.innerHTML = 'Backstage';
+        speaker.innerHTML = '';
+        qr.innerHTML = '';
         box.style.backgroundColor = event_info['color'];
         return
     }
 
     if (!schedule)  {
-        speaker = 'Waiting for schedule ...';
+        speaker.innerHTML = 'Waiting for schedule ...';
         return
     }
 
     if ('error' in schedule) {
-        title = 'Error';
-        speaker = schedule['error'].join('<br>');
-        qr = '';
+        title.innerHTML = 'Error';
+        speaker.innerHTML = schedule['error'].join('<br>');
+        qr.innerHTML = '';
         return
     }
 
     if (schedule['rooms'].length > 1 && !schedule['rooms'].includes(room_name)) {
-        title = 'Error';
-        speaker = 'Invalid room_name. Valid names: ' + schedule['rooms'].join(', ');
-        qr = '';
+        title.innerHTML = 'Error';
+        speaker.innerHTML = 'Invalid room_name. Valid names: ' + schedule['rooms'].join(', ');
+        qr.innerHTML = '';
         return
     }
 
@@ -54,19 +54,19 @@ function update_room_info() {
             qr_info = '';
         }
 
-        roomname = room_name;
-        title = current_talk['title'];
-        speaker = current_talk['persons'].join(', ');
-        qr = qr_info;
+        roomname.innerHTML = room_name;
+        title.innerHTML = current_talk['title'];
+        speaker.innerHTML = current_talk['persons'].join(', ');
+        qr.innerHTML = qr_info;
     } else {
-        roomname = event_info['name'];
-        title = room_name;
-        qr = '';
+        roomname.innerHTML = event_info['name'];
+        title.innerHTML = room_name;
+        qr.innerHTML = '';
 
         if (next_talk && event_info['room-info']['show_next_talk']) {
-            speaker = format_time_from_pretalx(next_talk['start']) + ' ' + next_talk['title'];
+            speaker.innerHTML = format_time_from_pretalx(next_talk['start']) + ' ' + next_talk['title'];
         } else {
-            speaker = '';
+            speaker.innerHTML = '';
         }
     }
 
