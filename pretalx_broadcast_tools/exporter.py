@@ -197,7 +197,8 @@ class PDFInfoPage(Flowable):
                     style=self.style["Heading"],
                 )
             )
-            for answer in self.talk.submission.answers.order_by("question"):
+
+            for answer in self.talk.submission.answers.order_by("question__position"):
                 if answer.question.id not in self._questions:
                     continue
                 self._question_text(
@@ -205,6 +206,16 @@ class PDFInfoPage(Flowable):
                     answer.answer,
                     style=self.style["Question"],
                 )
+
+            for spk in self.talk.submission.speakers.all():
+                for answer in spk.answers.order_by("question__position"):
+                    if answer.question.id not in self._questions:
+                        continue
+                    self._question_text(
+                        f"{answer.question.question.localize(self.event.locale)} ({spk.get_display_name()})",
+                        answer.answer,
+                        style=self.style["Question"],
+                    )
 
         if self.talk.submission.notes:
             self._space()
