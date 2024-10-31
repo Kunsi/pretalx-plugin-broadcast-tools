@@ -61,14 +61,16 @@ function get_next_talk() {
 }
 
 function get_room_name() {
-    room_name = null;
     try {
         hash = decodeURIComponent(window.location.hash.substring(1));
-        room_name = hash;
     } catch (e) {
         console.error(e);
     }
-    return room_name;
+    if (event_info && event_info["rooms"].hasOwnProperty(hash)) {
+        return event_info["rooms"][hash];
+    }
+    // XXX remove fallback when releasing 3.0.0
+    return hash;
 }
 
 function format_time_from_pretalx(from_pretalx) {

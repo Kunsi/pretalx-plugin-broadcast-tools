@@ -21,6 +21,10 @@ class BroadcastToolsEventInfoView(View):
                         else False
                     ),
                 },
+                "rooms": {
+                    str(room.uuid): room.name.localize(self.request.event.locale)
+                    for room in self.request.event.rooms.all()
+                },
                 "slug": self.request.event.slug,
                 "start": self.request.event.date_from.isoformat(),
                 "end": self.request.event.date_to.isoformat(),

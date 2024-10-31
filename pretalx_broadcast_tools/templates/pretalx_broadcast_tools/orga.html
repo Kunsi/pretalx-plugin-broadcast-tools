@@ -7,25 +7,23 @@
 
         <h2>{% translate "broadcasting tools" %}</h2>
 
-        {% if localized_rooms %}
-            <table class="table table-hover">
-                <thead class="thead-light">
+        <table class="table table-hover">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">{% translate "room" %}</th>
+                    <th scope="col" colspan="2">{% translate "Feature" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for room in request.event.rooms.all %}
                     <tr>
-                        <th scope="col">{% translate "room" %}</th>
-                        <th scope="col" colspan="2">{% translate "Feature" %}</th>
+                        <th scope="row">{{ room.name }}</th>
+                        <td><a href="{% url 'plugins:pretalx_broadcast_tools:lowerthirds' request.event.slug %}#{{ room.uuid }}">{% translate "Lower Thirds" %}</a></td>
+                        <td><a href="{% url 'plugins:pretalx_broadcast_tools:room_info' request.event.slug %}#{{ room.uuid }}">{% translate "Room Info" %}</a></td>
                     </tr>
-                </thead>
-                <tbody>
-                    {% for room in localized_rooms %}
-                        <tr>
-                            <th scope="row">{{ room }}</th>
-                            <td><a href="{% url 'plugins:pretalx_broadcast_tools:lowerthirds' request.event.slug %}#{{ room }}">{% translate "Lower Thirds" %}</a></td>
-                            <td><a href="{% url 'plugins:pretalx_broadcast_tools:room_info' request.event.slug %}#{{ room }}">{% translate "Room Info" %}</a></td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
 
         <h2>{% translate "Placeholders" %}</h2>
         <p>{% translate "pretalx will automatically replace some placeholders in your custom content:" %}</p>
