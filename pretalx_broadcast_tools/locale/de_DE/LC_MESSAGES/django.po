@@ -1,0 +1,243 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-10-31 18:54+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: apps.py:12
+msgid "Broadcasting Tools"
+msgstr ""
+
+#: apps.py:15
+msgid ""
+"Some tools which can be used for supporting a broadcasting software, for "
+"example a 'lower third' page which can be embedded into your broadcasting "
+"software"
+msgstr ""
+"Einige Helfer, die zur Unterstützung von Broadcasting-Software benutzt "
+"werden kann, zum Beispiel eine 'Bauchbinden'-Seite."
+
+#: exporter.py:120
+msgid "DO NOT RECORD - DO NOT STREAM"
+msgstr "NICHT AUFNEHMEN - NICHT STREAMEN"
+
+#: exporter.py:203
+msgid "Questions"
+msgstr "Fragen"
+
+#: exporter.py:231
+msgid "Notes"
+msgstr "Notizen"
+
+#: exporter.py:253
+msgid "Internal Notes"
+msgstr "Interne Notizen"
+
+#: forms.py:10
+msgid "Will be shown as talk title if there's currently no talk running."
+msgstr "Wird angezeigt, wenn derzeit kein Vortrag läuft."
+
+#: forms.py:12
+msgid "\"No talk running\" information"
+msgstr "\"Derzeit kein Vortrag\"-Informationen"
+
+#: forms.py:18
+msgid ""
+"Will only be shown if there's a talk running. You may use the place holders "
+"mentioned below."
+msgstr ""
+"Wird nur angezeigt, wenn derzeit ein Vortrag läuft. Du kannst die oben "
+"genannten Platzhalter benutzen."
+
+#: forms.py:21
+msgid "Info line"
+msgstr "Info-Zeile"
+
+#: forms.py:37
+msgid ""
+"If a talk is running, the room info page will always show the talk title and "
+"the list of speakers. The content below is configurable here."
+msgstr ""
+"Wenn ein Vortrag läuft, zeigt die Raum-Info-Seite immer den Vortrags-Titel "
+"und die Liste der Vortragenden an. Der Inhalt unterhalb dessen ist hier "
+"konfigurierbar."
+
+#: forms.py:41
+msgid "lower content"
+msgstr "Unterer Inhalt"
+
+#: forms.py:46
+msgid ""
+"If no talk is running in the room, show the time and title of the next talk "
+"in the room."
+msgstr ""
+"Wenn derzeit kein Vortrag läuft, soll die Startzeit und der Titel des "
+"nächsten Vortrags angezeigt werden."
+
+#: forms.py:49
+msgid "Show next talk"
+msgstr "Zeige nächsten Vortrag"
+
+#: forms.py:55
+msgid ""
+"If checked, the value of the 'internal notes' field in a submission will get "
+"added to the pdf export."
+msgstr ""
+"Wenn aktiviert, wird der Inhalt des Feldes 'Interne Notizen' im PDF-Export "
+"angezeigt."
+
+#: forms.py:58
+msgid "Show internal notes in pdf export"
+msgstr "Zeige interne Notizen im PDF-Export"
+
+#: forms.py:63
+msgid ""
+"If checked, 'do not record' talks will not generate a page in the pdf export."
+msgstr ""
+"Wenn aktiviert, werden Vorträge mit 'Zeichnet meinen Vortrag nicht auf'-Flag "
+"keine Seite im PDF-Export generieren."
+
+#: forms.py:66
+msgid "Ignore 'do not record' talks when generating pdf"
+msgstr "Ignoriere 'Zeichnet meinen Vortrag nicht auf'-Vorträge im PDF-Export"
+
+#: forms.py:71
+msgid ""
+"Comma-Separated list of question ids to include in pdf export. If empty, no "
+"questions will get added."
+msgstr ""
+"Komma-separierte Liste von Fragen, die im PDF-Export eingebunden werden. "
+"Falls dieses Feld leer ist, werden keine Fragen im PDF angezeigt."
+
+#: forms.py:74
+msgid "Questions to include"
+msgstr "Eingebundene Fragen"
+
+#: forms.py:79
+msgid ""
+"Additional content to print onto the PDF export. Will get printed as-is. You "
+"may use the place holders mentioned below."
+msgstr ""
+"Zusätzlicher Inhalt, der auf dem PDF-Export angezeigt wird. Wird wie hier "
+"eingegeben angezeigt. Du kannst die oben genannten Platzhalter benutzen."
+
+#: forms.py:83
+msgid "Additional text"
+msgstr "Zusätzlicher Text"
+
+#: signals.py:13
+msgid "Sorry, there's currently no talk running"
+msgstr "Leider läuft aktuell kein Vortrag"
+
+#: signals.py:27
+msgid "broadcast tools"
+msgstr ""
+
+#: templates/pretalx_broadcast_tools/orga.html:8
+msgid "broadcasting tools"
+msgstr "Broadcasting-Tools"
+
+#: templates/pretalx_broadcast_tools/orga.html:14
+#, fuzzy
+#| msgid "room list"
+msgid "room"
+msgstr "Raum"
+
+#: templates/pretalx_broadcast_tools/orga.html:15
+msgid "Feature"
+msgstr "Funktion"
+
+#: templates/pretalx_broadcast_tools/orga.html:22
+#, fuzzy
+#| msgid "Lower thirds"
+msgid "Lower Thirds"
+msgstr "Bauchbinden"
+
+#: templates/pretalx_broadcast_tools/orga.html:23
+#, fuzzy
+#| msgid "Room info"
+msgid "Room Info"
+msgstr "Raum-Information"
+
+#: templates/pretalx_broadcast_tools/orga.html:30
+msgid "Placeholders"
+msgstr "Platzhalter"
+
+#: templates/pretalx_broadcast_tools/orga.html:31
+msgid ""
+"pretalx will automatically replace some placeholders in your custom content:"
+msgstr "pretalx ersetzt automatisch einige Platzhalter in deinen Texten:"
+
+#: templates/pretalx_broadcast_tools/orga.html:34
+msgid ""
+"talk code (<code>MUX9U3</code> for example) - most useful in combination "
+"with pretalx-proposal-redirects or something like that"
+msgstr ""
+"Vortrags-Slug (zum Beispiel <code>MUX9U3</code>) - am hilfreichsten in "
+"Kombination mit pretalx-proposal-redirects oder ähnlichen Plugins"
+
+#: templates/pretalx_broadcast_tools/orga.html:37
+msgid "The event slug"
+msgstr "Der Event-Slug"
+
+#: templates/pretalx_broadcast_tools/orga.html:40
+msgid "URL to the talk feedback page."
+msgstr "Adresse der Vortrags-Feedback-Seite"
+
+#: templates/pretalx_broadcast_tools/orga.html:43
+msgid "The talk slug"
+msgstr "Der Vortrags-Slug"
+
+#: templates/pretalx_broadcast_tools/orga.html:46
+msgid "URL to the talk detail page."
+msgstr "Adresse der Vortrags-Seite"
+
+#: templates/pretalx_broadcast_tools/orga.html:48
+msgid "or"
+msgstr "oder"
+
+#: templates/pretalx_broadcast_tools/orga.html:49
+msgid "Track name in plain text or coloured using the track colour."
+msgstr "Track-Name in einfachem Text oder in der Track-Farbe eingefärbt."
+
+#: templates/pretalx_broadcast_tools/orga.html:52
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: templates/pretalx_broadcast_tools/orga.html:55
+msgid "Lower thirds"
+msgstr "Bauchbinden"
+
+#: templates/pretalx_broadcast_tools/orga.html:59
+msgid ""
+"The info line will be shown on the bottom right side of your lower third. If "
+"you set it to an empty string, it will automatically hide itself."
+msgstr ""
+"Die Info-Zeile wird unten rechts in den Bauchbinden angezeigt. Wenn das Feld "
+"leer ist, wird die Zeile automatisch ausgeblendet."
+
+#: templates/pretalx_broadcast_tools/orga.html:63
+msgid "Room info"
+msgstr "Raum-Information"
+
+#: templates/pretalx_broadcast_tools/orga.html:70
+msgid "PDF export"
+msgstr "PDF-Export"
+
+#: templates/pretalx_broadcast_tools/orga.html:86
+msgid "Save"
+msgstr "Speichern"

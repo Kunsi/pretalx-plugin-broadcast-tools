@@ -1,0 +1,215 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-10-31 18:54+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: apps.py:12
+msgid "Broadcasting Tools"
+msgstr ""
+
+#: apps.py:15
+msgid ""
+"Some tools which can be used for supporting a broadcasting software, for "
+"example a 'lower third' page which can be embedded into your broadcasting "
+"software"
+msgstr ""
+
+#: exporter.py:120
+msgid "DO NOT RECORD - DO NOT STREAM"
+msgstr ""
+
+#: exporter.py:203
+msgid "Questions"
+msgstr ""
+
+#: exporter.py:231
+msgid "Notes"
+msgstr ""
+
+#: exporter.py:253
+msgid "Internal Notes"
+msgstr ""
+
+#: forms.py:10
+msgid "Will be shown as talk title if there's currently no talk running."
+msgstr ""
+
+#: forms.py:12
+msgid "\"No talk running\" information"
+msgstr ""
+
+#: forms.py:18
+msgid ""
+"Will only be shown if there's a talk running. You may use the place holders "
+"mentioned below."
+msgstr ""
+
+#: forms.py:21
+msgid "Info line"
+msgstr ""
+
+#: forms.py:37
+msgid ""
+"If a talk is running, the room info page will always show the talk title and "
+"the list of speakers. The content below is configurable here."
+msgstr ""
+
+#: forms.py:41
+msgid "lower content"
+msgstr ""
+
+#: forms.py:46
+msgid ""
+"If no talk is running in the room, show the time and title of the next talk "
+"in the room."
+msgstr ""
+
+#: forms.py:49
+msgid "Show next talk"
+msgstr ""
+
+#: forms.py:55
+msgid ""
+"If checked, the value of the 'internal notes' field in a submission will get "
+"added to the pdf export."
+msgstr ""
+
+#: forms.py:58
+msgid "Show internal notes in pdf export"
+msgstr ""
+
+#: forms.py:63
+msgid ""
+"If checked, 'do not record' talks will not generate a page in the pdf export."
+msgstr ""
+
+#: forms.py:66
+msgid "Ignore 'do not record' talks when generating pdf"
+msgstr ""
+
+#: forms.py:71
+msgid ""
+"Comma-Separated list of question ids to include in pdf export. If empty, no "
+"questions will get added."
+msgstr ""
+
+#: forms.py:74
+msgid "Questions to include"
+msgstr ""
+
+#: forms.py:79
+msgid ""
+"Additional content to print onto the PDF export. Will get printed as-is. You "
+"may use the place holders mentioned below."
+msgstr ""
+
+#: forms.py:83
+msgid "Additional text"
+msgstr ""
+
+#: signals.py:13
+msgid "Sorry, there's currently no talk running"
+msgstr ""
+
+#: signals.py:27
+msgid "broadcast tools"
+msgstr ""
+
+#: templates/pretalx_broadcast_tools/orga.html:8
+msgid "broadcasting tools"
+msgstr ""
+
+#: templates/pretalx_broadcast_tools/orga.html:14
+msgid "room"
+msgstr ""
+
+#: templates/pretalx_broadcast_tools/orga.html:15
+msgid "Feature"
+msgstr ""
+
+#: templates/pretalx_broadcast_tools/orga.html:22
+msgid "Lower Thirds"
+msgstr ""
+
+#: templates/pretalx_broadcast_tools/orga.html:23
+msgid "Room Info"
+msgstr ""
+
+#: templates/pretalx_broadcast_tools/orga.html:30
+msgid "Placeholders"
+msgstr ""
+
+#: templates/pretalx_broadcast_tools/orga.html:31
+msgid ""
+"pretalx will automatically replace some placeholders in your custom content:"
+msgstr ""
+
+#: templates/pretalx_broadcast_tools/orga.html:34
+msgid ""
+"talk code (<code>MUX9U3</code> for example) - most useful in combination "
+"with pretalx-proposal-redirects or something like that"
+msgstr ""
+
+#: templates/pretalx_broadcast_tools/orga.html:37
+msgid "The event slug"
+msgstr ""
+
+#: templates/pretalx_broadcast_tools/orga.html:40
+msgid "URL to the talk feedback page."
+msgstr ""
+
+#: templates/pretalx_broadcast_tools/orga.html:43
+msgid "The talk slug"
+msgstr ""
+
+#: templates/pretalx_broadcast_tools/orga.html:46
+msgid "URL to the talk detail page."
+msgstr ""
+
+#: templates/pretalx_broadcast_tools/orga.html:48
+msgid "or"
+msgstr ""
+
+#: templates/pretalx_broadcast_tools/orga.html:49
+msgid "Track name in plain text or coloured using the track colour."
+msgstr ""
+
+#: templates/pretalx_broadcast_tools/orga.html:52
+msgid "Settings"
+msgstr ""
+
+#: templates/pretalx_broadcast_tools/orga.html:55
+msgid "Lower thirds"
+msgstr ""
+
+#: templates/pretalx_broadcast_tools/orga.html:59
+msgid ""
+"The info line will be shown on the bottom right side of your lower third. If "
+"you set it to an empty string, it will automatically hide itself."
+msgstr ""
+
+#: templates/pretalx_broadcast_tools/orga.html:63
+msgid "Room info"
+msgstr ""
+
+#: templates/pretalx_broadcast_tools/orga.html:70
+msgid "PDF export"
+msgstr ""
+
+#: templates/pretalx_broadcast_tools/orga.html:86
+msgid "Save"
+msgstr ""

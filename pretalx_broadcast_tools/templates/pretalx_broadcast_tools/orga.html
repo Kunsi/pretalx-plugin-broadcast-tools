@@ -5,61 +5,58 @@
     <form method="post">
         {% csrf_token %}
 
+        <h2>{% translate "broadcasting tools" %}</h2>
+
         {% if localized_rooms %}
             <table class="table table-hover">
                 <thead class="thead-light">
                     <tr>
-                        <th scope="col">{% trans "room list" %}</th>
-                        <th scope="col" colspan="2">Feature</th>
+                        <th scope="col">{% translate "room" %}</th>
+                        <th scope="col" colspan="2">{% translate "Feature" %}</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for room in localized_rooms %}
                         <tr>
                             <th scope="row">{{ room }}</th>
-                            <td><a href="{% url 'plugins:pretalx_broadcast_tools:lowerthirds' request.event.slug %}#{{ room }}">Lower Thirds</a></td>
-                            <td><a href="{% url 'plugins:pretalx_broadcast_tools:room_info' request.event.slug %}#{{ room }}">Room Info</a></td>
+                            <td><a href="{% url 'plugins:pretalx_broadcast_tools:lowerthirds' request.event.slug %}#{{ room }}">{% translate "Lower Thirds" %}</a></td>
+                            <td><a href="{% url 'plugins:pretalx_broadcast_tools:room_info' request.event.slug %}#{{ room }}">{% translate "Room Info" %}</a></td>
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
         {% endif %}
 
-        <p>
-            pretalx will automatically replace some placeholders in your custom
-            content:
-        </p>
+        <h2>{% translate "Placeholders" %}</h2>
+        <p>{% translate "pretalx will automatically replace some placeholders in your custom content:" %}</p>
         <dl>
             <dt><code>{CODE}</code></dt>
-            <dd>talk code (<code>MUX9U3</code> for example) - most useful in combination with pretalx-proposal-redirects or something like that</dd>
+            <dd>{% translate "talk code (<code>MUX9U3</code> for example) - most useful in combination with pretalx-proposal-redirects or something like that" %}</dd>
 
             <dt><code>{EVENT_SLUG}</code></dt>
-            <dd>The event slug (<code>{{ request.event.slug }}</code>)</dd>
+            <dd>{% translate "The event slug" %} (<code>{{ request.event.slug }}</code>)</dd>
 
             <dt><code>{FEEDBACK_URL}</code></dt>
-            <dd>URL to the talk feedback page.</dd>
+            <dd>{% translate "URL to the talk feedback page." %}</dd>
 
             <dt><code>{TALK_SLUG}</code></dt>
-            <dd>The talk slug (<code>{{ request.event.slug }}-1-my-super-great-talk</code>)</dd>
+            <dd>{% translate "The talk slug" %} (<code>{{ request.event.slug }}-1-my-super-great-talk</code>)</dd>
 
             <dt><code>{TALK_URL}</code></dt>
-            <dd>URL to the talk detail page.</dd>
+            <dd>{% translate "URL to the talk detail page." %}</dd>
 
-            <dt><code>{TRACK_NAME}</code> or <code>{TRACK_NAME_COLOURED}</code></dt>
-            <dd>Track name in plain text or coloured using the track colour.</dd>
+            <dt><code>{TRACK_NAME}</code> {% translate "or" %} <code>{TRACK_NAME_COLOURED}</code></dt>
+            <dd>{% translate "Track name in plain text or coloured using the track colour." %}</dd>
         </dl>
 
+        <h2>{% translate "Settings" %}</h2>
         <fieldset>
             <legend>
                 {% translate "Lower thirds" %}
             </legend>
             {{ form.broadcast_tools_lower_thirds_no_talk_info.as_field_group }}
             {{ form.broadcast_tools_lower_thirds_info_string.as_field_group }}
-            <p>
-                The info line will be shown on the bottom right side of your
-                lower third. If you set it to an empty string, it will automatically
-                hide itself.
-            </p>
+            <p>{% translate "The info line will be shown on the bottom right side of your lower third. If you set it to an empty string, it will automatically hide itself." %}</p>
         </fieldset>
         <fieldset>
             <legend>
@@ -86,7 +83,7 @@
                         name="action" value="save"
                     >
                         <i class="fa fa-check"></i>
-                        {% trans "Save" %}
+                        {% translate "Save" %}
                     </button>
                 </span>
             </div>
