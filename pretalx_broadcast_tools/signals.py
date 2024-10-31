@@ -37,7 +37,7 @@ def navbar_info(sender, request, **kwargs):
     ]
 
 
-@receiver(register_data_exporters, dispatch_uid="exporter_broadcast_pdfexporter")
+@receiver(register_data_exporters, dispatch_uid="exporter_broadcast_pdf")
 def register_data_exporter(sender, **kwargs):
     from .exporter import PDFExporter
 

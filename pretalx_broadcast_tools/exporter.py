@@ -39,7 +39,7 @@ class PDFInfoPage(Flowable):
     def _questions(self):
         return {
             int(i.strip())
-            for i in self.event.settings.broadcast_tools_pdf_questions_to_include.split(
+            for i in (self.event.settings.broadcast_tools_pdf_questions_to_include or "").split(
                 ","
             )
             if i
