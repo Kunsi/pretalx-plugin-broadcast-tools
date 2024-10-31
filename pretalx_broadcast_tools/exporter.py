@@ -1,6 +1,5 @@
 from tempfile import NamedTemporaryFile
 
-from django.utils.timezone import now
 from django.utils.translation import gettext_noop
 from i18nfield.strings import LazyI18nString
 from pretalx.schedule.exporters import ScheduleData
@@ -28,6 +27,7 @@ PAGE_PADDING = 10 * mm
 def _(text):
     return LazyI18nString.from_gettext(gettext_noop(text))
 
+
 class PDFInfoPage(Flowable):
     def __init__(self, event, schedule, fahrplan_day, room_details, talk, style):
         super().__init__()
@@ -43,9 +43,9 @@ class PDFInfoPage(Flowable):
     def _questions(self):
         return {
             int(i.strip())
-            for i in (self.event.settings.broadcast_tools_pdf_questions_to_include or "").split(
-                ","
-            )
+            for i in (
+                self.event.settings.broadcast_tools_pdf_questions_to_include or ""
+            ).split(",")
             if i
         }
 
@@ -361,7 +361,6 @@ class PDFExporter(ScheduleData):
             )
             doc.build(self._add_pages(doc))
             f.seek(0)
-            timestamp = now().strftime("%Y-%m-%d-%H%M")
 
             return (
                 f"{self.event.slug}_broadcast_tools_{self.schedule.version}.pdf",
