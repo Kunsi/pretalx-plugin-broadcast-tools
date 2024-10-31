@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-31 20:19+0100\n"
+"POT-Creation-Date: 2024-10-31 21:10+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,31 +35,31 @@ msgstr ""
 msgid "DO NOT RECORD - DO NOT STREAM"
 msgstr "NICHT AUFNEHMEN - NICHT STREAMEN"
 
-#: exporter.py:160
+#: exporter.py:167
 msgid "Duration"
 msgstr "Dauer"
 
-#: exporter.py:161
+#: exporter.py:168
 msgid "Language"
 msgstr "Sprache"
 
-#: exporter.py:162
+#: exporter.py:169
 msgid "Type"
 msgstr "Typ"
 
-#: exporter.py:163
+#: exporter.py:170
 msgid "Code"
 msgstr "Code"
 
-#: exporter.py:207
+#: exporter.py:214
 msgid "Questions"
 msgstr "Fragen"
 
-#: exporter.py:235
+#: exporter.py:242
 msgid "Notes"
 msgstr "Notizen"
 
-#: exporter.py:257
+#: exporter.py:264
 msgid "Internal Notes"
 msgstr "Interne Notizen"
 

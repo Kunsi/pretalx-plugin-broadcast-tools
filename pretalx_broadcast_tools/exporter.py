@@ -153,6 +153,13 @@ class PDFInfoPage(Flowable):
             )
         self._space()
 
+        if self.talk.submission.track:
+            self._add(
+                Paragraph(
+                    f"{self._localize(_('Track:'))} {self._localize(self.talk.submission.track.name)}",
+                    style=self.style["Meta"],
+                )
+            )
         self._add(
             Table(
                 [
