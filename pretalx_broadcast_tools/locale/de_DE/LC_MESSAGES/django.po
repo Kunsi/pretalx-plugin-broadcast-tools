@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-31 18:54+0100\n"
+"POT-Creation-Date: 2024-10-31 20:19+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,19 +31,35 @@ msgstr ""
 "Einige Helfer, die zur Unterstützung von Broadcasting-Software benutzt "
 "werden kann, zum Beispiel eine 'Bauchbinden'-Seite."
 
-#: exporter.py:120
+#: exporter.py:124
 msgid "DO NOT RECORD - DO NOT STREAM"
 msgstr "NICHT AUFNEHMEN - NICHT STREAMEN"
 
-#: exporter.py:203
+#: exporter.py:160
+msgid "Duration"
+msgstr "Dauer"
+
+#: exporter.py:161
+msgid "Language"
+msgstr "Sprache"
+
+#: exporter.py:162
+msgid "Type"
+msgstr "Typ"
+
+#: exporter.py:163
+msgid "Code"
+msgstr "Code"
+
+#: exporter.py:207
 msgid "Questions"
 msgstr "Fragen"
 
-#: exporter.py:231
+#: exporter.py:235
 msgid "Notes"
 msgstr "Notizen"
 
-#: exporter.py:253
+#: exporter.py:257
 msgid "Internal Notes"
 msgstr "Interne Notizen"
 
@@ -152,8 +168,6 @@ msgid "broadcasting tools"
 msgstr "Broadcasting-Tools"
 
 #: templates/pretalx_broadcast_tools/orga.html:14
-#, fuzzy
-#| msgid "room list"
 msgid "room"
 msgstr "Raum"
 

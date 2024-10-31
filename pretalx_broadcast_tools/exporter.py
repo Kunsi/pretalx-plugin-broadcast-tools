@@ -1,7 +1,8 @@
 from tempfile import NamedTemporaryFile
 
 from django.utils.timezone import now
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext_noop
+from i18nfield.strings import LazyI18nString
 from pretalx.schedule.exporters import ScheduleData
 from reportlab.lib import colors
 from reportlab.lib.enums import TA_CENTER
@@ -23,6 +24,9 @@ from pretalx_broadcast_tools.utils.placeholders import placeholders
 A4_WIDTH, A4_HEIGHT = A4
 PAGE_PADDING = 10 * mm
 
+
+def _(text):
+    return LazyI18nString.from_gettext(gettext_noop(text))
 
 class PDFInfoPage(Flowable):
     def __init__(self, event, schedule, fahrplan_day, room_details, talk, style):
@@ -153,10 +157,10 @@ class PDFInfoPage(Flowable):
             Table(
                 [
                     (
-                        "Duration",
-                        "Language",
-                        "Type",
-                        "Code",
+                        self._localize(_("Duration")),
+                        self._localize(_("Language")),
+                        self._localize(_("Type")),
+                        self._localize(_("Code")),
                     ),
                     (
                         self.talk.export_duration,
