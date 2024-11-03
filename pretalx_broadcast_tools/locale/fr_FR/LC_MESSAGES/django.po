@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-31 21:10+0100\n"
+"POT-Creation-Date: 2024-11-03 13:40+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,69 +71,80 @@ msgstr ""
 #: forms.py:18
 msgid ""
 "Will only be shown if there's a talk running. You may use the place holders "
-"mentioned below."
+"mentioned below. The info line will be shown on the bottom right side of the "
+"lower third. Setting this to an empty string will hide the line entirely."
 msgstr ""
 
-#: forms.py:21
+#: forms.py:23
 msgid "Info line"
 msgstr ""
 
-#: forms.py:37
+#: forms.py:29
+msgid ""
+"If checked, pretalx will periodically generate voctomix-compatible lower "
+"thirds images and make them available as <code>.tar.gz</code>."
+msgstr ""
+
+#: forms.py:32
+msgid "Generate voctomix lower thirds"
+msgstr ""
+
+#: forms.py:47
 msgid ""
 "If a talk is running, the room info page will always show the talk title and "
 "the list of speakers. The content below is configurable here."
 msgstr ""
 
-#: forms.py:41
+#: forms.py:51
 msgid "lower content"
 msgstr ""
 
-#: forms.py:46
+#: forms.py:56
 msgid ""
 "If no talk is running in the room, show the time and title of the next talk "
 "in the room."
 msgstr ""
 
-#: forms.py:49
+#: forms.py:59
 msgid "Show next talk"
 msgstr ""
 
-#: forms.py:55
+#: forms.py:65
 msgid ""
 "If checked, the value of the 'internal notes' field in a submission will get "
 "added to the pdf export."
 msgstr ""
 
-#: forms.py:58
+#: forms.py:68
 msgid "Show internal notes in pdf export"
 msgstr ""
 
-#: forms.py:63
+#: forms.py:73
 msgid ""
 "If checked, 'do not record' talks will not generate a page in the pdf export."
 msgstr ""
 
-#: forms.py:66
+#: forms.py:76
 msgid "Ignore 'do not record' talks when generating pdf"
 msgstr ""
 
-#: forms.py:71
+#: forms.py:81
 msgid ""
 "Comma-Separated list of question ids to include in pdf export. If empty, no "
 "questions will get added."
 msgstr ""
 
-#: forms.py:74
+#: forms.py:84
 msgid "Questions to include"
 msgstr ""
 
-#: forms.py:79
+#: forms.py:89
 msgid ""
 "Additional content to print onto the PDF export. Will get printed as-is. You "
 "may use the place holders mentioned below."
 msgstr ""
 
-#: forms.py:83
+#: forms.py:93
 msgid "Additional text"
 msgstr ""
 
@@ -149,83 +160,81 @@ msgstr ""
 msgid "broadcasting tools"
 msgstr ""
 
-#: templates/pretalx_broadcast_tools/orga.html:14
+#: templates/pretalx_broadcast_tools/orga.html:13
 msgid "room"
 msgstr ""
 
-#: templates/pretalx_broadcast_tools/orga.html:15
+#: templates/pretalx_broadcast_tools/orga.html:14
 msgid "Feature"
 msgstr ""
 
-#: templates/pretalx_broadcast_tools/orga.html:22
+#: templates/pretalx_broadcast_tools/orga.html:21
 msgid "Lower Thirds"
 msgstr ""
 
-#: templates/pretalx_broadcast_tools/orga.html:23
+#: templates/pretalx_broadcast_tools/orga.html:22
 msgid "Room Info"
 msgstr ""
 
-#: templates/pretalx_broadcast_tools/orga.html:30
+#: templates/pretalx_broadcast_tools/orga.html:27
+msgid "Download voctomix-compatible lower thirds images"
+msgstr ""
+
+#: templates/pretalx_broadcast_tools/orga.html:29
 msgid "Placeholders"
 msgstr ""
 
-#: templates/pretalx_broadcast_tools/orga.html:31
+#: templates/pretalx_broadcast_tools/orga.html:30
 msgid ""
 "pretalx will automatically replace some placeholders in your custom content:"
 msgstr ""
 
-#: templates/pretalx_broadcast_tools/orga.html:34
+#: templates/pretalx_broadcast_tools/orga.html:33
 msgid ""
 "talk code (<code>MUX9U3</code> for example) - most useful in combination "
 "with pretalx-proposal-redirects or something like that"
 msgstr ""
 
-#: templates/pretalx_broadcast_tools/orga.html:37
+#: templates/pretalx_broadcast_tools/orga.html:36
 msgid "The event slug"
 msgstr ""
 
-#: templates/pretalx_broadcast_tools/orga.html:40
+#: templates/pretalx_broadcast_tools/orga.html:39
 msgid "URL to the talk feedback page."
 msgstr ""
 
-#: templates/pretalx_broadcast_tools/orga.html:43
+#: templates/pretalx_broadcast_tools/orga.html:42
 msgid "The talk slug"
 msgstr ""
 
-#: templates/pretalx_broadcast_tools/orga.html:46
+#: templates/pretalx_broadcast_tools/orga.html:45
 msgid "URL to the talk detail page."
 msgstr ""
 
-#: templates/pretalx_broadcast_tools/orga.html:48
+#: templates/pretalx_broadcast_tools/orga.html:47
 msgid "or"
 msgstr ""
 
-#: templates/pretalx_broadcast_tools/orga.html:49
+#: templates/pretalx_broadcast_tools/orga.html:48
 msgid "Track name in plain text or coloured using the track colour."
 msgstr ""
 
-#: templates/pretalx_broadcast_tools/orga.html:52
+#: templates/pretalx_broadcast_tools/orga.html:51
 msgid "Settings"
 msgstr ""
 
-#: templates/pretalx_broadcast_tools/orga.html:55
+#: templates/pretalx_broadcast_tools/orga.html:54
 msgid "Lower thirds"
 msgstr ""
 
-#: templates/pretalx_broadcast_tools/orga.html:59
-msgid ""
-"The info line will be shown on the bottom right side of your lower third. If "
-"you set it to an empty string, it will automatically hide itself."
-msgstr ""
-
-#: templates/pretalx_broadcast_tools/orga.html:63
+#: templates/pretalx_broadcast_tools/orga.html:62
 msgid "Room info"
 msgstr ""
 
-#: templates/pretalx_broadcast_tools/orga.html:70
+#: templates/pretalx_broadcast_tools/orga.html:69
 msgid "PDF export"
 msgstr ""
 
-#: templates/pretalx_broadcast_tools/orga.html:86
+#: templates/pretalx_broadcast_tools/orga.html:85
 msgid "Save"
 msgstr ""

@@ -24,6 +24,7 @@
                 {% endfor %}
             </tbody>
         </table>
+        <p><a href="{% url 'plugins:pretalx_broadcast_tools:lowerthirds_voctomix_download' request.event.slug %}">{% translate "Download voctomix-compatible lower thirds images" %}</a></p>
 
         <h2>{% translate "Placeholders" %}</h2>
         <p>{% translate "pretalx will automatically replace some placeholders in your custom content:" %}</p>
@@ -54,7 +55,7 @@
             </legend>
             {{ form.broadcast_tools_lower_thirds_no_talk_info.as_field_group }}
             {{ form.broadcast_tools_lower_thirds_info_string.as_field_group }}
-            <p>{% translate "The info line will be shown on the bottom right side of your lower third. If you set it to an empty string, it will automatically hide itself." %}</p>
+            {{ form.broadcast_tools_lower_thirds_export_voctomix.as_field_group }}
         </fieldset>
         <fieldset>
             <legend>

@@ -16,11 +16,21 @@ class BroadcastToolsSettingsForm(I18nFormMixin, HierarkeyForm):
     broadcast_tools_lower_thirds_info_string = I18nFormField(
         help_text=_(
             "Will only be shown if there's a talk running. You may use "
-            "the place holders mentioned below."
+            "the place holders mentioned below. The info line will be shown "
+            "on the bottom right side of the lower third. Setting this to an "
+            "empty string will hide the line entirely."
         ),
         label=_("Info line"),
         required=False,
         widget=I18nTextInput,
+    )
+    broadcast_tools_lower_thirds_export_voctomix = BooleanField(
+        help_text=_(
+            "If checked, pretalx will periodically generate voctomix-compatible "
+            "lower thirds images and make them available as <code>.tar.gz</code>."
+        ),
+        label=_("Generate voctomix lower thirds"),
+        required=False,
     )
 
     broadcast_tools_room_info_lower_content = ChoiceField(

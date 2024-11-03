@@ -5,6 +5,7 @@ from .views.orga import BroadcastToolsOrgaView
 from .views.qr import BroadcastToolsFeedbackQrCodeSvg, BroadcastToolsPublicQrCodeSvg
 from .views.schedule import BroadcastToolsScheduleView
 from .views.static_html import BroadcastToolsLowerThirdsView, BroadcastToolsRoomInfoView
+from .views.voctomix_export import BroadcastToolsLowerThirdsVoctomixDownloadView
 
 urlpatterns = [
     path(
@@ -25,6 +26,11 @@ urlpatterns = [
                     "lower-thirds/",
                     BroadcastToolsLowerThirdsView.as_view(),
                     name="lowerthirds",
+                ),
+                path(
+                    "lower-thirds.voctomix.tar.gz",
+                    BroadcastToolsLowerThirdsVoctomixDownloadView.as_view(),
+                    name="lowerthirds_voctomix_download",
                 ),
                 path(
                     "feedback-qr/<talk>.svg",
