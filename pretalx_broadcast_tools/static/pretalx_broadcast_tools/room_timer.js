@@ -70,12 +70,13 @@ function update_room_info() {
         }
     } else {
         title.innerHTML = room_name;
+        speaker.innerHTML = 'Break';
         scheduledata.innerHTML = '';
         timeleft.innerHTML = '';
         progressbar.style.width = '0';
 
         if (next_talk) {
-            speaker.innerHTML = format_time_from_pretalx(next_talk['start']) + ' ' + next_talk['title'];
+            scheduledata.innerHTML = format_time_from_pretalx(next_talk['start']) + ' ' + next_talk['title'];
 
             if (next_talk['track']) {
                 header.style.backgroundColor = next_talk['track']['color'];
