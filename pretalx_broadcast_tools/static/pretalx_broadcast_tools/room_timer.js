@@ -47,8 +47,8 @@ function update_room_info() {
         scheduled_start = new Date(current_talk['start']);
         scheduled_end = new Date(current_talk['end']);
 
-        if (scheduled_end < now) {
-            timeleft.innerHTML = '0';
+        if (scheduled_start > now || scheduled_end < now) {
+            timeleft.innerHTML = '';
             progressbar.style.width = '0';
         } else {
             diff = scheduled_end - now;
