@@ -11,7 +11,7 @@
             <thead class="thead-light">
                 <tr>
                     <th scope="col">{% translate "room" %}</th>
-                    <th scope="col" colspan="2">{% translate "Feature" %}</th>
+                    <th scope="col" colspan="3">{% translate "Feature" %}</th>
                 </tr>
             </thead>
             <tbody>
@@ -20,6 +20,7 @@
                         <th scope="row">{{ room.name }}</th>
                         <td><a href="{% url 'plugins:pretalx_broadcast_tools:lowerthirds' request.event.slug %}#{{ room.uuid }}">{% translate "Lower Thirds" %}</a></td>
                         <td><a href="{% url 'plugins:pretalx_broadcast_tools:room_info' request.event.slug %}#{{ room.uuid }}">{% translate "Room Info" %}</a></td>
+                        <td><a href="{% url 'plugins:pretalx_broadcast_tools:room_timer' request.event.slug %}#{{ room.uuid }}">{% translate "Room Timer" %}</a></td>
                     </tr>
                 {% endfor %}
             </tbody>

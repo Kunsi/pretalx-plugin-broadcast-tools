@@ -1,0 +1,25 @@
+{% load static %}
+{% load compress %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html" charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <title>{{ request.event.name }} room timer</title>
+        <script src="{% static "pretalx_broadcast_tools/generic.js" %}"></script>
+        <script src="{% static "pretalx_broadcast_tools/room_timer.js" %}"></script>
+        <link rel="stylesheet" href="{% static "pretalx_broadcast_tools/frontend.css" %}" />
+        {% if request.event and request.event.custom_css %}
+            <link rel="stylesheet" type="text/css" href="{{ request.event.custom_css.url }}"/>
+        {% endif %}
+    </head>
+    <body id="broadcast_tools_room_timer">
+        <div id="broadcast_tools_room_timer_header">
+            <h2 id="broadcast_tools_room_timer_title">Loading ...</h2>
+            <h3 id="broadcast_tools_room_timer_speaker">Content should appear soon. If not, please verify you have Javascript enabled.</h3>
+            <p id="broadcast_tools_room_timer_scheduledata"></p>
+        </div>
+        <p id="broadcast_tools_room_timer_timeleft"></p>
+        <p id="broadcast_tools_room_timer_progressbar">&nbsp;</p>
+    </body>
+</html>

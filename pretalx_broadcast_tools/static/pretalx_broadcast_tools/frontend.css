@@ -10,6 +10,7 @@ body {
     background-color: black;
 }
 
+/* room info *********************************************/
 #broadcast_tools_room_info {
     display: flex;
     flex-flow: column;
@@ -52,6 +53,7 @@ body {
     margin-top: 1em;
 }
 
+/* lower thirds ******************************************/
 #broadcast_tools_lower_thirds_box {
     width: 1020px;
 
@@ -78,4 +80,38 @@ body {
 #broadcast_tools_lower_thirds_infoline {
     font-size: 1.8vh;
     text-align: right;
+}
+
+/* room timer ********************************************/
+#broadcast_tools_room_timer_header {
+    padding: 2em;
+    text-align: center;
+}
+
+#broadcast_tools_room_timer_title {
+    font-size: 8vh;
+    margin-bottom: 0.2em;
+    font-weight: bold;
+}
+
+#broadcast_tools_room_timer_speaker {
+    font-size: 6vh;
+    font-weight: normal;
+}
+
+#broadcast_tools_room_timer_scheduledata {
+    font-size: 3vh;
+    font-weight: normal;
+}
+
+#broadcast_tools_room_timer_timeleft {
+    font-size: 20vh;
+    text-align: center;
+}
+
+#broadcast_tools_room_timer_progressbar {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 2em;
 }

@@ -110,11 +110,11 @@ function xhr_get(url, callback_func) {
 
 function update_schedule() {
     xhr_get('../event.json', function(text) {
-        console.log("events: " + text);
+        console.debug("events: " + text);
         event_info = JSON.parse(text);
     });
     xhr_get('../schedule.json', function(text) {
-        console.log("schedule: " + text);
+        console.debug("schedule: " + text);
         data = JSON.parse(text);
         if ('error' in data) {
             console.error(data['error']);

@@ -7,3 +7,7 @@ class BroadcastToolsLowerThirdsView(TemplateView):
 
 class BroadcastToolsRoomInfoView(TemplateView):
     template_name = "pretalx_broadcast_tools/room_info.html"
+
+
+class BroadcastToolsRoomTimerView(TemplateView):
+    template_name = "pretalx_broadcast_tools/room_timer.html"
