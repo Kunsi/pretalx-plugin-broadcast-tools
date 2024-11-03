@@ -64,7 +64,7 @@ class BroadcastToolsScheduleView(EventPermissionRequired, ScheduleMixin, View):
                             "room": room["name"].localize(schedule.event.locale),
                             "infoline": infoline.format(
                                 **placeholders(
-                                    schedule, talk, supports_html_colour=True
+                                    schedule.event, talk, supports_html_colour=True
                                 )
                             ),
                             "image_url": talk.submission.image_url,

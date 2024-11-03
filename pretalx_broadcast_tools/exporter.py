@@ -201,7 +201,7 @@ class PDFInfoPage(Flowable):
             self._add(
                 Paragraph(
                     self.event.settings.broadcast_tools_pdf_additional_content.format(
-                        **placeholders(self.schedule, self.talk)
+                        **placeholders(self.schedule.event, self.talk)
                     ),
                     style=self.style["Meta"],
                 )

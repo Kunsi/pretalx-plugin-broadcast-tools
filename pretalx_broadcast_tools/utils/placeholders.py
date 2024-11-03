@@ -1,19 +1,19 @@
 from django.conf import settings
 
 
-def placeholders(schedule, talk, supports_html_colour=False):
+def placeholders(event, talk, supports_html_colour=False):
     track_name = str(talk.submission.track.name) if talk.submission.track else ""
 
     result = {
         "CODE": talk.submission.code,
-        "EVENT_SLUG": str(schedule.event.slug),
+        "EVENT_SLUG": str(event.slug),
         "FEEDBACK_URL": "{}{}".format(
-            schedule.event.custom_domain or settings.SITE_URL,
+            event.custom_domain or settings.SITE_URL,
             talk.submission.urls.feedback,
         ),
         "TALK_SLUG": talk.frab_slug,
         "TALK_URL": "{}{}".format(
-            schedule.event.custom_domain or settings.SITE_URL,
+            event.custom_domain or settings.SITE_URL,
             talk.submission.urls.public,
         ),
         "TRACK_NAME": track_name,
