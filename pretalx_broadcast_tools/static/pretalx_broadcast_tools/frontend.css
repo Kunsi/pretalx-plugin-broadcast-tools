@@ -105,13 +105,21 @@ body {
 }
 
 #broadcast_tools_room_timer_timeleft {
-    font-size: 20vh;
+    font-size: 6vh;
     text-align: center;
 }
 
-#broadcast_tools_room_timer_progressbar {
+#broadcast_tools_room_timer_timeleft_timer {
+    font-size: 20vh;
+}
+
+#broadcast_tools_room_timer_progressbar, #broadcast_tools_room_timer_progressbar_bar {
     position: fixed;
     left: 0;
     bottom: 0;
     height: 2em;
+}
+
+#broadcast_tools_room_timer_progressbar {
+    right: 0;
 }
