@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-03 13:40+0100\n"
+"POT-Creation-Date: 2024-11-05 07:29+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -202,20 +202,24 @@ msgstr "Bauchbinden"
 msgid "Room Info"
 msgstr "Raum-Information"
 
-#: templates/pretalx_broadcast_tools/orga.html:27
+#: templates/pretalx_broadcast_tools/orga.html:23
+msgid "Room Timer"
+msgstr "Raum-Timer"
+
+#: templates/pretalx_broadcast_tools/orga.html:28
 msgid "Download voctomix-compatible lower thirds images"
 msgstr "Lade voctomix-kompatible Bauchbinden-Bilder herunter"
 
-#: templates/pretalx_broadcast_tools/orga.html:29
+#: templates/pretalx_broadcast_tools/orga.html:30
 msgid "Placeholders"
 msgstr "Platzhalter"
 
-#: templates/pretalx_broadcast_tools/orga.html:30
+#: templates/pretalx_broadcast_tools/orga.html:31
 msgid ""
 "pretalx will automatically replace some placeholders in your custom content:"
 msgstr "pretalx ersetzt automatisch einige Platzhalter in deinen Texten:"
 
-#: templates/pretalx_broadcast_tools/orga.html:33
+#: templates/pretalx_broadcast_tools/orga.html:34
 msgid ""
 "talk code (<code>MUX9U3</code> for example) - most useful in combination "
 "with pretalx-proposal-redirects or something like that"
@@ -223,46 +227,46 @@ msgstr ""
 "Vortrags-Slug (zum Beispiel <code>MUX9U3</code>) - am hilfreichsten in "
 "Kombination mit pretalx-proposal-redirects oder ähnlichen Plugins"
 
-#: templates/pretalx_broadcast_tools/orga.html:36
+#: templates/pretalx_broadcast_tools/orga.html:37
 msgid "The event slug"
 msgstr "Der Event-Slug"
 
-#: templates/pretalx_broadcast_tools/orga.html:39
+#: templates/pretalx_broadcast_tools/orga.html:40
 msgid "URL to the talk feedback page."
 msgstr "Adresse der Vortrags-Feedback-Seite"
 
-#: templates/pretalx_broadcast_tools/orga.html:42
+#: templates/pretalx_broadcast_tools/orga.html:43
 msgid "The talk slug"
 msgstr "Der Vortrags-Slug"
 
-#: templates/pretalx_broadcast_tools/orga.html:45
+#: templates/pretalx_broadcast_tools/orga.html:46
 msgid "URL to the talk detail page."
 msgstr "Adresse der Vortrags-Seite"
 
-#: templates/pretalx_broadcast_tools/orga.html:47
+#: templates/pretalx_broadcast_tools/orga.html:48
 msgid "or"
 msgstr "oder"
 
-#: templates/pretalx_broadcast_tools/orga.html:48
+#: templates/pretalx_broadcast_tools/orga.html:49
 msgid "Track name in plain text or coloured using the track colour."
 msgstr "Track-Name in einfachem Text oder in der Track-Farbe eingefärbt."
 
-#: templates/pretalx_broadcast_tools/orga.html:51
+#: templates/pretalx_broadcast_tools/orga.html:52
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: templates/pretalx_broadcast_tools/orga.html:54
+#: templates/pretalx_broadcast_tools/orga.html:55
 msgid "Lower thirds"
 msgstr "Bauchbinden"
 
-#: templates/pretalx_broadcast_tools/orga.html:62
+#: templates/pretalx_broadcast_tools/orga.html:63
 msgid "Room info"
 msgstr "Raum-Information"
 
-#: templates/pretalx_broadcast_tools/orga.html:69
+#: templates/pretalx_broadcast_tools/orga.html:70
 msgid "PDF export"
 msgstr "PDF-Export"
 
-#: templates/pretalx_broadcast_tools/orga.html:85
+#: templates/pretalx_broadcast_tools/orga.html:86
 msgid "Save"
 msgstr "Speichern"
