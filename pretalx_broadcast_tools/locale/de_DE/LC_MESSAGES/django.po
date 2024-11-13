@@ -27,7 +27,8 @@ msgid ""
 "software"
 msgstr ""
 "Einige Helfer, die zur Unterstützung von Broadcasting-Software benutzt "
-"werden kann, zum Beispiel eine 'Bauchbinden'-Seite."
+"werden kann, zum Beispiel eine 'Bauchbinden'-Seite, die in deine "
+"Broadcasting-Software eingebunden werden kann"
 
 #: exporter.py:124
 msgid "DO NOT RECORD - DO NOT STREAM"
@@ -189,16 +190,12 @@ msgid "Feature"
 msgstr "Funktion"
 
 #: templates/pretalx_broadcast_tools/orga.html:21
-#: templates/pretalx_broadcast_tools/orga.html:55
-#, fuzzy
-#| msgid "Lower thirds"
 msgid "Lower Thirds"
 msgstr "Bauchbinden"
 
 #: templates/pretalx_broadcast_tools/orga.html:22
 #: templates/pretalx_broadcast_tools/orga.html:63
 #, fuzzy
-#| msgid "Room info"
 msgid "Room Info"
 msgstr "Raum-Information"
 
@@ -257,7 +254,6 @@ msgstr "Einstellungen"
 
 #: templates/pretalx_broadcast_tools/orga.html:70
 #, fuzzy
-#| msgid "PDF export"
 msgid "PDF Export"
 msgstr "PDF-Export"
 
@@ -265,8 +261,14 @@ msgstr "PDF-Export"
 msgid "Save"
 msgstr "Speichern"
 
-#~ msgid "Lower thirds"
-#~ msgstr "Bauchbinden"
+#: templates/pretalx_broadcast_tools/orga.html:55
+msgid "Lower thirds"
+msgstr "Bauchbinden"
 
-#~ msgid "Room info"
-#~ msgstr "Raum-Information"
+#: templates/pretalx_broadcast_tools/orga.html:63
+msgid "Room info"
+msgstr "Raum-Information"
+
+#: templates/pretalx_broadcast_tools/orga.html:70
+msgid "PDF export"
+msgstr "PDF-Export"
