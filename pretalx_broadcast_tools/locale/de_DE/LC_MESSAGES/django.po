@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 2.4.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-05 07:29+0100\n"
+"POT-Creation-Date: 2024-11-13 06:37+0100\n"
 "PO-Revision-Date: 2024-11-05 07:32+0100\n"
 "Last-Translator: Franziska Kunsmann <git@kunsmann.eu>\n"
 "Language: \n"
@@ -189,12 +189,14 @@ msgid "Feature"
 msgstr "Funktion"
 
 #: templates/pretalx_broadcast_tools/orga.html:21
+#: templates/pretalx_broadcast_tools/orga.html:55
 #, fuzzy
 #| msgid "Lower thirds"
 msgid "Lower Thirds"
 msgstr "Bauchbinden"
 
 #: templates/pretalx_broadcast_tools/orga.html:22
+#: templates/pretalx_broadcast_tools/orga.html:63
 #, fuzzy
 #| msgid "Room info"
 msgid "Room Info"
@@ -253,18 +255,18 @@ msgstr "Track-Name in einfachem Text oder in der Track-Farbe eingefärbt."
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: templates/pretalx_broadcast_tools/orga.html:55
-msgid "Lower thirds"
-msgstr "Bauchbinden"
-
-#: templates/pretalx_broadcast_tools/orga.html:63
-msgid "Room info"
-msgstr "Raum-Information"
-
 #: templates/pretalx_broadcast_tools/orga.html:70
-msgid "PDF export"
+#, fuzzy
+#| msgid "PDF export"
+msgid "PDF Export"
 msgstr "PDF-Export"
 
 #: templates/pretalx_broadcast_tools/orga.html:86
 msgid "Save"
 msgstr "Speichern"
+
+#~ msgid "Lower thirds"
+#~ msgstr "Bauchbinden"
+
+#~ msgid "Room info"
+#~ msgstr "Raum-Information"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-05 07:29+0100\n"
+"POT-Creation-Date: 2024-11-13 06:37+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -169,10 +169,12 @@ msgid "Feature"
 msgstr ""
 
 #: templates/pretalx_broadcast_tools/orga.html:21
+#: templates/pretalx_broadcast_tools/orga.html:55
 msgid "Lower Thirds"
 msgstr ""
 
 #: templates/pretalx_broadcast_tools/orga.html:22
+#: templates/pretalx_broadcast_tools/orga.html:63
 msgid "Room Info"
 msgstr ""
 
@@ -227,16 +229,8 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: templates/pretalx_broadcast_tools/orga.html:55
-msgid "Lower thirds"
-msgstr ""
-
-#: templates/pretalx_broadcast_tools/orga.html:63
-msgid "Room info"
-msgstr ""
-
 #: templates/pretalx_broadcast_tools/orga.html:70
-msgid "PDF export"
+msgid "PDF Export"
 msgstr ""
 
 #: templates/pretalx_broadcast_tools/orga.html:86
