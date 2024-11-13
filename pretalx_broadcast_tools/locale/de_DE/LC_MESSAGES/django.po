@@ -2,19 +2,21 @@
 # Copyright (C) 2024 Franziska 'kunsi' Kunsmann
 # This file is distributed under the same license as the pretalx-broadcast-tools package.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: 2.4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-11-13 06:37+0100\n"
-"PO-Revision-Date: 2024-11-05 07:32+0100\n"
-"Last-Translator: Franziska Kunsmann <git@kunsmann.eu>\n"
-"Language: \n"
+"PO-Revision-Date: 2024-11-13 05:41+0000\n"
+"Last-Translator: Franziska <pretalx@kunsmann.eu>\n"
+"Language-Team: German <http://translate.pretalx.com/projects/"
+"pretalx-plugin-broadcast-tools/pretalx-plugin-broadcast-tools/de/>\n"
+"Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #: apps.py:12
 msgid "Broadcasting Tools"
@@ -195,7 +197,6 @@ msgstr "Bauchbinden"
 
 #: templates/pretalx_broadcast_tools/orga.html:22
 #: templates/pretalx_broadcast_tools/orga.html:63
-#, fuzzy
 msgid "Room Info"
 msgstr "Raum-Information"
 
@@ -253,7 +254,6 @@ msgid "Settings"
 msgstr "Einstellungen"
 
 #: templates/pretalx_broadcast_tools/orga.html:70
-#, fuzzy
 msgid "PDF Export"
 msgstr "PDF-Export"
 
