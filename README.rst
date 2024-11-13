@@ -1,6 +1,10 @@
 Pretalx: Broadcast Tools (and more)
 ===================================
 
+.. image:: http://translate.pretalx.com/widget/pretalx-plugin-broadcast-tools/pretalx-plugin-broadcast-tools/svg-badge.svg
+    :alt: Translation status
+    :target: http://translate.pretalx.com/engage/pretalx-plugin-broadcast-tools/
+
 This is a plugin for `pretalx`_.
 
 This adds the following features to your pretalx instance:
