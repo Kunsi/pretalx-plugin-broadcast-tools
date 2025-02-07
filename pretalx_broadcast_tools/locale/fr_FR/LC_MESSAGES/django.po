@@ -3,19 +3,21 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-11-13 06:37+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2025-02-05 12:56+0000\n"
+"Last-Translator: Harrissou Sant-anna <delazj@gmail.com>\n"
+"Language-Team: French <http://translate.pretalx.com/projects/"
+"pretalx-plugin-broadcast-tools/pretalx-plugin-broadcast-tools/fr/>\n"
+"Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #: apps.py:12
 msgid "Broadcasting Tools"
@@ -30,35 +32,35 @@ msgstr ""
 
 #: exporter.py:124
 msgid "DO NOT RECORD - DO NOT STREAM"
-msgstr ""
+msgstr "NE PAS ENREGISTRER - NE PAS DIFFUSER EN CONTINU"
 
 #: exporter.py:167
 msgid "Duration"
-msgstr ""
+msgstr "Durée"
 
 #: exporter.py:168
 msgid "Language"
-msgstr ""
+msgstr "Langue"
 
 #: exporter.py:169
 msgid "Type"
-msgstr ""
+msgstr "Type"
 
 #: exporter.py:170
 msgid "Code"
-msgstr ""
+msgstr "Code"
 
 #: exporter.py:214
 msgid "Questions"
-msgstr ""
+msgstr "Questions"
 
 #: exporter.py:242
 msgid "Notes"
-msgstr ""
+msgstr "Notes"
 
 #: exporter.py:264
 msgid "Internal Notes"
-msgstr ""
+msgstr "Notes internes"
 
 #: forms.py:10
 msgid "Will be shown as talk title if there's currently no talk running."
