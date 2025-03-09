@@ -1,3 +1,10 @@
+function _left_zero_pad(i) {
+    if (i < 10) {
+        i = "0" + i;
+    }
+    return i;
+}
+
 function update_room_info() {
     room_name = get_room_name();
 
@@ -37,6 +44,7 @@ function update_room_info() {
 
     current_talk = get_current_talk(60);
     next_talk = get_next_talk();
+    now = new Date();
 
     if (current_talk) {
         title.innerHTML = current_talk['title'];
@@ -45,7 +53,6 @@ function update_room_info() {
         scheduledata.innerHTML += ' - ';
         scheduledata.innerHTML += format_time_from_pretalx(current_talk['end']);
 
-        now = new Date();
         scheduled_start = new Date(current_talk['start']);
         scheduled_end = new Date(current_talk['end']);
 
@@ -83,8 +90,9 @@ function update_room_info() {
         progressbar_bar.style.width = '0';
         speaker.innerHTML = 'Break';
         timehint.innerHTML = '';
-        timeleft.innerHTML = '';
         title.innerHTML = room_name;
+
+        timeleft.innerHTML = _left_zero_pad(now.getHours()) + ":" + _left_zero_pad(now.getMinutes()) + ":" + _left_zero_pad(now.getSeconds());
 
         if (next_talk) {
             scheduledata.innerHTML = format_time_from_pretalx(next_talk['start']) + ' ' + next_talk['title'];
