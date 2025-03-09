@@ -67,7 +67,7 @@ function update_room_info() {
         } else {
             diff = scheduled_end - now;
             let diff_s = Math.floor(Math.floor(diff / 1000) % 60);
-            let diff_m = Math.floor(diff / 1000 / 60) % 60;
+            let diff_m = Math.floor(diff / 1000 / 60);
 
             timeleft.innerHTML = diff_m + 'min ' + diff_s + 'sec';
 
