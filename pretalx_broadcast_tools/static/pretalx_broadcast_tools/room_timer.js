@@ -61,7 +61,7 @@ function update_room_info() {
             progressbar_bar.style.width = '0';
             timehint.innerHTML = '';
         } else if (scheduled_end < now) {
-            timeleft.innerHTML = '0sec';
+            timeleft.innerHTML = '0:00';
             progressbar_bar.style.width = '100vw';
             timehint.innerHTML = 'talk has ended';
         } else {
