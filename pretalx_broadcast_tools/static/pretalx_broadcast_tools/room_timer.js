@@ -66,10 +66,15 @@ function update_room_info() {
             timehint.innerHTML = 'talk has ended';
         } else {
             diff = scheduled_end - now;
-            let diff_s = Math.floor(Math.floor(diff / 1000) % 60);
-            let diff_m = Math.floor(diff / 1000 / 60);
+            let diff_s = Math.floor(diff / 1000) % 60;
+            let diff_m = Math.floor(diff / 1000 / 60) % 60;
+            let diff_h = Math.floor(diff / 1000 / 60 / 60);
 
-            timeleft.innerHTML = diff_m + 'min ' + diff_s + 'sec';
+            if (diff_h > 0) {
+                timeleft.innerHTML = diff_h + ":" + _left_zero_pad(diff_m) + ":" + _left_zero_pad(diff_s);
+            } else {
+                timeleft.innerHTML = diff_m + ":" + _left_zero_pad(diff_s);
+            }
 
             total_time = scheduled_end - scheduled_start;
             progressbar_bar.style.width = (((diff/total_time)*100)-100)*-1 + 'vw';
