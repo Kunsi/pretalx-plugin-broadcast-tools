@@ -89,18 +89,18 @@ body {
 }
 
 #broadcast_tools_room_timer_title {
-    font-size: 8vh;
+    font-size: 10vh;
     margin-bottom: 0.2em;
     font-weight: bold;
 }
 
 #broadcast_tools_room_timer_speaker {
-    font-size: 6vh;
+    font-size: 8vh;
     font-weight: normal;
 }
 
 #broadcast_tools_room_timer_scheduledata {
-    font-size: 3vh;
+    font-size: 5vh;
     font-weight: normal;
 }
 
@@ -110,7 +110,7 @@ body {
 }
 
 #broadcast_tools_room_timer_timeleft_timer {
-    font-size: 40vh;
+    font-size: 35vh;
 }
 
 #broadcast_tools_room_timer_progressbar, #broadcast_tools_room_timer_progressbar_bar {
