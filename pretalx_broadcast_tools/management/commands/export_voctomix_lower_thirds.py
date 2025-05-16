@@ -78,13 +78,15 @@ class VoctomixLowerThirdsExporter:
             encoding="unic",
         )
 
-    def _hex2rgb(self, hex_value):
+    @staticmethod
+    def _hex2rgb(hex_value):
         hex_value = hex_value.lstrip("#")
         # black insists this should have spaces around the :, but flake8
         # complains about spaces around the :, soooooo ....
         return tuple(int(hex_value[i : i + 2], 16) for i in (0, 2, 4))  # NOQA
 
-    def _fit_text(self, input_text, font, max_width):
+    @staticmethod
+    def _fit_text(input_text, font, max_width):
         words = [i.strip() for i in input_text.split()]
         lines = []
         line = []
@@ -177,7 +179,7 @@ class VoctomixLowerThirdsExporter:
         img.save(filename)
         self.log.debug(
             f"Generated single-speaker image for {speaker.get_display_name()!r} "
-            "of talk {talk.submission.title!r}, saved as {filename}"
+            f"of talk {talk.submission.title!r}, saved as {filename}"
         )
         return filename
 

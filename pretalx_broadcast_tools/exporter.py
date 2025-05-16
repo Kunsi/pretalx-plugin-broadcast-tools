@@ -284,8 +284,7 @@ class PDFExporter(ScheduleData):
     show_qrcode = False
     icon = "fa-file-pdf"
 
-    def _add_pages(self, doc):
-        style = self._style()
+    def _add_pages(self):
         pages = []
         for fahrplan_day in self.data:
             for room_details in fahrplan_day["rooms"]:
@@ -302,12 +301,13 @@ class PDFExporter(ScheduleData):
                             fahrplan_day,
                             room_details,
                             talk,
-                            style,
+                            self._style,
                         )
                     )
                     pages.append(PageBreak())
         return pages
 
+    @property
     def _style(self):
         stylesheet = StyleSheet1()
         stylesheet.add(
@@ -366,7 +366,7 @@ class PDFExporter(ScheduleData):
                 topMargin=0,
                 bottomMargin=0,
             )
-            doc.build(self._add_pages(doc))
+            doc.build(self._add_pages())
             f.seek(0)
 
             return (

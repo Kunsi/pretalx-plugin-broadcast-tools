@@ -63,7 +63,7 @@ body {
     margin-left: -510px;
     padding: 15px;
 
-    box-shadow: 5px 5px 10px 0px rgba(50, 50, 50, 0.75);
+    box-shadow: 5px 5px 10px 0 rgba(50, 50, 50, 0.75);
     background-color: #3aa57c;
 }
 
