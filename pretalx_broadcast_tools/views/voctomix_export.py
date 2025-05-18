@@ -9,7 +9,7 @@ from pretalx_broadcast_tools.management.commands.export_voctomix_lower_thirds im
 
 
 class BroadcastToolsLowerThirdsVoctomixDownloadView(EventPermissionRequired, View):
-    permission_required = "agenda.view_schedule"
+    permission_required = "schedule.list_schedule"
 
     def get(self, request, *args, **kwargs):
         targz_path = get_export_targz_path(self.request.event)

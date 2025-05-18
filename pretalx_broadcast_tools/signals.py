@@ -20,7 +20,7 @@ hierarkey.add_default("broadcast_tools_lower_thirds_info_string", "", LazyI18nSt
 @receiver(nav_event_settings)
 def navbar_info(sender, request, **kwargs):
     url = resolve(request.path_info)
-    if not request.user.has_perm("orga.change_settings", request.event):
+    if not request.user.has_perm("event.update_event", request.event):
         return []
     return [
         {

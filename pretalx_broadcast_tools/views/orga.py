@@ -6,7 +6,7 @@ from ..forms import BroadcastToolsSettingsForm
 
 class BroadcastToolsOrgaView(PermissionRequired, FormView):
     form_class = BroadcastToolsSettingsForm
-    permission_required = "orga.change_settings"
+    permission_required = "event.update_event"
     template_name = "pretalx_broadcast_tools/orga.html"
 
     def get_success_url(self):

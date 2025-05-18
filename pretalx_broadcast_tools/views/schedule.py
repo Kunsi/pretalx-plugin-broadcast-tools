@@ -12,7 +12,7 @@ from ..utils.placeholders import placeholders
 
 
 class BroadcastToolsScheduleView(EventPermissionRequired, ScheduleMixin, View):
-    permission_required = "agenda.view_schedule"
+    permission_required = "schedule.list_schedule"
 
     def get(self, request, *args, **kwargs):
         schedule = ScheduleData(
