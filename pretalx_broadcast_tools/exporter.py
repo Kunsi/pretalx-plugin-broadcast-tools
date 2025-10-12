@@ -135,7 +135,7 @@ class PDFInfoPage(Flowable):
                         self._localize(self.event.name),
                         self._localize(self.room["name"]),
                         talk_start.strftime("%F"),
-                        f'{talk_start.strftime("%T")} - {talk_end.strftime("%T")}',
+                        f"{talk_start.strftime('%T')} - {talk_end.strftime('%T')}",
                     ],
                 ),
                 style=self.style["Meta"],

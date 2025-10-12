@@ -62,7 +62,7 @@ jobs:
         run: flake8 .
         working-directory: .
   black:
-    name: black
+    name: ruff format check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -81,9 +81,9 @@ jobs:
       - name: Install pretalx
         run: pip3 install pretalx
       - name: Install Dependencies
-        run: pip3 install black -Ue .
+        run: pip3 install ruff -Ue .
       - name: Run black
-        run: black --check .
+        run: ruff format --check .
         working-directory: .
   docformatter:
     name: docformatter

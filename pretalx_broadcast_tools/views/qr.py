@@ -9,11 +9,9 @@ from django.views import View
 
 
 def _make_svg_response(url):
-        image = qrcode.make(
-            url, image_factory=qrcode.image.svg.SvgImage
-        )
-        svg_data = mark_safe(ElementTree.tostring(image.get_image()).decode())
-        return HttpResponse(svg_data, content_type="image/svg+xml")
+    image = qrcode.make(url, image_factory=qrcode.image.svg.SvgImage)
+    svg_data = mark_safe(ElementTree.tostring(image.get_image()).decode())
+    return HttpResponse(svg_data, content_type="image/svg+xml")
 
 
 class BroadcastToolsFeedbackQrCodeSvg(View):
