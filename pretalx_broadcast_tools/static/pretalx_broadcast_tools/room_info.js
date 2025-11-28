@@ -3,7 +3,7 @@ function update_room_info() {
 
     if (!event_info)  {
         console.warn("Waiting for event info ...");
-        return
+        return;
     }
 
     box = document.getElementById('broadcast_tools_room_info');
@@ -15,29 +15,28 @@ function update_room_info() {
     if (!room_name) {
         roomname.innerHTML = event_info['name'];
         title.innerHTML = 'Backstage';
-        speaker.innerHTML = '';
-        qr.innerHTML = '';
         box.style.backgroundColor = event_info['color'];
-        return
+        return;
     }
 
     if (!schedule)  {
         speaker.innerHTML = 'Waiting for schedule ...';
-        return
+        return;
     }
 
     if ('error' in schedule) {
         title.innerHTML = 'Error';
         speaker.innerHTML = schedule['error'].join('<br>');
         qr.innerHTML = '';
-        return
+        return;
     }
 
-    if (schedule['rooms'].length > 1 && !schedule['rooms'].includes(room_name)) {
-        title.innerHTML = 'Error';
-        speaker.innerHTML = 'Invalid room_name. Valid names: ' + schedule['rooms'].join(', ');
+    if (!schedule['rooms'].includes(room_name)) {
+        roomname.innerHTML = event_info['name'];
+        title.innerHTML = room_name;
+        speaker.innerHTML = '';
         qr.innerHTML = '';
-        return
+        return;
     }
 
     current_talk = get_current_talk(15);

@@ -3,7 +3,7 @@ function update_lower_third() {
 
     if (!event_info)  {
         console.warn("Waiting for event info ...");
-        return
+        return;
     }
 
     box = document.getElementById('broadcast_tools_lower_thirds_box');
@@ -13,23 +13,24 @@ function update_lower_third() {
 
     box.style.backgroundColor = event_info['color'];
 
+    if (!room_name) {
+        title.innerHTML = 'Room not found. Please check your configuration.';
+        speaker.innerHTML = '';
+        infoline.innerHTML = '';
+        box.style.borderBottom = 'none';
+        return;
+    }
+
     if (!schedule)  {
         title.innerHTML = 'Waiting for schedule ...';
-        return
+        return;
     }
 
     if ('error' in schedule) {
         title.innerHTML = 'Error';
         speaker.innerHTML = schedule['error'].join('<br>');
         infoline.innerHTML = '';
-        return
-    }
-
-    if (schedule['rooms'].length > 1 && !schedule['rooms'].includes(room_name)) {
-        title.innerHTML = 'Error';
-        speaker.innerHTML = 'Invalid room_name. Valid names: ' + schedule['rooms'].join(', ');
-        infoline.innerHTML = '';
-        return
+        return;
     }
 
     current_talk = get_current_talk(5);

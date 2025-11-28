@@ -10,7 +10,7 @@ function update_room_info() {
 
     if (!event_info)  {
         console.warn("Waiting for event info ...");
-        return
+        return;
     }
 
     box = document.getElementById('broadcast_tools_room_timer');
@@ -25,21 +25,32 @@ function update_room_info() {
 
     box.style.backgroundColor = event_info['color'];
 
+    if (!room_name) {
+        title.innerHTML = event_info['name'];
+        return;
+    }
+
     if (!schedule)  {
         speaker.innerHTML = 'Waiting for schedule ...';
-        return
+        return;
     }
 
     if ('error' in schedule) {
         title.innerHTML = 'Error';
         speaker.innerHTML = schedule['error'].join('<br>');
-        return
+        return;
     }
 
-    if (schedule['rooms'].length > 1 && !schedule['rooms'].includes(room_name)) {
-        title.innerHTML = 'Error';
-        speaker.innerHTML = 'Invalid room_name. Valid names: ' + schedule['rooms'].join(', ');
-        return
+    if (!schedule['rooms'].includes(room_name)) {
+        speaker.innerHTML = event_info['name'];
+        title.innerHTML = room_name;
+        scheduledata.innerHTML = '';
+        timehint.innerHTML = '';
+        progressbar.style.borderTop = 'none';
+        progressbar_bar.style.width = '0';
+
+        timeleft.innerHTML = _left_zero_pad(now.getHours()) + ":" + _left_zero_pad(now.getMinutes()) + ":" + _left_zero_pad(now.getSeconds());
+        return;
     }
 
     current_talk = get_current_talk(60);

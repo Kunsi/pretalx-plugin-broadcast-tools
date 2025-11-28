@@ -69,8 +69,7 @@ function get_room_name() {
     if (event_info && event_info["rooms"].hasOwnProperty(hash)) {
         return event_info["rooms"][hash];
     }
-    // XXX remove fallback when releasing 3.0.0
-    return hash;
+    return null;
 }
 
 function format_time_from_pretalx(from_pretalx) {
