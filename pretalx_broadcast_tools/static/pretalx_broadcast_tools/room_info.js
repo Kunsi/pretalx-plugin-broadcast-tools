@@ -36,6 +36,7 @@ function update_room_info() {
         title.innerHTML = room_name;
         speaker.innerHTML = '';
         qr.innerHTML = '';
+        box.style.backgroundColor = event_info['color'];
         return;
     }
 
