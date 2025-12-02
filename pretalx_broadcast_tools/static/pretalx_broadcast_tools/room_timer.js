@@ -25,6 +25,8 @@ function update_room_info() {
 
     box.style.backgroundColor = event_info['color'];
 
+    now = new Date();
+
     if (!room_name) {
         title.innerHTML = event_info['name'];
         return;
@@ -55,7 +57,6 @@ function update_room_info() {
 
     current_talk = get_current_talk(60);
     next_talk = get_next_talk();
-    now = new Date();
 
     if (current_talk) {
         title.innerHTML = current_talk['title'];
