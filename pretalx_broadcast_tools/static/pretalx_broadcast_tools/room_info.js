@@ -15,6 +15,7 @@ function update_room_info() {
     if (!room_name) {
         roomname.innerHTML = event_info['name'];
         title.innerHTML = 'Backstage';
+        speaker.innerHTML = '';
         box.style.backgroundColor = event_info['color'];
         return;
     }
