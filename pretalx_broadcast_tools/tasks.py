@@ -69,10 +69,14 @@ def task_periodic_voctomix_export(*, event_slug):
 
 @receiver(periodic_task)
 def periodic_event_services(sender, **kwargs):
-    for event in Event.objects.all():
+    two_days_ago = now().date() - timedelta(days=2)
+    for event in Event.objects.all().filter(event__date_to__lt=two_days_ago):
         with scope(event=event):
-            if (event.date_to + timedelta(days=2)) < now().date():
+            if (
+                not event.settings.broadcast_tools_lower_thirds_export_voctomix
+                or not event.current_schedule
+            ):
                 continue
-            task_periodic_voctomix_export.apply_async(
-                kwargs={"event_slug": event.slug}, ignore_result=True
-            )
+        task_periodic_voctomix_export.apply_async(
+            kwargs={"event_slug": event.slug}, ignore_result=True
+        )
