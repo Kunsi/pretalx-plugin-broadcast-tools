@@ -70,7 +70,7 @@ def task_periodic_voctomix_export(*, event_slug):
 @receiver(periodic_task)
 def periodic_event_services(sender, **kwargs):
     two_days_ago = now().date() - timedelta(days=2)
-    for event in Event.objects.all().filter(event__date_to__lt=two_days_ago):
+    for event in Event.objects.all().filter(date_to__lt=two_days_ago):
         with scope(event=event):
             if (
                 not event.settings.broadcast_tools_lower_thirds_export_voctomix
