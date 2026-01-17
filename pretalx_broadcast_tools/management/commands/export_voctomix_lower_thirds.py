@@ -109,7 +109,11 @@ class VoctomixLowerThirdsExporter:
         return lines
 
     def _get_infoline(self, talk):
-        infoline = self.infoline.localize(self.event.locale).format(
+        infoline = self.infoline
+        if not isinstance(self.infoline, str):
+            infoline = self.infoline.localize(self.event.locale)
+
+        infoline = infoline.format(
             **placeholders(
                 self.event,
                 talk,
