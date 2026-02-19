@@ -19,6 +19,9 @@ class PluginApp(AppConfig):
         visible = True
         version = __version__
         category = "FEATURE"
+        settings_links = [
+            (gettext_lazy("Settings"), "plugins:pretalx_broadcast_tools:orga", {}),
+        ]
 
     def ready(self):
         from . import signals  # NOQA
