@@ -40,8 +40,12 @@ body {
     font-weight: normal;
 }
 
-#broadcast_tools_room_info_qr {
+#broadcast_tools_room_info_qr:not(:empty) {
     flex: 1;
+}
+
+#broadcast_tools_room_info:has(#broadcast_tools_room_info_qr:empty) {
+    justify-content: center;
 }
 
 #broadcast_tools_room_info_qr img {
