@@ -8,119 +8,120 @@ function _left_zero_pad(i) {
 function update_room_info() {
     room_name = get_room_name();
 
-    if (!event_info)  {
+    if (!event_info) {
         console.warn("Waiting for event info ...");
         return;
     }
 
-    box = document.getElementById('broadcast_tools_room_timer');
-    header = document.getElementById('broadcast_tools_room_timer_header');
-    title = document.getElementById('broadcast_tools_room_timer_title');
-    speaker = document.getElementById('broadcast_tools_room_timer_speaker');
-    scheduledata = document.getElementById('broadcast_tools_room_timer_scheduledata');
-    timeleft = document.getElementById('broadcast_tools_room_timer_timeleft_timer');
-    timehint = document.getElementById('broadcast_tools_room_timer_timeleft_hint');
-    progressbar= document.getElementById('broadcast_tools_room_timer_progressbar');
-    progressbar_bar = document.getElementById('broadcast_tools_room_timer_progressbar_bar');
+    let timeleft = document.getElementById('broadcast_tools_room_timer_timeleft_timer');
+    let timehint = document.getElementById('broadcast_tools_room_timer_timeleft_hint');
+    let eventbar_fill = document.getElementById('broadcast_tools_room_timer_eventbar_fill');
+    let eventbar_text = document.getElementById('broadcast_tools_room_timer_eventbar_text');
 
-    box.style.backgroundColor = event_info['color'];
+    let now = new Date();
 
-    now = new Date();
+    function set_timer(text, hint, color, flashing) {
+        timeleft.innerHTML = text;
+        timehint.innerHTML = hint;
+        timeleft.style.color = color;
+        if (flashing) {
+            timeleft.classList.add('flashing');
+        } else {
+            timeleft.classList.remove('flashing');
+        }
+    }
+
+    function wall_clock() {
+        return _left_zero_pad(now.getHours()) + ':' + _left_zero_pad(now.getMinutes()) + ':' + _left_zero_pad(now.getSeconds());
+    }
+
+    function format_duration(ms) {
+        let h = Math.floor(ms / 1000 / 60 / 60);
+        let m = Math.floor(ms / 1000 / 60) % 60;
+        let s = Math.floor(ms / 1000) % 60;
+        if (h > 0) {
+            return h + ':' + _left_zero_pad(m) + ':' + _left_zero_pad(s);
+        }
+        return m + ':' + _left_zero_pad(s);
+    }
 
     if (!room_name) {
-        title.innerHTML = event_info['name'];
+        set_timer(wall_clock(), '', 'white', false);
+        eventbar_fill.style.width = '0';
+        eventbar_text.textContent = event_info['name'];
         return;
     }
 
-    if (!schedule)  {
-        speaker.innerHTML = 'Waiting for schedule ...';
+    if (!schedule) {
+        set_timer('', 'Waiting for schedule \u2026', 'white', false);
         return;
     }
 
     if ('error' in schedule) {
-        title.innerHTML = 'Error';
-        speaker.innerHTML = schedule['error'].join('<br>');
+        set_timer('Error', schedule['error'].join(' / '), 'white', false);
         return;
     }
 
     if (!schedule['rooms'].includes(room_name)) {
-        speaker.innerHTML = event_info['name'];
-        title.innerHTML = room_name;
-        scheduledata.innerHTML = '';
-        timehint.innerHTML = '';
-        progressbar.style.borderTop = 'none';
-        progressbar_bar.style.width = '0';
-
-        timeleft.innerHTML = _left_zero_pad(now.getHours()) + ":" + _left_zero_pad(now.getMinutes()) + ":" + _left_zero_pad(now.getSeconds());
+        set_timer(wall_clock(), '', 'white', false);
+        eventbar_fill.style.width = '0';
+        eventbar_text.textContent = room_name;
         return;
     }
 
-    current_talk = get_current_talk(60);
-    next_talk = get_next_talk();
+    let current_talk = get_current_talk(60);
+    let next_talk = get_next_talk();
 
     if (current_talk) {
-        title.innerHTML = current_talk['title'];
-        speaker.innerHTML = current_talk['persons'].join(', ');
-        scheduledata.innerHTML = format_time_from_pretalx(current_talk['start']);
-        scheduledata.innerHTML += ' - ';
-        scheduledata.innerHTML += format_time_from_pretalx(current_talk['end']);
-
-        scheduled_start = new Date(current_talk['start']);
-        scheduled_end = new Date(current_talk['end']);
+        let scheduled_start = new Date(current_talk['start']);
+        let scheduled_end = new Date(current_talk['end']);
 
         if (scheduled_start > now) {
-            timeleft.innerHTML = '';
-            progressbar_bar.style.width = '0';
-            timehint.innerHTML = '';
-        } else if (scheduled_end < now) {
-            timeleft.innerHTML = '0:00';
-            progressbar_bar.style.width = '100vw';
-            timehint.innerHTML = 'talk has ended';
-        } else {
-            diff = scheduled_end - now;
-            let diff_s = Math.floor(diff / 1000) % 60;
-            let diff_m = Math.floor(diff / 1000 / 60) % 60;
-            let diff_h = Math.floor(diff / 1000 / 60 / 60);
-
-            if (diff_h > 0) {
-                timeleft.innerHTML = diff_h + ":" + _left_zero_pad(diff_m) + ":" + _left_zero_pad(diff_s);
+            // Talk not yet started
+            set_timer('', '', 'white', false);
+            eventbar_fill.style.width = '0';
+            eventbar_text.textContent = format_time_from_pretalx(current_talk['start']) + ' \u2013 ' + current_talk['title'];
+        } else if (scheduled_end <= now) {
+            // Talk has ended (within grace period)
+            if (next_talk) {
+                // Break before next talk
+                set_timer(wall_clock(), '', 'white', false);
+                eventbar_fill.style.width = '0';
+                eventbar_text.textContent = format_time_from_pretalx(next_talk['start']) + ' \u2013 ' + next_talk['title'];
             } else {
-                timeleft.innerHTML = diff_m + ":" + _left_zero_pad(diff_s);
+                // No following talk — count up from scheduled end, flash
+                let overtime = now - scheduled_end;
+                set_timer('+' + format_duration(overtime), 'talk has ended', 'red', true);
+                eventbar_fill.style.width = '100%';
+                eventbar_text.textContent = current_talk['title'];
+            }
+        } else {
+            // Talk is running
+            let remaining = scheduled_end - now;
+            let total = scheduled_end - scheduled_start;
+            let progress = ((now - scheduled_start) / total) * 100;
+
+            let color;
+            if (remaining < 2 * 60 * 1000) {
+                color = 'red';
+            } else if (remaining < 5 * 60 * 1000) {
+                color = 'orange';
+            } else {
+                color = 'white';
             }
 
-            total_time = scheduled_end - scheduled_start;
-            progressbar_bar.style.width = (((diff/total_time)*100)-100)*-1 + 'vw';
-            timehint.innerHTML = 'left in this talk';
-        }
-
-        if (current_talk['track']) {
-            header.style.backgroundColor = current_talk['track']['color'];
-            progressbar.style.borderTop = '2px solid ' + current_talk['track']['color'];
-            progressbar_bar.style.backgroundColor = current_talk['track']['color'];
-        } else {
-            header.style.backgroundColor = null;
-            progressbar.style.borderTop = '2px solid white';
-            progressbar_bar.style.backgroundColor = 'white';
+            set_timer(format_duration(remaining), 'left in this talk', color, false);
+            eventbar_fill.style.width = Math.min(100, progress) + '%';
+            eventbar_text.textContent = current_talk['title'];
         }
     } else {
-        progressbar.style.borderTop = 'none';
-        progressbar_bar.style.width = '0';
-        speaker.innerHTML = 'Break';
-        timehint.innerHTML = '';
-        title.innerHTML = room_name;
-
-        timeleft.innerHTML = _left_zero_pad(now.getHours()) + ":" + _left_zero_pad(now.getMinutes()) + ":" + _left_zero_pad(now.getSeconds());
-
+        // Break
+        set_timer(wall_clock(), '', 'white', false);
+        eventbar_fill.style.width = '0';
         if (next_talk) {
-            scheduledata.innerHTML = format_time_from_pretalx(next_talk['start']) + ' ' + next_talk['title'];
-
-            if (next_talk['track']) {
-                header.style.backgroundColor = next_talk['track']['color'];
-            } else {
-                header.style.backgroundColor = null;
-            }
+            eventbar_text.textContent = format_time_from_pretalx(next_talk['start']) + ' \u2013 ' + next_talk['title'];
         } else {
-            scheduledata.innerHTML = '';
+            eventbar_text.textContent = '';
         }
     }
 }
