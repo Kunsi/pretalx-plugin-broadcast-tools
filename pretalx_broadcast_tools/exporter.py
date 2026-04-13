@@ -42,41 +42,29 @@ class PDFInfoPage(Flowable):
     @property
     def _questions(self):
         return {
-            int(i.strip())
-            for i in (
-                self.event.settings.broadcast_tools_pdf_questions_to_include or ""
-            ).split(",")
-            if i
+            int(i.strip()) for i in (self.event.settings.broadcast_tools_pdf_questions_to_include or "").split(",") if i
         }
 
     def _add(self, item, gap=2):
-        _, height = item.wrapOn(
-            self.canv, A4_WIDTH - 2 * PAGE_PADDING, A4_HEIGHT - 2 * PAGE_PADDING
-        )
+        _, height = item.wrapOn(self.canv, A4_WIDTH - 2 * PAGE_PADDING, A4_HEIGHT - 2 * PAGE_PADDING)
         self.y_position += height + gap * mm
         item.drawOn(self.canv, PAGE_PADDING, -self.y_position)
 
     def _checkbox_text(self, text, **kwargs):
         item = Paragraph(text, **kwargs)
-        _, height = item.wrapOn(
-            self.canv, A4_WIDTH - 2 * PAGE_PADDING, A4_HEIGHT - 2 * PAGE_PADDING
-        )
+        _, height = item.wrapOn(self.canv, A4_WIDTH - 2 * PAGE_PADDING, A4_HEIGHT - 2 * PAGE_PADDING)
         self.y_position += height + 2 * mm
         item.drawOn(self.canv, PAGE_PADDING + 1.3 * height, -self.y_position)
         self.canv.rect(PAGE_PADDING, -self.y_position, height * 0.8, height * 0.8)
 
     def _question_text(self, question, answer, **kwargs):
         item = Paragraph(question, **kwargs)
-        _, height = item.wrapOn(
-            self.canv, A4_WIDTH - 2 * PAGE_PADDING, A4_HEIGHT - 2 * PAGE_PADDING
-        )
+        _, height = item.wrapOn(self.canv, A4_WIDTH - 2 * PAGE_PADDING, A4_HEIGHT - 2 * PAGE_PADDING)
         self.y_position += height + 2 * mm
         item.drawOn(self.canv, PAGE_PADDING, -self.y_position)
 
         item = Paragraph(answer, **kwargs)
-        _, height = item.wrapOn(
-            self.canv, A4_WIDTH - 3 * PAGE_PADDING, A4_HEIGHT - 2 * PAGE_PADDING
-        )
+        _, height = item.wrapOn(self.canv, A4_WIDTH - 3 * PAGE_PADDING, A4_HEIGHT - 2 * PAGE_PADDING)
         self.y_position += height + 2 * mm
         item.drawOn(self.canv, 2 * PAGE_PADDING, -self.y_position)
 
@@ -105,9 +93,7 @@ class PDFInfoPage(Flowable):
             " | ".join(
                 [
                     self.talk.submission.code,
-                    self.talk.submission.submission_type.name.localize(
-                        self.event.locale
-                    ),
+                    self.talk.submission.submission_type.name.localize(self.event.locale),
                     self.event.name.localize(self.event.locale),
                     talk_start.isoformat(),
                     f"Day {self.day['index']}",
@@ -141,9 +127,7 @@ class PDFInfoPage(Flowable):
                 style=self.style["Meta"],
             )
         )
-        self._add(
-            Paragraph(self.talk.submission.title, style=self.style["Title"]), gap=0
-        )
+        self._add(Paragraph(self.talk.submission.title, style=self.style["Title"]), gap=0)
         self._space()
 
         for spk in self.talk.submission.speakers.all():
@@ -254,10 +238,7 @@ class PDFInfoPage(Flowable):
                     )
                 )
 
-        if (
-            self.talk.submission.internal_notes
-            and self.event.settings.broadcast_tools_pdf_show_internal_notes
-        ):
+        if self.talk.submission.internal_notes and self.event.settings.broadcast_tools_pdf_show_internal_notes:
             self._space()
             self._add(
                 Paragraph(
@@ -289,10 +270,7 @@ class PDFExporter(ScheduleData):
         for fahrplan_day in self.data:
             for room_details in fahrplan_day["rooms"]:
                 for talk in room_details["talks"]:
-                    if (
-                        talk.submission.do_not_record
-                        and self.event.settings.broadcast_tools_pdf_ignore_do_not_record
-                    ):
+                    if talk.submission.do_not_record and self.event.settings.broadcast_tools_pdf_ignore_do_not_record:
                         continue
                     pages.append(
                         PDFInfoPage(
@@ -310,40 +288,14 @@ class PDFExporter(ScheduleData):
     @property
     def _style(self):
         stylesheet = StyleSheet1()
-        stylesheet.add(
-            ParagraphStyle(name="Normal", fontName="Helvetica", fontSize=12, leading=14)
-        )
-        stylesheet.add(
-            ParagraphStyle(
-                name="Title", fontName="Helvetica-Bold", fontSize=20, leading=24
-            )
-        )
-        stylesheet.add(
-            ParagraphStyle(
-                name="Speaker", fontName="Helvetica-Oblique", fontSize=12, leading=14
-            )
-        )
-        stylesheet.add(
-            ParagraphStyle(name="Meta", fontName="Helvetica", fontSize=14, leading=16)
-        )
-        stylesheet.add(
-            ParagraphStyle(
-                name="Heading", fontName="Helvetica-Bold", fontSize=14, leading=16
-            )
-        )
-        stylesheet.add(
-            ParagraphStyle(
-                name="Question", fontName="Helvetica", fontSize=12, leading=14
-            )
-        )
-        stylesheet.add(
-            ParagraphStyle(
-                name="Abstract", fontName="Helvetica-Oblique", fontSize=10, leading=12
-            )
-        )
-        stylesheet.add(
-            ParagraphStyle(name="Notes", fontName="Helvetica", fontSize=12, leading=14)
-        )
+        stylesheet.add(ParagraphStyle(name="Normal", fontName="Helvetica", fontSize=12, leading=14))
+        stylesheet.add(ParagraphStyle(name="Title", fontName="Helvetica-Bold", fontSize=20, leading=24))
+        stylesheet.add(ParagraphStyle(name="Speaker", fontName="Helvetica-Oblique", fontSize=12, leading=14))
+        stylesheet.add(ParagraphStyle(name="Meta", fontName="Helvetica", fontSize=14, leading=16))
+        stylesheet.add(ParagraphStyle(name="Heading", fontName="Helvetica-Bold", fontSize=14, leading=16))
+        stylesheet.add(ParagraphStyle(name="Question", fontName="Helvetica", fontSize=12, leading=14))
+        stylesheet.add(ParagraphStyle(name="Abstract", fontName="Helvetica-Oblique", fontSize=10, leading=12))
+        stylesheet.add(ParagraphStyle(name="Notes", fontName="Helvetica", fontSize=12, leading=14))
         stylesheet.add(
             ParagraphStyle(
                 name="Warning",

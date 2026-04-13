@@ -16,7 +16,5 @@ class BroadcastToolsLowerThirdsVoctomixDownloadView(EventPermissionRequired, Vie
         if not targz_path.exists():
             raise Http404()
         response = FileResponse(open(targz_path, "rb"), as_attachment=True)
-        response["Content-Disposition"] = (
-            f"attachment; filename={safe_filename(targz_path.name)}"
-        )
+        response["Content-Disposition"] = f"attachment; filename={safe_filename(targz_path.name)}"
         return response

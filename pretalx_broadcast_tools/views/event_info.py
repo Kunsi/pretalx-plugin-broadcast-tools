@@ -9,16 +9,11 @@ class BroadcastToolsEventInfoView(View):
             {
                 "color": color,
                 "name": self.request.event.name.localize(self.request.event.locale),
-                "no_talk": str(
-                    self.request.event.settings.broadcast_tools_lower_thirds_no_talk_info
-                ),
+                "no_talk": str(self.request.event.settings.broadcast_tools_lower_thirds_no_talk_info),
                 "room-info": {
-                    "lower_info": self.request.event.settings.broadcast_tools_room_info_lower_content
-                    or "",
+                    "lower_info": self.request.event.settings.broadcast_tools_room_info_lower_content or "",
                     "show_next_talk": (
-                        True
-                        if self.request.event.settings.broadcast_tools_room_info_show_next_talk
-                        else False
+                        True if self.request.event.settings.broadcast_tools_room_info_show_next_talk else False
                     ),
                 },
                 "rooms": {

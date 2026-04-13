@@ -17,11 +17,7 @@ IMG_HEIGHT = 1080  # px
 FONT_SIZE_TITLE = 30  # px
 FONT_SIZE_SPEAKER = 25  # px
 FONT_SIZE_INFOLINE = 18  # px
-FONT_FILE = (
-    Path(__file__).resolve().parent.parent.parent
-    / "assets"
-    / "titilium-web-regular.ttf"
-)
+FONT_FILE = Path(__file__).resolve().parent.parent.parent / "assets" / "titilium-web-regular.ttf"
 
 BOX_PADDING = 10  # px
 
@@ -196,9 +192,7 @@ class VoctomixLowerThirdsExporter:
 
         title_text = self._fit_text(talk.submission.title, self.font_title, BOX_WIDTH)
         speaker_text = self._fit_text(
-            ", ".join(
-                [person.get_display_name() for person in talk.submission.speakers.all()]
-            ),
+            ", ".join([person.get_display_name() for person in talk.submission.speakers.all()]),
             self.font_speaker,
             BOX_WIDTH,
         )
@@ -265,25 +259,17 @@ class VoctomixLowerThirdsExporter:
 
         filename = self.tmp_dir / f"event_{talk.submission_id}_persons.png"
         img.save(filename)
-        self.log.debug(
-            f"Generated image for talk {talk.submission.title!r}, saved as {filename}"
-        )
+        self.log.debug(f"Generated image for talk {talk.submission.title!r}, saved as {filename}")
         return filename
 
     def export(self):
         generated_files = set()
         if not self.event.current_schedule:
-            raise CommandError(
-                f"event {self.event.slug} ({self.event.name}) does not have a schedule to be exported!"
-            )
+            raise CommandError(f"event {self.event.slug} ({self.event.name}) does not have a schedule to be exported!")
 
-        self.log.info(
-            f"Generating voctomix-compatible lower thirds for event {self.event.name}"
-        )
+        self.log.info(f"Generating voctomix-compatible lower thirds for event {self.event.name}")
 
-        for talk in self.event.current_schedule.talks.filter(
-            is_visible=True
-        ).select_related("submission"):
+        for talk in self.event.current_schedule.talks.filter(is_visible=True).select_related("submission"):
             if talk.id in self.exported:
                 # account for talks that are scheduled multiple times
                 self.log.warning(
@@ -293,10 +279,7 @@ class VoctomixLowerThirdsExporter:
                 continue
 
             if talk.submission is None:
-                self.log.info(
-                    f"Talk {talk.id} has no associated submission, this is a break. "
-                    "Skipping."
-                )
+                self.log.info(f"Talk {talk.id} has no associated submission, this is a break. Skipping.")
                 continue
 
             self.log.info(f"Generating image(s) for talk {talk.submission.title!r}")
@@ -341,9 +324,7 @@ class Command(BaseCommand):
             except Exception:
                 logging.exception(f"Export of {event.name} failed")
             else:
-                logging.info(
-                    f"Export of {event.name} succeeded, export available at {targz_path}"
-                )
+                logging.info(f"Export of {event.name} succeeded, export available at {targz_path}")
             finally:
                 if not options.get("no_delete_source_files"):
                     delete_directory(export_dir)
