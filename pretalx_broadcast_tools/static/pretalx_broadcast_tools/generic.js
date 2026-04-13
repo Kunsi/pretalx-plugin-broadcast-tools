@@ -3,26 +3,26 @@ event_info = null;
 req = {};
 
 function get_current_talk(max_offset) {
-    room_name = get_room_name();
+    let room_name = get_room_name();
 
     if (!room_name) {
         return null;
     }
 
+    let now = Date.now();
+
     for (let offset = 0; offset <= max_offset; offset++) {
-        time_start = new Date(Date.now() + offset*60000).getTime();
-        time_end = new Date(Date.now() - offset*60000).getTime();
+        let time_start = now + offset * 60000;
+        let time_end = now - offset * 60000;
 
-        for (talk_i in schedule['talks']) {
-            talk = schedule['talks'][talk_i]
-
+        for (const talk of schedule['talks']) {
             if (schedule['rooms'].length > 1 && talk['room'] != room_name) {
                 // not in this room
                 continue;
             }
 
-            talk_start = new Date(talk['start']).getTime();
-            talk_end = new Date(talk['end']).getTime();
+            let talk_start = new Date(talk['start']).getTime();
+            let talk_end = new Date(talk['end']).getTime();
 
             if (talk_start < time_start && talk_end > time_end) {
                 return talk;
@@ -34,25 +34,21 @@ function get_current_talk(max_offset) {
 }
 
 function get_next_talk() {
-    room_name = get_room_name();
+    let room_name = get_room_name();
 
     if (!room_name) {
         return null;
     }
 
-    time_start = new Date(Date.now()).getTime();
+    let time_start = Date.now();
 
-    for (talk_i in schedule['talks']) {
-        talk = schedule['talks'][talk_i]
-
+    for (const talk of schedule['talks']) {
         if (schedule['rooms'].length > 1 && talk['room'] != room_name) {
             // not in this room
             continue;
         }
 
-        talk_start = new Date(talk['start']).getTime();
-
-        if (talk_start > time_start) {
+        if (new Date(talk['start']).getTime() > time_start) {
             return talk;
         }
     }
@@ -61,6 +57,7 @@ function get_next_talk() {
 }
 
 function get_room_name() {
+    let hash;
     try {
         hash = decodeURIComponent(window.location.hash.substring(1));
     } catch (e) {
@@ -73,20 +70,8 @@ function get_room_name() {
 }
 
 function format_time_from_pretalx(from_pretalx) {
-    d = new Date(from_pretalx);
-
-    h = d.getHours();
-    m = d.getMinutes();
-
-    if (h < 10) {
-        h = '0' + h;
-    }
-
-    if (m < 10) {
-        m = '0' + m;
-    }
-
-    return h + ':' + m;
+    let d = new Date(from_pretalx);
+    return String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0');
 }
 
 function xhr_get(url, callback_func) {
@@ -114,7 +99,7 @@ function update_schedule() {
     });
     xhr_get('../schedule.json', function(text) {
         console.debug("schedule: " + text);
-        data = JSON.parse(text);
+        let data = JSON.parse(text);
         if ('error' in data) {
             console.error(data['error']);
         } else {
