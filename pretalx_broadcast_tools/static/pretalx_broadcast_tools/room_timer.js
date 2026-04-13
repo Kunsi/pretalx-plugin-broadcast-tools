@@ -77,7 +77,6 @@ function update_room_info() {
     }
 
     let current_talk = get_current_talk(60);
-    let next_talk = get_next_talk();
 
     if (current_talk) {
         let scheduled_start = new Date(current_talk['start']);
@@ -89,19 +88,11 @@ function update_room_info() {
             eventbar_fill.style.width = '0';
             eventbar_text.textContent = format_time_from_pretalx(current_talk['start']) + ' \u2013 ' + current_talk['title'];
         } else if (scheduled_end <= now) {
-            // Talk has ended (within grace period)
-            if (next_talk) {
-                // Break before next talk
-                set_timer(wall_clock(), 'white', false);
-                eventbar_fill.style.width = '0';
-                eventbar_text.textContent = format_time_from_pretalx(next_talk['start']) + ' \u2013 ' + next_talk['title'];
-            } else {
-                // No following talk — count up from scheduled end, flash
-                let overtime = now - scheduled_end;
-                set_timer('+' + format_duration(overtime), 'red', true);
-                eventbar_fill.style.width = '100%';
-                eventbar_text.textContent = current_talk['title'];
-            }
+            // Talk has ended (within grace period) — count up from scheduled end
+            let overtime = now - scheduled_end;
+            set_timer('+' + format_duration(overtime), 'red', true);
+            eventbar_fill.style.width = '100%';
+            eventbar_text.textContent = current_talk['title'];
         } else {
             // Talk is running
             let remaining = scheduled_end - now;
@@ -126,6 +117,7 @@ function update_room_info() {
         }
     } else {
         // Break
+        let next_talk = get_next_talk();
         eventbar_fill.style.width = '0';
         if (next_talk) {
             let next_start = new Date(next_talk['start']);
