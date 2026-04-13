@@ -94,6 +94,18 @@ body {
     overflow: hidden;
 }
 
+#broadcast_tools_room_timer_topbar {
+    flex-shrink: 0;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4vh;
+    font-weight: bold;
+    text-align: center;
+    padding: 0 1em;
+}
+
 #broadcast_tools_room_timer_timeleft {
     flex: 1;
     display: flex;

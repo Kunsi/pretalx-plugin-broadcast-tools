@@ -13,12 +13,17 @@ function update_room_info() {
         return;
     }
 
+    let topbar = document.getElementById('broadcast_tools_room_timer_topbar');
+    let topbar_text = document.getElementById('broadcast_tools_room_timer_topbar_text');
     let timeleft = document.getElementById('broadcast_tools_room_timer_timeleft_timer');
     let timehint = document.getElementById('broadcast_tools_room_timer_timeleft_hint');
     let eventbar_fill = document.getElementById('broadcast_tools_room_timer_eventbar_fill');
     let eventbar_text = document.getElementById('broadcast_tools_room_timer_eventbar_text');
 
     let now = new Date();
+
+    topbar_text.textContent = event_info['name'];
+    topbar.style.backgroundColor = event_info['color'];
 
     function set_timer(text, hint, color, flashing) {
         timeleft.innerHTML = text;
@@ -113,6 +118,9 @@ function update_room_info() {
             set_timer(format_duration(remaining), 'left in this talk', color, false);
             eventbar_fill.style.width = Math.min(100, progress) + '%';
             eventbar_text.textContent = current_talk['title'];
+            if (current_talk['track']) {
+                topbar.style.backgroundColor = current_talk['track']['color'];
+            }
         }
     } else {
         // Break
