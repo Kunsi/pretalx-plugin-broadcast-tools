@@ -1,5 +1,25 @@
+import hashlib
+import pathlib
+
 from django.http import JsonResponse
 from django.views import View
+
+
+def _compute_static_hash():
+    base = pathlib.Path(__file__).parent.parent
+    files = sorted(
+        [
+            *base.glob("static/**/*.js"),
+            *base.glob("templates/**/*.html"),
+        ]
+    )
+    h = hashlib.sha256()
+    for f in files:
+        h.update(f.read_bytes())
+    return h.hexdigest()
+
+
+_static_hash = _compute_static_hash()
 
 
 class BroadcastToolsEventInfoView(View):
@@ -25,5 +45,6 @@ class BroadcastToolsEventInfoView(View):
                 "end": self.request.event.date_to.isoformat(),
                 "timezone": str(self.request.event.tz),
                 "locale": self.request.event.locale,
+                "static_hash": _static_hash,
             },
         )

@@ -1,6 +1,7 @@
 schedule = null;
 event_info = null;
 req = {};
+static_hash = null;
 
 function get_current_talk(max_offset) {
     let room_name = get_room_name();
@@ -106,6 +107,12 @@ function update_schedule() {
     xhr_get('../event.json', function(text) {
         console.debug("events: " + text);
         event_info = JSON.parse(text);
+        if (static_hash === null) {
+            static_hash = event_info['static_hash'];
+        } else if (event_info['static_hash'] !== static_hash) {
+            window.location.reload();
+            return;
+        }
         update_page_title();
     });
     xhr_get('../schedule.json', function(text) {
