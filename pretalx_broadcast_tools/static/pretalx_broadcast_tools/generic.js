@@ -118,8 +118,7 @@ function update_schedule() {
         }
 
         schedule = data;
-
-        window.setTimeout(update_schedule, 30000);
     });
+    window.setTimeout(update_schedule, 30000);
 }
 update_schedule();
