@@ -92,10 +92,21 @@ function xhr_get(url, callback_func) {
     req[url].send();
 }
 
+function update_page_title() {
+    if (!event_info) return;
+    let room_name = get_room_name();
+    if (room_name) {
+        document.title = room_name + ' - ' + event_info['name'];
+    }
+}
+
+window.addEventListener('hashchange', update_page_title);
+
 function update_schedule() {
     xhr_get('../event.json', function(text) {
         console.debug("events: " + text);
         event_info = JSON.parse(text);
+        update_page_title();
     });
     xhr_get('../schedule.json', function(text) {
         console.debug("schedule: " + text);
