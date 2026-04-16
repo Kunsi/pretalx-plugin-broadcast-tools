@@ -71,8 +71,8 @@ function update_room_info() {
         let scheduled_end = new Date(current_talk['end']);
 
         if (scheduled_start > now) {
-            // Talk not yet started — show allocated duration in grey
-            set_timer(format_duration(scheduled_end - scheduled_start), '#666', false);
+            // Talk not yet started — show countdown to start in grey
+            set_timer('-' + format_duration(scheduled_start - now), '#666', false);
             rt_eventbar_fill.style.width = '0';
             rt_eventbar_text.textContent = format_time_from_pretalx(current_talk['start']) + ' \u2013 ' + current_talk['title'];
         } else if (scheduled_end <= now) {
