@@ -33,7 +33,6 @@ function update_room_info() {
 
     let now = new Date();
 
-    rt_topbar_text.textContent = event_info['name'];
     rt_topbar.style.backgroundColor = event_info['color'];
 
     if (!room_name) {
@@ -66,6 +65,9 @@ function update_room_info() {
 
     let current_talk = get_current_talk(60);
 
+    rt_topbar_text.textContent = current_talk ? current_talk['title'] : event_info['name'];
+    rt_eventbar_text.textContent = '';
+
     if (current_talk) {
         let scheduled_start = new Date(current_talk['start']);
         let scheduled_end = new Date(current_talk['end']);
@@ -74,12 +76,10 @@ function update_room_info() {
             // Talk not yet started — show countdown to start in grey
             set_timer('-' + format_duration(scheduled_start - now), '#666', false);
             rt_eventbar_fill.style.width = '0';
-            rt_eventbar_text.textContent = format_time_from_pretalx(current_talk['start']) + ' \u2013 ' + current_talk['title'];
         } else if (scheduled_end <= now) {
             // Talk has ended (within grace period) — count up from scheduled end
             set_timer('+' + format_duration(now - scheduled_end), 'red', true);
             rt_eventbar_fill.style.width = '100%';
-            rt_eventbar_text.textContent = current_talk['title'];
         } else {
             // Talk is running
             let remaining = scheduled_end - now;
@@ -88,7 +88,6 @@ function update_room_info() {
 
             set_timer(format_duration(remaining), color, false);
             rt_eventbar_fill.style.width = Math.min(100, progress) + '%';
-            rt_eventbar_text.textContent = current_talk['title'];
             if (current_talk['track']) {
                 rt_topbar.style.backgroundColor = current_talk['track']['color'];
             }
