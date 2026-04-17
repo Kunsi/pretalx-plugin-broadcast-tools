@@ -39,3 +39,12 @@ version = {attr = "pretalx_broadcast_tools.__version__"}
 
 [tool.setuptools.packages.find]
 include = ["pretalx*"]
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+
+[tool.ruff.lint.isort]
+known-third-party = ["pretalx"]

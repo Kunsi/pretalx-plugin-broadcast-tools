@@ -14,55 +14,8 @@ on:
 
 
 jobs:
-  isort:
-    name: isort
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: install gettext
-        run: sudo apt install gettext
-      - name: Set up Python 3.12
-        uses: actions/setup-python@v5
-        with:
-          python-version: 3.12
-      - uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/setup.py') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-      - name: Install pretalx
-        run: pip3 install pretalx
-      - name: Install Dependencies
-        run: pip3 install isort -Ue .
-      - name: Run isort
-        run: isort -c .
-  flake:
-    name: flake8
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: install gettext
-        run: sudo apt install gettext
-      - name: Set up Python 3.12
-        uses: actions/setup-python@v5
-        with:
-          python-version: 3.12
-      - uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/setup.py') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-      - name: Install pretalx
-        run: pip3 install pretalx
-      - name: Install Dependencies
-        run: pip3 install flake8 -Ue .
-      - name: Run flake8
-        run: flake8 .
-        working-directory: .
-  black:
-    name: ruff format check
+  ruff:
+    name: ruff
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -82,33 +35,10 @@ jobs:
         run: pip3 install pretalx
       - name: Install Dependencies
         run: pip3 install ruff -Ue .
-      - name: Run black
+      - name: Run ruff format check
         run: ruff format --check .
-        working-directory: .
-  docformatter:
-    name: docformatter
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: install gettext
-        run: sudo apt install gettext
-      - name: Set up Python 3.12
-        uses: actions/setup-python@v5
-        with:
-          python-version: 3.12
-      - uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/setup.py') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-      - name: Install pretalx
-        run: pip3 install pretalx
-      - name: Install Dependencies
-        run: pip3 install docformatter -Ue .
-      - name: Run docformatter
-        run: docformatter --check -r .
-        working-directory: .
+      - name: Run ruff lint check
+        run: ruff check .
   djhtml:
     name: djhtml
     runs-on: ubuntu-latest
@@ -130,7 +60,7 @@ jobs:
         run: pip3 install pretalx
       - name: Install Dependencies
         run: pip3 install djhtml -Ue .
-      - name: Run docformatter
+      - name: Run djhtml
         run: find -name "*.html" | xargs djhtml -c
         working-directory: .
 #  packaging:

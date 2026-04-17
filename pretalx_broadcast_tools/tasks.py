@@ -42,10 +42,7 @@ def task_periodic_voctomix_export(*, event_slug):
         event = Event.objects.filter(slug=event_slug).first()
 
     with scope(event=event):
-        if (
-            not event.settings.broadcast_tools_lower_thirds_export_voctomix
-            or not event.current_schedule
-        ):
+        if not event.settings.broadcast_tools_lower_thirds_export_voctomix or not event.current_schedule:
             return
 
         targz_path = get_export_targz_path(event)
@@ -62,9 +59,7 @@ def task_periodic_voctomix_export(*, event_slug):
         if needs_rebuild:
             event.cache.delete("broadcast_tools_force_new_voctomix_export")
             event.cache.set("broadcast_tools_last_voctomix_export", _now, None)
-            export_voctomix_lower_thirds.apply_async(
-                kwargs={"event_id": event.id}, ignore_result=True
-            )
+            export_voctomix_lower_thirds.apply_async(kwargs={"event_id": event.id}, ignore_result=True)
 
 
 @receiver(periodic_task)
@@ -72,11 +67,6 @@ def periodic_event_services(sender, **kwargs):
     two_days_ago = now().date() - timedelta(days=2)
     for event in Event.objects.all().filter(date_to__lt=two_days_ago):
         with scope(event=event):
-            if (
-                not event.settings.broadcast_tools_lower_thirds_export_voctomix
-                or not event.current_schedule
-            ):
+            if not event.settings.broadcast_tools_lower_thirds_export_voctomix or not event.current_schedule:
                 continue
-        task_periodic_voctomix_export.apply_async(
-            kwargs={"event_slug": event.slug}, ignore_result=True
-        )
+            task_periodic_voctomix_export.apply_async(kwargs={"event_slug": event.slug}, ignore_result=True)
