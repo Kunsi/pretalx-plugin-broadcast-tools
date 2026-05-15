@@ -54,7 +54,7 @@ class VoctomixLowerThirdsExporter:
             self.primary_colour = self._hex2rgb(event.primary_color)
         else:
             # pretalx.settings.DEFAULT_EVENT_PRIMARY_COLOR
-            self.primary__color = (58, 165, 124)
+            self.primary_colour = (58, 165, 124)
 
         self.infoline = event.settings.broadcast_tools_lower_thirds_info_string or ""
 
