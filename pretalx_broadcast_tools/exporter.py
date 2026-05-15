@@ -41,9 +41,17 @@ class PDFInfoPage(Flowable):
 
     @property
     def _questions(self):
-        return {
-            int(i.strip()) for i in (self.event.settings.broadcast_tools_pdf_questions_to_include or "").split(",") if i
-        }
+        result = set()
+        for i in (self.event.settings.broadcast_tools_pdf_questions_to_include or "").split(","):
+            i = i.strip()
+            if not i:
+                continue
+            try:
+                result.add(int(i))
+            except ValueError:
+                # Ignore non-numeric entries instead of breaking the export.
+                continue
+        return result
 
     def _add(self, item, gap=2):
         _, height = item.wrapOn(self.canv, A4_WIDTH - 2 * PAGE_PADDING, A4_HEIGHT - 2 * PAGE_PADDING)
