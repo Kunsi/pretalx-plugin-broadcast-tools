@@ -33,13 +33,13 @@ class BroadcastToolsSettingsForm(I18nFormMixin, HierarkeyForm):
 
     broadcast_tools_room_info_lower_content = ChoiceField(
         choices=(
-            ("", "No lower content"),
-            ("public_qr", "QR code linking to the 'talk detail' page"),
+            ("", _("No lower content")),
+            ("public_qr", _("QR code linking to the 'talk detail' page")),
             (
                 "feedback_qr",
-                "QR code linking to the feedback page of the currently running talk",
+                _("QR code linking to the feedback page of the currently running talk"),
             ),
-            ("talk_image", "session image uploaded by the speaker(s)"),
+            ("talk_image", _("session image uploaded by the speaker(s)")),
         ),
         help_text=_(
             "If a talk is running, the room info page will always show "
