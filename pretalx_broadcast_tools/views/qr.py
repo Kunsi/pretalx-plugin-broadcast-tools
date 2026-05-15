@@ -1,7 +1,7 @@
 from xml.etree import ElementTree
 
 from django.conf import settings
-from django.http import HttpResponse
+from django.http import Http404, HttpResponse
 from django.utils.safestring import mark_safe
 from django.views import View
 
@@ -22,6 +22,8 @@ def _make_svg_response(url):
 class BroadcastToolsFeedbackQrCodeSvg(View):
     def get(self, request, *args, **kwargs):
         talk = self.request.event.submissions.filter(id=kwargs["talk"]).first()
+        if not talk:
+            raise Http404()
         domain = request.event.custom_domain or settings.SITE_URL
         return _make_svg_response(f"{domain}{talk.urls.feedback}")
 
@@ -29,5 +31,7 @@ class BroadcastToolsFeedbackQrCodeSvg(View):
 class BroadcastToolsPublicQrCodeSvg(View):
     def get(self, request, *args, **kwargs):
         talk = self.request.event.submissions.filter(id=kwargs["talk"]).first()
+        if not talk:
+            raise Http404()
         domain = request.event.custom_domain or settings.SITE_URL
         return _make_svg_response(f"{domain}{talk.urls.public}")
